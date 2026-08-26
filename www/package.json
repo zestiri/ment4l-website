@@ -9,7 +9,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@vercel/analytics": "^2.0.1",
     "embla-carousel-react": "^8.6.0",
     "lucide-react": "^1.18.0",
     "motion": "^12.40.0",

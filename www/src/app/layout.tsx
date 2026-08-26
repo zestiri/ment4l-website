@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, IBM_Plex_Serif, IBM_Plex_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import localFont from "next/font/local";
-import { Analytics } from "@vercel/analytics/next";
+import Tracker from "@/components/site/Tracker";
 import { BottomBlur } from "@/components/site/BottomBlur";
 import "./globals.css";
 
@@ -78,7 +78,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-canvas font-sans text-ink antialiased">
         {children}
         <BottomBlur />
-        <Analytics />
+        <Tracker />
       </body>
     </html>
   );
