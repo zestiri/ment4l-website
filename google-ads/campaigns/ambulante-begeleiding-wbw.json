@@ -1,0 +1,124 @@
+{
+  "_formaat": "v2 - uitgebreid t.o.v. voorbeeld-campagne.json: meerdere advertentiegroepen en negatieve zoekwoorden. create_search_campaign.py (v1) leest 'ad_group_name', 'keywords' en 'ad' op het hoofdniveau en negeert 'ad_groups' en 'negatives'. Bouw deze campagne daarom via Porter (google_ads.budget_create -> campaign_create -> adgroup_create -> keyword_create -> ad_create), of breid het script uit.",
+  "_onderbouwing": "Zoekvolume gemeten op 26 aug 2026 binnen de 9 WBW-gemeenten via Google Keyword Planner (Ads-account 6199567507). Regio-totaal 970/mnd over 80 termen, waarvan 33% werk- of opleidingsintentie. Enige termen met echt volume: jeugdzorg 140, ambulante begeleiding 90, jeugdzorg roosendaal 70, jeugdzorg bergen op zoom 40. Alles daaronder is 10/mnd of nul.",
+
+  "campaign_name": "MENT4L - Search - Ambulante begeleiding WBW",
+  "status": "PAUSED",
+  "daily_budget_eur": 5,
+  "_budget_toelichting": "Veiligheidsrail, geen doel. Verwachte werkelijke uitgave EUR 25-50/mnd; de campagne is volumebeperkt, niet budgetbeperkt. Zet hem niet hoger: meer budget koopt hier alleen werkzoekenden of verkeer buiten het contractgebied.",
+
+  "bidding": "MAXIMIZE_CLICKS",
+  "default_cpc_bid_eur": 1.5,
+  "_bod_toelichting": "Geen conversiehistorie in het account, dus geen Smart Bidding. Max-CPC-plafond 1.50; gemeten toppositie-biedingen in de regio liggen op 0.28-1.42. Pas bij 15-30 conversies per 30 dagen door naar maximaliseer conversies.",
+
+  "target_search_network": false,
+  "_netwerk_toelichting": "Zoekpartners uit. Geen Display, geen PMax, geen Demand Gen, geen remarketing: gevoelige categorie.",
+
+  "locations": ["9063410", "9063373", "9063332", "9063331", "9063443", "9063280", "1010525", "9063248", "9063247"],
+  "_locations_toelichting": "De 9 WBW-gemeenten als geo target constants: Roosendaal, Bergen op Zoom, Etten-Leur, Halderberge, Moerdijk, Rucphen, Steenbergen, Woensdrecht, Zundert. Rotterdam (kantoor) NIET targeten: zonder contract wordt de zorg daar niet vergoed. Zet de locatie-instelling op AANWEZIGHEID, nooit op 'aanwezigheid of interesse' - woonplaatsbeginsel.",
+  "languages": ["1010"],
+
+  "ad_groups": [
+    {
+      "name": "Ambulante begeleiding",
+      "final_url": "https://www.ment4l.nl/jeugdhulp-west-brabant-west",
+      "_landing_todo": "Vervangen door https://www.ment4l.nl/ambulante-begeleiding zodra die pagina bestaat. Nu 404. Dit is de term met 90 zoekopdrachten/mnd in de regio en er is geen pagina die hem in title of H1 voert.",
+      "keywords": [
+        { "text": "ambulante begeleiding", "match": "PHRASE" },
+        { "text": "ambulante begeleiding jeugd", "match": "PHRASE" },
+        { "text": "ambulante begeleiding kind", "match": "PHRASE" },
+        { "text": "ambulante jeugdhulp", "match": "PHRASE" },
+        { "text": "ambulante hulpverlening jeugd", "match": "PHRASE" },
+        { "text": "ambulante gezinsbegeleiding", "match": "PHRASE" },
+        { "text": "ambulante begeleiding autisme", "match": "PHRASE" }
+      ]
+    },
+    {
+      "name": "Jeugdhulp regio",
+      "final_url": "https://www.ment4l.nl/jeugdhulp-west-brabant-west",
+      "keywords": [
+        { "text": "jeugdhulp", "match": "PHRASE" },
+        { "text": "jeugdzorg hulp", "match": "PHRASE" },
+        { "text": "jeugdcoach", "match": "PHRASE" },
+        { "text": "gezinsbegeleiding", "match": "PHRASE" },
+        { "text": "gezinscoach", "match": "PHRASE" },
+        { "text": "aanmelden jeugdzorg", "match": "PHRASE" },
+        { "text": "jeugdhulp aanvragen", "match": "PHRASE" },
+        { "text": "jeugdhulp zonder wachtlijst", "match": "PHRASE" },
+        { "text": "wachtlijst jeugdzorg", "match": "EXACT" },
+        { "text": "jeugdzorg", "match": "EXACT" }
+      ],
+      "_toelichting": "'jeugdzorg' bewust EXACT: 140/mnd in de regio maar zwaar vermengd met werk-, beleids- en gemeenteloket-intentie. Phrase zou de negatievenlijst overbelasten."
+    },
+    {
+      "name": "Roosendaal",
+      "final_url": "https://www.ment4l.nl/jeugdhulp/roosendaal",
+      "keywords": [
+        { "text": "jeugdzorg roosendaal", "match": "PHRASE" },
+        { "text": "jeugdhulp roosendaal", "match": "PHRASE" },
+        { "text": "ambulante begeleiding roosendaal", "match": "PHRASE" },
+        { "text": "jeugdcoach roosendaal", "match": "PHRASE" }
+      ]
+    },
+    {
+      "name": "Bergen op Zoom",
+      "final_url": "https://www.ment4l.nl/jeugdhulp/bergen-op-zoom",
+      "keywords": [
+        { "text": "jeugdzorg bergen op zoom", "match": "PHRASE" },
+        { "text": "jeugdhulp bergen op zoom", "match": "PHRASE" },
+        { "text": "ambulante begeleiding bergen op zoom", "match": "PHRASE" }
+      ]
+    }
+  ],
+
+  "_gemeenten_niet_gestart": "Etten-Leur, Halderberge, Moerdijk, Rucphen, Steenbergen, Woensdrecht en Zundert krijgen GEEN eigen advertentiegroep. Gemeten volume daar is 0-30/mnd; die zoekopdrachten worden opgevangen door de regio-advertentiegroep. De negen gemeentepagina's staan wel live voor organisch verkeer.",
+
+  "negatives": {
+    "_doel": "Een derde van het gemeten regiovolume is werk- of opleidingsintentie. Zonder deze lijst gaat het grootste deel van het budget daarheen. Toevoegen op campagneniveau.",
+    "werk_en_opleiding": ["vacature", "vacatures", "salaris", "loon", "cao", "opleiding", "cursus", "training", "stage", "traineeship", "zij instroom", "zij-instroom", "indeed", "werken bij", "werken als", "sollicitatie", "solliciteren", "leerwerk", "leerwerkplek", "bijbaan", "hbo", "mbo", "studie", "diploma", "ervaringsdeskundige", "zzp", "freelance", "jeugdzorgwerker", "jeugdzorgmedewerker", "groepsbegeleider", "woonbegeleider", "groepswerker", "begeleider worden", "functie", "baan"],
+    "verkeerde_doelgroep": ["wmo", "volwassenen", "ouderen", "nah", "niet-aangeboren", "hersenletsel", "beschermd wonen", "dagbesteding", "gehandicapten", "thuiszorg", "kraamzorg"],
+    "beleid_en_informatie": ["wet", "wetgeving", "beleid", "subsidie", "aanbesteding", "tarief", "tarieven", "uurtarief", "kosten", "betekenis", "wat is", "scriptie", "onderzoek", "rapport", "inspectie", "nieuws", "klacht", "vertrouwenspersoon", "akj", "jeugdrecht", "ots", "ondertoezichtstelling", "gesloten jeugdzorg", "gesloten jeugdhulp", "pgb"],
+    "concurrenten": ["almata", "timon", "humanitas", "leger des heils", "advizo", "xonar", "yoep", "youz", "yulius", "youke", "prodeba", "amarant", "amani", "juzt", "sdw", "impegno", "gro-up", "plushome", "qurius", "yorneo", "yarin", "save"],
+    "buiten_werkgebied": ["breda", "tilburg", "eindhoven", "rotterdam", "amsterdam", "den haag", "utrecht", "venlo", "zwolle", "nijmegen", "dordrecht", "middelburg", "vlissingen", "goes", "antwerpen"]
+  },
+
+  "ad": {
+    "_regel": "Elke claim moet letterlijk en verifieerbaar op de landingspagina staan (misrepresentation-beleid). Bewust NIET gebruikt: '10+ jaar ervaring', '100+ jeugdcoaches', '98%' - die zijn niet te onderbouwen bij een KVK-inschrijving van 12-02-2026. Nooit beloven dat de hulp direct start: er is een verwijzing nodig.",
+    "headlines": [
+      "Ambulante Begeleiding Jeugd",
+      "Begeleiding Bij Jullie Thuis",
+      "Reactie Binnen 4 Uur",
+      "24/7 Bereikbaar",
+      "Geen Wachtlijst",
+      "Geen Eigen Bijdrage",
+      "Jeugdhulp West-Brabant",
+      "Ambulante Jeugdhulp",
+      "Hulp Voor Je Kind",
+      "Een Vaste Jeugdcoach",
+      "Thuis, Op School Of Wijk",
+      "Wij Regelen De Verwijzing",
+      "Aanmelden In 5 Velden",
+      "Bel 085 130 7522",
+      "Actief In 9 Gemeenten"
+    ],
+    "descriptions": [
+      "Ambulante begeleiding voor jeugd bij jullie thuis, op school of in de wijk.",
+      "Je hoort binnen 4 uur van ons, ook buiten kantooruren. Geen wachtlijst.",
+      "Nog geen verwijzing? Wij helpen je die te krijgen. De gemeente betaalt de jeugdhulp.",
+      "Actief in negen gemeenten in West-Brabant West. Aanmelden kost je vijf velden."
+    ],
+    "path1": "jeugdhulp",
+    "path2": "aanmelden"
+  },
+
+  "assets": {
+    "_toelichting": "Nog toe te voegen na aanmaak; niet ondersteund door het v1-script.",
+    "call": "085 130 7522",
+    "sitelinks": [
+      { "tekst": "Aanmelden", "url": "https://www.ment4l.nl/aanmelden" },
+      { "tekst": "Actuele wachttijden", "url": "https://www.ment4l.nl/wachttijden" },
+      { "tekst": "Voor verwijzers", "url": "https://www.ment4l.nl/verwijzers" },
+      { "tekst": "Spoed en crisis", "url": "https://www.ment4l.nl/spoed" }
+    ]
+  }
+}

@@ -15,7 +15,7 @@ export function Nav() {
       <nav className="flex w-full max-w-[840px] items-center justify-between gap-3 rounded-2xl border border-white/10 bg-gradient-to-b from-[#1f1f1f]/90 to-charcoal-2/90 py-2.5 pl-5 pr-2.5 text-canvas shadow-[var(--shadow-framer-md)] backdrop-blur-[5px]">
         <div className="flex items-center gap-3 sm:gap-6">
           <Link href="/" className="shrink-0 text-white" aria-label="MENT4L home">
-            <Logo className="h-5 md:h-6" />
+            <Logo variant="mark" className="h-7 md:h-8" />
           </Link>
           <div className="hidden items-center gap-1 md:flex">
             {LEFT.map((l) => (

@@ -12,11 +12,14 @@ Er zijn precies twee vormen, allebei op `currentColor`:
 
 | Vorm | Bestand | Waar |
 |---|---|---|
-| Woordmerk | `public/ment4l-wordmark.svg` | Nav, footer, overal met breedte |
-| Merkteken (de 4) | `public/ment4l-mark.svg` | Favicon, app-icoon, avatar, krappe plekken |
+| Merkteken (de 4) | `public/ment4l-mark.svg` | **Nav en footer**, favicon, app-icoon, avatar |
+| Woordmerk | `public/ment4l-wordmark.svg` | Breed liggend gebruik: OG-beeld, drukwerk, presentaties |
 
-Beide zitten in `src/components/site/Logo.tsx`. Gebruik dat component en regel de maat met de
-**hoogte** (`h-5`, `h-6`), nooit met `font-size`. De kleur komt van de tekstkleur eromheen:
+**In de interface staat het merkteken, geen letters.** De nav draagt de 4 op 28px (32px vanaf md),
+de footer op 36px.
+
+Beide zitten in `src/components/site/Logo.tsx`; `variant="mark"` geeft de 4, zonder variant het
+woordmerk. Regel de maat met de **hoogte** (`h-7`, `h-9`), nooit met `font-size`. De kleur komt van de tekstkleur eromheen:
 `text-white` op donker, `text-ink` op licht.
 
 **Nooit het woordmerk natypen in een font.** Dat stond hier eerder (`MENT` + gekleurde `4` + `L` in

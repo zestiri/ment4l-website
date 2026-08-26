@@ -9,7 +9,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-site gap-10 px-6 py-16 sm:grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <Link href="/" aria-label="MENT4L" className="inline-block text-white">
-            <Logo className="h-6" />
+            <Logo variant="mark" className="h-9" />
           </Link>
           <p className="mt-3 max-w-xs text-sm text-white/55">
             Ambulante (spoed)hulp en jeugdcoaching door echte professionals.
