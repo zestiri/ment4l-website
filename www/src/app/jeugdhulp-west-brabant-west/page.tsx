@@ -148,7 +148,7 @@ export default function HubPage() {
               <div className="mx-auto max-w-2xl text-center">
                 <span className="eyebrow justify-center text-brand">Werkgebied</span>
                 <h2 className="mt-3 text-[clamp(1.75rem,4vw,2.5rem)]">
-                  Gecontracteerd in negen gemeenten
+                  Actief in negen gemeenten
                 </h2>
                 <p className="mt-4 text-ink-soft">
                   Woon je hier? Dan kunnen we direct starten zodra de verwijzing rond is.
