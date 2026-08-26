@@ -9,7 +9,9 @@ import { useEffect, useRef } from "react";
  * geen persoonsgegevens, dus geen cookiebanner nodig. De cijfers komen terug in app.zestiri.com.
  */
 const ENDPOINT = "https://dfmcnrqbhmhreiifarum.supabase.co/functions/v1/track";
-const DOMAIN = "www.ment4l.nl";
+// Registreerbaar domein, niet de host: zo blijft de telling gelijk als de canonical host wijzigt
+// en matcht hij de `domain` van het product in de portal.
+const DOMAIN = "ment4l.nl";
 
 export default function Tracker() {
   const pathname = usePathname();
