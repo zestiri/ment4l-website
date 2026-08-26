@@ -1,0 +1,286 @@
+{
+  "textureLagen": [
+    {
+      "tag": "div",
+      "box": "1440x617@x0,y0",
+      "bgImage": "linear-gradient(oklab(0.567263 -0.0302056 -0.235719 / 0.04) 0%, rgba(0, 0, 0, 0) 100%)",
+      "bgRepeat": "repeat",
+      "bgSize": "auto",
+      "opacity": "1",
+      "position": "absolute",
+      "zIndex": "auto"
+    },
+    {
+      "tag": "div",
+      "box": "542x373@x168,y1007",
+      "bgImage": "linear-gradient(to top, oklab(0 0 0 / 0.7) 0%, oklab(0 0 0 / 0.15) 50%, rgba(0, 0, 0, 0) 100%)",
+      "bgRepeat": "repeat",
+      "bgSize": "auto",
+      "opacity": "1",
+      "position": "absolute",
+      "zIndex": "auto"
+    },
+    {
+      "tag": "div",
+      "box": "542x373@x730,y1007",
+      "bgImage": "linear-gradient(to top, oklab(0 0 0 / 0.7) 0%, oklab(0 0 0 / 0.15) 50%, rgba(0, 0, 0, 0) 100%)",
+      "bgRepeat": "repeat",
+      "bgSize": "auto",
+      "opacity": "1",
+      "position": "absolute",
+      "zIndex": "auto"
+    },
+    {
+      "tag": "div",
+      "box": "542x373@x168,y1400",
+      "bgImage": "linear-gradient(to top, oklab(0 0 0 / 0.7) 0%, oklab(0 0 0 / 0.15) 50%, rgba(0, 0, 0, 0) 100%)",
+      "bgRepeat": "repeat",
+      "bgSize": "auto",
+      "opacity": "1",
+      "position": "absolute",
+      "zIndex": "auto"
+    },
+    {
+      "tag": "div",
+      "box": "542x373@x730,y1400",
+      "bgImage": "linear-gradient(to top, oklab(0 0 0 / 0.7) 0%, oklab(0 0 0 / 0.15) 50%, rgba(0, 0, 0, 0) 100%)",
+      "bgRepeat": "repeat",
+      "bgSize": "auto",
+      "opacity": "1",
+      "position": "absolute",
+      "zIndex": "auto"
+    },
+    {
+      "tag": "div",
+      "box": "357x108@x168,y2271",
+      "bgImage": "linear-gradient(to top, oklab(0 0 0 / 0.55) 0%, rgba(0, 0, 0, 0) 100%)",
+      "bgRepeat": "repeat",
+      "bgSize": "auto",
+      "opacity": "1",
+      "position": "absolute",
+      "zIndex": "auto"
+    },
+    {
+      "tag": "div",
+      "box": "544x148@x728,y2664",
+      "bgImage": "linear-gradient(to top, oklab(0 0 0 / 0.6) 0%, rgba(0, 0, 0, 0) 100%)",
+      "bgRepeat": "repeat",
+      "bgSize": "auto",
+      "opacity": "1",
+      "position": "absolute",
+      "zIndex": "auto"
+    },
+    {
+      "tag": "div",
+      "box": "1440x288@x0,y4662",
+      "bgImage": "radial-gradient(60% 100% at 50% 0px, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0))",
+      "bgRepeat": "repeat",
+      "bgSize": "auto",
+      "opacity": "1",
+      "position": "absolute",
+      "zIndex": "auto"
+    }
+  ],
+  "lijnen": [],
+  "nav": {
+    "box": "1024x62@x208,y2469",
+    "bg": "rgba(0, 0, 0, 0)",
+    "bgImage": "linear-gradient(oklab(0.268617 0.000012286 0.00000536442 / 0.9) 0%, ok",
+    "radius": "28px",
+    "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0",
+    "backdrop": "blur(24px) saturate(1.5)",
+    "padding": "10px 10px 10px 20px",
+    "border": "1px solid oklab(0.999994 0.0000455678 0.0000200868 / 0.1)"
+  },
+  "ctaKnoppen": [
+    {
+      "box": "180x51@x601,y419",
+      "bg": "rgb(31, 102, 255)",
+      "radius": "999px",
+      "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, ",
+      "padding": "14px 28px",
+      "fontSize": "15px",
+      "fontWeight": "600",
+      "fontFamily": "switzer, \"switzer Fallback\", Inter, \"Int",
+      "color": "rgb(255, 253, 250)",
+      "letterSpacing": "normal"
+    },
+    {
+      "box": "180x51@x601,y3563",
+      "bg": "rgb(31, 102, 255)",
+      "radius": "999px",
+      "shadow": "none",
+      "padding": "14px 28px",
+      "fontSize": "15px",
+      "fontWeight": "600",
+      "fontFamily": "switzer, \"switzer Fallback\", Inter, \"Int",
+      "color": "rgb(255, 253, 250)",
+      "letterSpacing": "normal"
+    },
+    {
+      "box": "168x40@x168,y6047",
+      "bg": "rgb(31, 102, 255)",
+      "radius": "999px",
+      "shadow": "none",
+      "padding": "10px 20px",
+      "fontSize": "14px",
+      "fontWeight": "600",
+      "fontFamily": "switzer, \"switzer Fallback\", Inter, \"Int",
+      "color": "rgb(255, 253, 250)",
+      "letterSpacing": "normal"
+    }
+  ],
+  "secties": [
+    {
+      "kop": "Onze samenwerkingen",
+      "box": "1440x171@x0,y617",
+      "bg": "rgb(250, 249, 247)",
+      "paddingTop": "0px",
+      "paddingBottom": "0px",
+      "borderTop": "1px solid rgb(230, 230, 230)"
+    },
+    {
+      "kop": "Expertises",
+      "box": "1440x5863@x0,y0",
+      "bg": "rgba(0, 0, 0, 0)",
+      "paddingTop": "0px",
+      "paddingBottom": "0px",
+      "borderTop": "0px solid rgb(18, 18, 18)"
+    },
+    {
+      "kop": "Uw zorg",
+      "box": "1440x5863@x0,y0",
+      "bg": "rgba(0, 0, 0, 0)",
+      "paddingTop": "0px",
+      "paddingBottom": "0px",
+      "borderTop": "0px solid rgb(18, 18, 18)"
+    },
+    {
+      "kop": "Jouw vragen",
+      "box": "1440x5863@x0,y0",
+      "bg": "rgba(0, 0, 0, 0)",
+      "paddingTop": "0px",
+      "paddingBottom": "0px",
+      "borderTop": "0px solid rgb(18, 18, 18)"
+    },
+    {
+      "kop": "Inzichten",
+      "box": "1440x953@x0,y3709",
+      "bg": "rgb(250, 249, 247)",
+      "paddingTop": "0px",
+      "paddingBottom": "0px",
+      "borderTop": "1px solid rgb(230, 230, 230)"
+    },
+    {
+      "kop": "Echte verhalen",
+      "box": "1440x1201@x0,y4662",
+      "bg": "rgb(26, 26, 26)",
+      "paddingTop": "96px",
+      "paddingBottom": "96px",
+      "borderTop": "0px solid oklab(0.999994 0.0000455678 0.0000200868 / 0.9)"
+    }
+  ],
+  "trajectKaart": {
+    "box": "1440x6241@x0,y0",
+    "bg": "rgba(0, 0, 0, 0)",
+    "radius": "0px",
+    "shadow": "none",
+    "border": "0px solid rgb(0, 0, 0)",
+    "padding": "0px"
+  },
+  "faqItem": null,
+  "statKaart": {
+    "box": "1440x6241@x0,y0",
+    "bg": "rgba(0, 0, 0, 0)",
+    "radius": "0px",
+    "shadow": "none",
+    "border": "0px solid rgb(0, 0, 0)",
+    "padding": "0px"
+  },
+  "topAchtergrondkleuren": [
+    [
+      "oklab(0.999994 0.0000455678 0.0000200868 / 0.06)",
+      32
+    ],
+    [
+      "oklab(0.999994 0.0000455678 0.0000200868 / 0.03)",
+      16
+    ],
+    [
+      "rgb(255, 253, 250)",
+      9
+    ],
+    [
+      "rgb(31, 102, 255)",
+      8
+    ],
+    [
+      "rgb(242, 240, 237)",
+      7
+    ],
+    [
+      "rgb(255, 255, 255)",
+      4
+    ],
+    [
+      "oklab(0.671459 0.151158 0.0902855 / 0.1)",
+      4
+    ],
+    [
+      "rgb(250, 249, 247)",
+      3
+    ],
+    [
+      "rgb(26, 26, 26)",
+      2
+    ],
+    [
+      "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+      1
+    ],
+    [
+      "oklab(0.999994 0.0000455678 0.0000200868 / 0.12)",
+      1
+    ],
+    [
+      "oklab(0.722997 -0.18884 0.110897 / 0.6)",
+      1
+    ]
+  ],
+  "topRadii": [
+    [
+      "3.35544e+07px",
+      69
+    ],
+    [
+      "24px",
+      27
+    ],
+    [
+      "16px",
+      11
+    ],
+    [
+      "12px",
+      5
+    ],
+    [
+      "999px",
+      3
+    ],
+    [
+      "28px",
+      1
+    ],
+    [
+      "17.264px",
+      1
+    ]
+  ],
+  "topShadows": [
+    [
+      "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0",
+      8
+    ]
+  ]
+}

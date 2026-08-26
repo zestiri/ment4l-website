@@ -1,0 +1,29 @@
+{
+  "_uitleg": "Placeholder-spec. Vervang de teksten zodra we weten wat we adverteren. Headlines max 30 tekens, descriptions max 90 tekens.",
+  "campaign_name": "MENT4L - Search - Voorbeeld",
+  "status": "PAUSED",
+  "daily_budget_eur": 15,
+  "default_cpc_bid_eur": 1.0,
+  "final_url": "https://ment4l.nl",
+  "target_search_network": false,
+  "locations": ["2528"],
+  "languages": ["1010"],
+  "ad_group_name": "Voorbeeld adgroep",
+  "keywords": [
+    { "text": "voorbeeld zoekterm", "match": "PHRASE" },
+    { "text": "andere zoekterm", "match": "EXACT" }
+  ],
+  "ad": {
+    "headlines": [
+      "Placeholder kop 1",
+      "Placeholder kop 2",
+      "Placeholder kop 3"
+    ],
+    "descriptions": [
+      "Placeholder beschrijving een, vervang met echte tekst.",
+      "Placeholder beschrijving twee, vervang met echte tekst."
+    ],
+    "path1": "voorbeeld",
+    "path2": "aanbod"
+  }
+}

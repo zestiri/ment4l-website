@@ -1,0 +1,4 @@
+# Google Ads API-koppeling voor MENT4L
+# Installeer met:  pip install -r google-ads/requirements.txt
+google-ads>=25.0.0
+google-auth-oauthlib>=1.2.0

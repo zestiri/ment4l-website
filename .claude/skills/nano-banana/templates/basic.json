@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "aspect_ratio": "4:3",
+    "image_size": "2K"
+  },
+  "subject": [
+    {
+      "description": "a kid focused on a creative activity at a worktable",
+      "age": "around 11",
+      "expression": "engaged and happy"
+    }
+  ],
+  "scene": {
+    "setting": "bright, tidy classroom",
+    "time_of_day": "afternoon",
+    "background": "soft, uncluttered"
+  },
+  "lighting": {
+    "quality": "soft natural daylight"
+  },
+  "style": {
+    "medium": "candid documentary photograph",
+    "mood": "warm and hopeful"
+  }
+}

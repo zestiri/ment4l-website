@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+/* ============================================================
+   MENT4L hoofdsite — design tokens (Tailwind v4, CSS-first @theme)
+   Wit/zand dominant · neutraal charcoal · blauw accent · koraal spaarzaam
+   Breakpoints exact overgenomen van de live Framer-site.
+   ============================================================ */
+@theme {
+  --color-canvas: #fffdfa;
+  --color-mist: #faf9f7;
+  --color-cream: #fffdf5;
+  --color-sand: #f2f0ed;
+  --color-hairline: #e6e6e6;
+
+  --color-ink: #121212;
+  --color-ink-soft: #4d4d4d;
+  --color-charcoal: #1a1a1a;
+  --color-charcoal-2: #262626;
+
+  --color-brand: #1f66ff;
+  --color-brand-2: #4d85ff;
+  --color-coral: #ee634e;
+  --color-coral-2: #f07865;
+
+  --color-grey: #6c6e74;
+  --color-grey-2: #9c9c9c;
+
+  /* Framer-breakpoints: primair 600 / 1000 / 1366, legacy 810 / 1200 */
+  --breakpoint-sm: 600px;
+  --breakpoint-mdx: 810px;
+  --breakpoint-md: 1000px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-lg: 1366px;
+
+  /* Body/UI = Switzer (dominant op de live site); koppen = IBM Plex Serif. */
+  --font-sans: var(--font-switzer), var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: var(--font-plex-serif), Georgia, "Times New Roman", serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "Courier New", monospace;
+  --font-display: var(--font-plex-serif), Georgia, "Times New Roman", serif;
+  --font-jakarta-stack: var(--font-jakarta), var(--font-switzer), system-ui, sans-serif;
+
+  --radius-pill: 999px;
+
+  --shadow-soft: 0 1px 2px rgba(18, 18, 18, 0.04), 0 14px 36px rgba(18, 18, 18, 0.07);
+  --shadow-lift: 0 28px 64px rgba(18, 18, 18, 0.13);
+
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  --animate-marquee: marquee 38s linear infinite;
+  /* Testimonial-wall: rij 1 schuift naar rechts (~25px/s), rij 2 naar links (~35px/s),
+     gemeten op de live site. Baan = 4x [2 kaarten van 528px + 32px gap] = 2240px per helft. */
+  --animate-wall-ltr: marquee 90s linear infinite reverse;
+  --animate-wall-rtl: marquee 64s linear infinite;
+  --animate-shimmer: shimmer 2.2s linear infinite;
+  --animate-floaty: floaty 16s ease-in-out infinite alternate;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes shimmer {
+    from { transform: translateX(-130%); }
+    to { transform: translateX(130%); }
+  }
+  @keyframes floaty {
+    to { transform: translate(26px, -22px) scale(1.06); }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.06;
+  }
+  ::selection {
+    background: var(--color-brand);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+/* mono eyebrow helper */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+/* subtiele diagonale textuur, zoals de marges op ment4l.nl */
+.texture {
+  background-image: repeating-linear-gradient(
+    135deg,
+    transparent 0 22px,
+    rgba(120, 120, 120, 0.035) 22px 23px
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

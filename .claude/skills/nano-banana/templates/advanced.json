@@ -1,0 +1,76 @@
+{
+  "meta": {
+    "aspect_ratio": "16:9",
+    "image_size": "4K",
+    "seed": 7
+  },
+  "subject": [
+    {
+      "description": "a youth coach kneeling beside a child at a worktable",
+      "age": "late twenties",
+      "appearance": "warm, approachable, natural look",
+      "wardrobe": "simple casual clothing, muted tones",
+      "pose": "leaning in, pointing at the child's work",
+      "expression": "encouraging smile",
+      "position": "right third of frame"
+    },
+    {
+      "description": "a child showing their project",
+      "age": "around 12",
+      "expression": "proud and focused",
+      "position": "left third of frame"
+    }
+  ],
+  "scene": {
+    "setting": "a real, lived-in school activity room",
+    "location": "indoors",
+    "time_of_day": "late afternoon",
+    "weather": "clear",
+    "background": "soft, uncluttered, slightly out of focus"
+  },
+  "lighting": {
+    "setup": "large soft window light from camera-left",
+    "quality": "soft and diffused",
+    "direction": "side light with gentle fill",
+    "mood": "warm and natural"
+  },
+  "camera": {
+    "device": "full-frame mirrorless",
+    "lens": "35mm prime",
+    "focal_length": "35mm",
+    "aperture": "f/2.0 shallow depth of field",
+    "shutter_speed": "1/250s",
+    "iso": 200,
+    "film_stock": "clean digital, true-to-life color"
+  },
+  "composition": {
+    "framing": "medium-wide two-shot",
+    "angle": "eye level with the child",
+    "focus": "sharp on faces and hands",
+    "rule": "leave clear negative space on one side for a headline"
+  },
+  "style": {
+    "medium": "candid documentary photograph",
+    "aesthetic": "authentic, editorial, human",
+    "color_grade": "warm neutrals, gentle contrast",
+    "mood": "trust, growth, focus",
+    "references": []
+  },
+  "text": [],
+  "constraints": {
+    "must_keep": [
+      "natural skin tones",
+      "uncluttered background",
+      "diverse, real-looking people"
+    ],
+    "avoid": [
+      "logos",
+      "brand marks",
+      "text overlays",
+      "watermarks",
+      "distorted hands",
+      "plastic AI look"
+    ]
+  },
+  "negative_prompt": "cartoonish, oversaturated, stocky studio backdrop, busy background, watermark"
+}

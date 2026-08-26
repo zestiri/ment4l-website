@@ -1,0 +1,52 @@
+/* ============================================================================
+   ment4l — Design Tokens (single source of truth)
+   Geëxtraheerd uit de live huisstijl op ment4l.nl (juni 2026).
+   Drop-in voor website én applicatie. Wijzig kleuren/fonts hier, nergens anders.
+   Print-CMYK staat in de PDF brand guide (ment4l-brand-guidelines.pdf).
+   ============================================================================ */
+:root {
+  /* — Accent (spaarzaam) ———————————————————————————————————————— */
+  --brand:        #1F66FF;   /* Primair blauw — knoppen, links, nadruk      rgb(31,102,255)  */
+  --brand-light:  #4D85FF;   /* Licht blauw — hovers, highlights            rgb(77,133,255)  */
+  --accent:       #EE634E;   /* Koraal — secundair accent, heel spaarzaam   rgb(238,99,78)   */
+  --accent-light: #F07865;   /* Licht koraal — zachte accenten              rgb(240,120,101) */
+
+  /* — Neutralen (warm) — de dominante basis ————————————————————— */
+  --bg:           #FFFDFA;   /* Canvas / hoofdachtergrond (warm wit)        rgb(255,253,250) */
+  --bg-2:         #FAF9F7;   /* Warm wit 2 — subtiele blokken               rgb(250,249,247) */
+  --cream:        #FFFDF5;   /* Crème — warme variatie                      rgb(255,253,245) */
+  --stone:        #F2F0ED;   /* Zand / steen — alternerende secties/kaarten rgb(242,240,237) */
+  --hairline:     #E6E6E6;   /* Hairline / randen                          rgb(230,230,230) */
+
+  /* — Donker (neutraal charcoal) & inkt ————————————————————————— */
+  /* NB: de site gebruikt neutraal charcoal voor donkere vlakken — GEEN navyblauw. */
+  --charcoal:     #1A1A1A;   /* Donkere drager — nav, footer, secties      rgb(26,26,26)    */
+  --charcoal-2:   #262626;   /* Charcoal-2 — kaart/laag op donker          rgb(38,38,38)    */
+  --ink:          #121212;   /* Primaire tekst & diepste dark              rgb(18,18,18)    */
+  --ink-deep:     #0D0D0D;   /* Diepe inkt                                 rgb(13,13,13)    */
+  --ink-black:    #030303;   /* Zwart — maximale diepte                    rgb(3,3,3)       */
+  --gray-700:     #4D4D4D;   /* Secundaire tekst                          rgb(77,77,77)    */
+  --gray-600:     #6C6E74;   /* Ondersteunende tekst / iconen             rgb(108,110,116) */
+  --gray-500:     #9C9C9C;   /* Tertiair / placeholders                   rgb(156,156,156) */
+  --gray-400:     #A3A2A0;   /* Subtiele tekst op licht                   rgb(163,162,160) */
+
+  /* — Typografie ——————————————————————————————————————————————— */
+  --font-display: "IBM Plex Serif", Georgia, "Times New Roman", serif;   /* koppen, display (400/700) */
+  --font-mono:    "IBM Plex Mono", ui-monospace, "Courier New", monospace; /* eyebrows/labels (400/700, UPPERCASE) */
+  --font-body:    "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; /* body/UI (400/500/600/700/900) */
+
+  /* — Radius (zacht & rond; pill is signatuur) ———————————————————— */
+  --radius-pill:  999px;
+  --radius-lg:    24px;
+  --radius-md:    16px;
+  --radius-sm:    10px;
+
+  /* — Spacing (8pt-schaal) ————————————————————————————————————— */
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px;
+  --space-6: 24px; --space-8: 32px; --space-12: 48px; --space-16: 64px; --space-24: 96px;
+
+  /* — Schaduw (zacht, warm) ———————————————————————————————————— */
+  --shadow-sm: 0 1px 2px rgba(18,18,18,.06), 0 2px 8px rgba(18,18,18,.04);
+  --shadow-md: 0 8px 24px rgba(18,18,18,.08);
+  --shadow-lg: 0 20px 48px rgba(18,18,18,.12);
+}

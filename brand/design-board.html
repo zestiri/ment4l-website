@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="nl" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ment4l · Brand & UI System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#FFFDFA; --bg-2:#FAF9F7; --surface:#FFFFFF; --stone:#F2F0ED;
+    --text:#121212; --text-2:#4D4D4D; --text-3:#9C9C9C; --line:#E9E7E3;
+    --dark:#1A1A1A; --accent:#1F66FF; --accent-2:#4D85FF; --coral:#EE634E;
+    --nav:rgba(26,26,26,.86); --nav-text:#FFFDFA; --on-dark:#FFFDFA;
+    --f-display:"IBM Plex Serif",Georgia,serif;
+    --f-mono:"IBM Plex Mono",ui-monospace,monospace;
+    --f-body:"Inter",system-ui,sans-serif;
+    --r:18px; --r-lg:28px; --r-xl:36px; --pill:999px;
+    --sh:0 1px 2px rgba(18,18,18,.04),0 14px 36px rgba(18,18,18,.07);
+    --sh-lg:0 30px 70px rgba(18,18,18,.13);
+    --ease:cubic-bezier(.2,.8,.2,1);
+    --maxw:1160px;
+  }
+  [data-theme="dark"]{
+    --bg:#121212; --bg-2:#171717; --surface:#1C1C1C; --stone:#232323;
+    --text:#FBFAF8; --text-2:#B6B6B6; --text-3:#777; --line:#2B2B2B;
+    --dark:#0A0A0A; --nav:rgba(10,10,10,.8); --nav-text:#FBFAF8;
+    --sh:0 1px 2px rgba(0,0,0,.5),0 14px 36px rgba(0,0,0,.55);
+    --sh-lg:0 30px 70px rgba(0,0,0,.65);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--f-body);background:var(--bg);color:var(--text);
+    line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+    transition:background .5s var(--ease),color .5s var(--ease);
+  }
+  /* grain + diagonal texture */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+    background:
+      repeating-linear-gradient(135deg,transparent 0 22px,rgba(120,120,120,.035) 22px 23px);
+    mask:linear-gradient(90deg,#000 0 9%,transparent 9% 91%,#000 91% 100%);
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;position:relative;z-index:1}
+  h1,h2,h3{font-family:var(--f-display);font-weight:700;letter-spacing:-.02em;line-height:1.04;color:var(--text)}
+  .mono{font-family:var(--f-mono)}
+  .eyebrow{font-family:var(--f-mono);font-weight:500;font-size:11.5px;text-transform:uppercase;letter-spacing:.22em;color:var(--accent)}
+  .four{color:var(--coral)}
+  .muted{color:var(--text-2)}
+
+  /* ── NAV ───────────────────────────────────────── */
+  .nav{
+    position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:50;
+    display:flex;align-items:center;gap:6px;
+    background:var(--nav);backdrop-filter:saturate(160%) blur(14px);-webkit-backdrop-filter:saturate(160%) blur(14px);
+    border:1px solid rgba(255,255,255,.08);border-radius:var(--pill);
+    padding:7px 7px 7px 18px;box-shadow:0 12px 30px rgba(0,0,0,.22);
+    max-width:calc(100vw - 24px);
+  }
+  .nav .brand{font-family:var(--f-display);font-weight:700;font-size:17px;color:#fff;margin-right:8px;letter-spacing:-.02em}
+  .nav .links{display:flex;gap:2px}
+  .nav a.lnk{font-size:12.5px;color:rgba(255,255,255,.66);text-decoration:none;padding:7px 11px;border-radius:var(--pill);transition:.25s var(--ease)}
+  .nav a.lnk:hover{color:#fff;background:rgba(255,255,255,.1)}
+  .nav a.lnk.active{color:#fff;background:rgba(255,255,255,.16)}
+  .nav .toggle{margin-left:6px;width:34px;height:34px;border:none;cursor:pointer;border-radius:var(--pill);
+    background:rgba(255,255,255,.12);color:#fff;font-size:14px;display:grid;place-items:center;transition:.25s var(--ease)}
+  .nav .toggle:hover{background:var(--accent)}
+  @media(max-width:720px){.nav .links{display:none}}
+
+  /* ── HERO ──────────────────────────────────────── */
+  .hero{padding:160px 0 70px;position:relative}
+  .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.5;z-index:0;pointer-events:none}
+  .blob.a{width:420px;height:420px;background:radial-gradient(circle,#1F66FF55,transparent 70%);top:40px;right:-60px;animation:float 14s var(--ease) infinite alternate}
+  .blob.b{width:360px;height:360px;background:radial-gradient(circle,#EE634E40,transparent 70%);top:240px;left:-90px;animation:float 18s var(--ease) infinite alternate-reverse}
+  @keyframes float{to{transform:translate(30px,-26px) scale(1.08)}}
+  .hero .eyebrow{margin-bottom:20px}
+  .hero h1{font-size:clamp(46px,9vw,104px);letter-spacing:-.045em;line-height:.96}
+  .hero h1 .grad{background:linear-gradient(100deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero .lede{font-size:clamp(17px,2.2vw,21px);max-width:54ch;margin-top:24px;color:var(--text-2)}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+  .btn{font-family:var(--f-body);font-weight:600;font-size:15px;border-radius:var(--pill);padding:14px 26px;border:1.5px solid transparent;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:9px;transition:.28s var(--ease)}
+  .btn-primary{background:var(--accent);color:#FFFDFA}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(31,102,255,.35)}
+  .btn-ghost{background:transparent;border-color:var(--line);color:var(--text)}
+  .btn-ghost:hover{border-color:var(--text);transform:translateY(-2px)}
+  .btn-accent{background:var(--coral);color:#FFFDFA}
+  .btn-accent:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(238,99,78,.35)}
+
+  /* ── SECTION shell ─────────────────────────────── */
+  section.band{padding:74px 0;position:relative}
+  .shead{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:34px;flex-wrap:wrap}
+  .shead .num{font-family:var(--f-mono);font-size:12px;color:var(--text-3);letter-spacing:.1em}
+  .shead h2{font-size:clamp(30px,4.5vw,48px)}
+  .shead p{color:var(--text-2);max-width:46ch;font-size:14.5px}
+
+  /* ── BENTO ─────────────────────────────────────── */
+  .bento{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .cell{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px;box-shadow:var(--sh);transition:.4s var(--ease);position:relative;overflow:hidden}
+  .cell:hover{transform:translateY(-4px);box-shadow:var(--sh-lg)}
+  .cell .k{font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:.16em;color:var(--text-3)}
+  .cell .big{font-family:var(--f-display);font-weight:700;font-size:clamp(28px,3.4vw,40px);line-height:1.05;margin-top:8px;letter-spacing:-.02em}
+  .cell p{font-size:13px;color:var(--text-2);margin-top:8px}
+  .col2{grid-column:span 2}.row2{grid-row:span 2}
+  .cell.dark{background:var(--dark);color:#FBFAF8;border-color:transparent}
+  .cell.dark .k{color:rgba(255,255,255,.5)} .cell.dark p{color:rgba(255,255,255,.7)}
+  .cell.brand{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;border-color:transparent}
+  .cell.brand .k{color:rgba(255,255,255,.7)} .cell.brand p{color:rgba(255,255,255,.85)}
+  .mini-ratio{display:flex;height:34px;border-radius:10px;overflow:hidden;margin-top:14px;border:1px solid var(--line)}
+  .mini-ratio i{display:block}
+  @media(max-width:860px){.bento{grid-template-columns:repeat(2,1fr)}.col2{grid-column:span 2}.row2{grid-row:auto}}
+  @media(max-width:520px){.bento{grid-template-columns:1fr}.col2{grid-column:auto}}
+
+  /* ── COLOR ─────────────────────────────────────── */
+  .grp{font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:.16em;color:var(--text-3);margin:30px 0 14px}
+  .grp:first-of-type{margin-top:0}
+  .sws{display:grid;grid-template-columns:repeat(auto-fill,minmax(178px,1fr));gap:14px}
+  .sw{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--surface);box-shadow:var(--sh);cursor:pointer;transition:.35s var(--ease)}
+  .sw:hover{transform:translateY(-4px);box-shadow:var(--sh-lg)}
+  .sw .chip{height:96px;position:relative;display:flex;align-items:flex-end;padding:11px}
+  .sw .chip .copy{position:absolute;top:9px;right:9px;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.08em;background:rgba(255,255,255,.16);backdrop-filter:blur(6px);color:#fff;border-radius:var(--pill);padding:3px 9px;opacity:0;transition:.25s var(--ease)}
+  .sw:hover .chip .copy{opacity:1}
+  .sw .chip.lt .copy{background:rgba(0,0,0,.08);color:#121212}
+  .sw .nm{font-family:var(--f-display);font-weight:600;font-size:15px}
+  .sw .bd{padding:12px 13px 14px}
+  .sw .hex{font-family:var(--f-mono);font-size:12.5px;color:var(--text);font-weight:500}
+  .sw .role{font-size:11.5px;color:var(--text-2);margin-top:4px;min-height:30px}
+  .ratiobar{display:flex;height:74px;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);margin-top:8px;box-shadow:var(--sh)}
+  .ratiobar div{display:flex;align-items:flex-end;padding:12px;font-family:var(--f-mono);font-size:12px;font-weight:500}
+  .rb-w{flex:70;background:var(--bg);color:var(--text);border-right:1px solid var(--line)}
+  .rb-d{flex:20;background:var(--dark);color:#fff}
+  .rb-a{flex:7;background:var(--accent);color:#fff}
+  .rb-c{flex:3;background:var(--coral)}
+
+  /* ── TYPE ──────────────────────────────────────── */
+  .fonts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:26px}
+  .fcard{border:1px solid var(--line);border-radius:var(--r-lg);padding:24px;background:var(--surface);box-shadow:var(--sh);transition:.4s var(--ease)}
+  .fcard:hover{transform:translateY(-4px);box-shadow:var(--sh-lg)}
+  .fcard .glyph{font-size:62px;line-height:1;margin-bottom:10px}
+  .fcard .k{font-family:var(--f-mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.16em;color:var(--accent)}
+  .fcard h3{font-size:22px;margin:8px 0 4px}
+  .fcard .w{font-family:var(--f-mono);font-size:11.5px;color:var(--text-3);margin-top:8px}
+  .scale{border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;background:var(--surface)}
+  .scale .r{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:baseline;padding:18px 24px;border-top:1px solid var(--line)}
+  .scale .r:first-child{border-top:0}
+  .scale .sp{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+  .scale .meta{font-family:var(--f-mono);font-size:11px;color:var(--text-3);text-align:right}
+  @media(max-width:720px){.fonts{grid-template-columns:1fr}}
+
+  /* ── UI PLAYGROUND ─────────────────────────────── */
+  .play{display:grid;grid-template-columns:1.3fr 1fr;gap:16px}
+  .panel{border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;background:var(--surface);box-shadow:var(--sh)}
+  .panel h3{font-size:15px;font-family:var(--f-body);font-weight:600;margin-bottom:16px;color:var(--text)}
+  .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+  .pill-nav{display:inline-flex;gap:6px;align-items:center;background:var(--dark);border-radius:var(--pill);padding:8px 9px 8px 18px}
+  .pill-nav b{font-family:var(--f-display);color:#fff;font-size:15px;margin-right:8px}
+  .pill-nav a{color:rgba(255,255,255,.72);text-decoration:none;font-size:12.5px;padding:6px 11px;border-radius:var(--pill)}
+  .pill-nav .c{background:var(--accent);color:#fff;font-weight:600}
+  .badge{font-family:var(--f-mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;border-radius:var(--pill);padding:5px 13px}
+  .b-blue{background:var(--accent);color:#fff}.b-coral{background:var(--coral);color:#fff}
+  .b-soft{background:var(--stone);color:var(--text);border:1px solid var(--line)}
+  .field{width:100%;height:48px;border-radius:14px;border:1.5px solid var(--line);background:var(--bg);
+    padding:0 16px;font-family:var(--f-body);font-size:15px;color:var(--text);outline:none;transition:.2s var(--ease)}
+  .field::placeholder{color:var(--text-3)}
+  .field:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(31,102,255,.15)}
+  .flabel{display:block;font-size:13px;font-weight:600;margin-bottom:7px;color:var(--text)}
+  .uicard{border:1px solid var(--line);border-radius:var(--r);padding:20px;background:var(--stone);transition:.4s var(--ease)}
+  .uicard:hover{transform:translateY(-5px);box-shadow:var(--sh-lg)}
+  .uicard .ey{font-family:var(--f-mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.14em;color:var(--coral);margin-bottom:7px}
+  .uicard h4{font-family:var(--f-display);font-size:18px;margin-bottom:5px;color:var(--text)}
+  .switch{position:relative;width:50px;height:28px;border-radius:var(--pill);background:var(--accent);cursor:pointer;transition:.25s}
+  .switch::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:.25s var(--ease)}
+  .switch.off{background:var(--line)} .switch.off::after{left:25px;transform:translateX(-0px)}
+  @media(max-width:760px){.play{grid-template-columns:1fr}}
+
+  /* ── FOUNDATIONS ───────────────────────────────── */
+  .found{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .spb{display:flex;align-items:center;gap:12px;margin-bottom:8px;font-family:var(--f-mono);font-size:11px;color:var(--text-3)}
+  .spb i{display:block;height:13px;background:var(--accent);border-radius:3px}
+  .rads{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end}
+  .radb{width:60px;height:60px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;color:#fff;font-family:var(--f-mono);font-size:10px}
+  @media(max-width:680px){.found{grid-template-columns:1fr}}
+
+  /* ── PRINCIPLES ────────────────────────────────── */
+  .princ{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .pc{border-radius:var(--r-lg);padding:24px;border:1px solid var(--line)}
+  .pc.do{background:color-mix(in srgb,var(--accent) 7%,var(--surface))}
+  .pc.no{background:color-mix(in srgb,var(--coral) 8%,var(--surface))}
+  .pc h4{font-family:var(--f-body);font-size:14px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .pc ul{list-style:none;display:grid;gap:9px}
+  .pc li{font-size:13px;padding-left:22px;position:relative;color:var(--text)}
+  .pc.do li::before{content:"+";position:absolute;left:0;color:var(--accent);font-weight:700}
+  .pc.no li::before{content:"–";position:absolute;left:0;color:var(--coral);font-weight:700}
+  @media(max-width:640px){.princ{grid-template-columns:1fr}}
+
+  footer{padding:60px 0 40px;border-top:1px solid var(--line);margin-top:40px}
+  .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+  .foot .b{font-family:var(--f-display);font-weight:700;font-size:22px}
+  .foot .m{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;color:var(--text-3);text-transform:uppercase}
+
+  /* reveal (only when JS is active, so content can never stay hidden) */
+  .js .rv{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .rv.in{opacity:1;transform:none}
+
+  /* toast */
+  .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);z-index:80;
+    background:var(--dark);color:#fff;font-family:var(--f-mono);font-size:12px;letter-spacing:.04em;
+    padding:12px 20px;border-radius:var(--pill);box-shadow:var(--sh-lg);opacity:0;pointer-events:none;transition:.3s var(--ease)}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important}
+    .js .rv{opacity:1!important;transform:none!important;transition:none!important}
+    html{scroll-behavior:auto}
+    .blob{display:none}
+  }
+</style>
+<script>document.documentElement.className+=' js';</script>
+</head>
+<body>
+
+<nav class="nav">
+  <span class="brand">ment<span class="four">4</span>l</span>
+  <div class="links">
+    <a class="lnk" href="#overzicht">Overzicht</a>
+    <a class="lnk" href="#kleur">Kleur</a>
+    <a class="lnk" href="#type">Type</a>
+    <a class="lnk" href="#ui">UI</a>
+    <a class="lnk" href="#basis">Basis</a>
+  </div>
+  <button class="toggle" id="themeBtn" aria-label="Wissel licht/donker">◐</button>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="blob a"></div><div class="blob b"></div>
+  <div class="wrap">
+    <div class="eyebrow rv">Brand &amp; UI system · v1.0 · 2026</div>
+    <h1 class="rv">De huisstijl van<br><span class="grad">ment4l</span>, als systeem.</h1>
+    <p class="lede rv">Eén bron van waarheid voor kleur, typografie, logo en interface — wit/zand, neutraal charcoal en blauw. Helder, consistent en klaar voor web, app en print.</p>
+    <div class="cta rv">
+      <a href="#kleur" class="btn btn-primary">Bekijk het systeem →</a>
+      <a href="ment4l-brand-guidelines.pdf" class="btn btn-ghost" download>Download PDF</a>
+    </div>
+  </div>
+</header>
+
+<!-- OVERZICHT -->
+<section class="band" id="overzicht">
+  <div class="wrap">
+    <div class="shead rv"><div><span class="num">01</span><h2>In één oogopslag</h2></div><p>De merk-DNA als snelle referentie — alles hieronder werkt dit verder uit.</p></div>
+    <div class="bento">
+      <div class="cell brand col2 rv"><span class="k">Accent</span><div class="big">Blauw = actie</div><p>#1F66FF voor knoppen, links en nadruk. Het functionele accent.</p></div>
+      <div class="cell dark rv"><span class="k">Donker</span><div class="big">Charcoal</div><p>Neutraal #1A1A1A — geen navy.</p></div>
+      <div class="cell rv"><span class="k">Vorm</span><div class="big">Pill 999px</div><p>Ronde knoppen &amp; chips.</p></div>
+      <div class="cell col2 rv"><span class="k">Balans</span><div class="big" style="font-size:26px">70 / 20 / 10</div>
+        <div class="mini-ratio"><i style="flex:70;background:var(--bg);border-right:1px solid var(--line)"></i><i style="flex:20;background:var(--dark)"></i><i style="flex:7;background:var(--accent)"></i><i style="flex:3;background:var(--coral)"></i></div>
+      </div>
+      <div class="cell rv"><span class="k">Type</span><div class="big" style="font-size:24px">3 fonts</div><p>Plex Serif · Mono · Inter</p></div>
+      <div class="cell rv"><span class="k">Toegankelijk</span><div class="big" style="font-size:24px">WCAG AA</div><p>Contrast &amp; focus geregeld.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- KLEUR -->
+<section class="band" id="kleur">
+  <div class="wrap">
+    <div class="shead rv"><div><span class="num">02</span><h2>Kleur</h2></div><p>Klik op een staal om de HEX te kopiëren. CMYK staat in de PDF.</p></div>
+
+    <div class="grp rv">Accent — blauw primair, koraal spaarzaam</div>
+    <div class="sws">
+      <div class="sw rv" data-hex="#1F66FF"><div class="chip" style="background:#1F66FF"><span class="copy">KOPIEER</span><span class="nm" style="color:#fff">Blauw</span></div><div class="bd"><div class="hex">#1F66FF</div><div class="role">Primaire actie, links, nadruk.</div></div></div>
+      <div class="sw rv" data-hex="#4D85FF"><div class="chip" style="background:#4D85FF"><span class="copy">KOPIEER</span><span class="nm" style="color:#fff">Licht blauw</span></div><div class="bd"><div class="hex">#4D85FF</div><div class="role">Hover &amp; highlights.</div></div></div>
+      <div class="sw rv" data-hex="#EE634E"><div class="chip" style="background:#EE634E"><span class="copy">KOPIEER</span><span class="nm" style="color:#fff">Koraal</span></div><div class="bd"><div class="hex">#EE634E</div><div class="role">Secundair accent — zeer spaarzaam.</div></div></div>
+    </div>
+
+    <div class="grp rv">Licht &amp; zand — de basis (dominant)</div>
+    <div class="sws">
+      <div class="sw rv" data-hex="#FFFDFA"><div class="chip lt" style="background:#FFFDFA;border-bottom:1px solid var(--line)"><span class="copy">KOPIEER</span><span class="nm" style="color:#121212">Warm wit</span></div><div class="bd"><div class="hex">#FFFDFA</div><div class="role">Canvas / hoofdachtergrond.</div></div></div>
+      <div class="sw rv" data-hex="#F2F0ED"><div class="chip lt" style="background:#F2F0ED;border-bottom:1px solid var(--line)"><span class="copy">KOPIEER</span><span class="nm" style="color:#121212">Zand / steen</span></div><div class="bd"><div class="hex">#F2F0ED</div><div class="role">Secties &amp; kaarten.</div></div></div>
+      <div class="sw rv" data-hex="#E6E6E6"><div class="chip lt" style="background:#E6E6E6"><span class="copy">KOPIEER</span><span class="nm" style="color:#121212">Hairline</span></div><div class="bd"><div class="hex">#E6E6E6</div><div class="role">Randen &amp; lijnen.</div></div></div>
+    </div>
+
+    <div class="grp rv">Donker &amp; inkt — neutraal charcoal (geen navy)</div>
+    <div class="sws">
+      <div class="sw rv" data-hex="#1A1A1A"><div class="chip" style="background:#1A1A1A"><span class="copy">KOPIEER</span><span class="nm" style="color:#fff">Charcoal</span></div><div class="bd"><div class="hex">#1A1A1A</div><div class="role">Donkere secties, nav, footer.</div></div></div>
+      <div class="sw rv" data-hex="#121212"><div class="chip" style="background:#121212"><span class="copy">KOPIEER</span><span class="nm" style="color:#fff">Inkt</span></div><div class="bd"><div class="hex">#121212</div><div class="role">Tekst &amp; diepste dark.</div></div></div>
+      <div class="sw rv" data-hex="#4D4D4D"><div class="chip" style="background:#4D4D4D"><span class="copy">KOPIEER</span><span class="nm" style="color:#fff">Grijs 700</span></div><div class="bd"><div class="hex">#4D4D4D</div><div class="role">Secundaire tekst.</div></div></div>
+      <div class="sw rv" data-hex="#9C9C9C"><div class="chip" style="background:#9C9C9C"><span class="copy">KOPIEER</span><span class="nm" style="color:#fff">Grijs 500</span></div><div class="bd"><div class="hex">#9C9C9C</div><div class="role">Tertiair / placeholder.</div></div></div>
+    </div>
+
+    <div class="grp rv">Balans · 70 / 20 / 10</div>
+    <div class="ratiobar rv">
+      <div class="rb-w">70% wit / zand</div><div class="rb-d">20% charcoal</div><div class="rb-a">7%</div><div class="rb-c"></div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPE -->
+<section class="band" id="type">
+  <div class="wrap">
+    <div class="shead rv"><div><span class="num">03</span><h2>Typografie</h2></div><p>Serif voor koppen, mono voor labels, Inter voor tekst.</p></div>
+    <div class="fonts">
+      <div class="fcard rv"><div class="k">Display / koppen</div><div class="glyph" style="font-family:var(--f-display);font-weight:700">Ag</div><h3 style="font-family:var(--f-display)">IBM Plex Serif</h3><div class="muted" style="font-size:13px">Warmte &amp; vertrouwen.</div><div class="w">400 · 600 · 700 + italic</div></div>
+      <div class="fcard rv"><div class="k">Label / eyebrow</div><div class="glyph" style="font-family:var(--f-mono);font-weight:700">Ag</div><h3 style="font-family:var(--f-mono)">IBM Plex Mono</h3><div class="muted" style="font-size:13px">UPPERCASE + letter-spacing.</div><div class="w">400 · 500 · 700</div></div>
+      <div class="fcard rv"><div class="k">Body / UI</div><div class="glyph" style="font-weight:800">Ag</div><h3>Inter</h3><div class="muted" style="font-size:13px">Helder &amp; neutraal.</div><div class="w">400 · 500 · 600 · 700 · 900</div></div>
+    </div>
+    <div class="scale rv">
+      <div class="r"><div class="sp" style="font-family:var(--f-display);font-weight:700;font-size:48px;letter-spacing:-.03em">Groei zichtbaar maken</div><div class="meta">Display · Serif 700<br>64 / 48pt · lh 1.05</div></div>
+      <div class="r"><div class="sp" style="font-family:var(--f-display);font-weight:700;font-size:34px">Eén ruggengraat, vele thema's</div><div class="meta">H1 · Serif 700<br>44px · lh 1.1</div></div>
+      <div class="r"><div class="sp" style="font-family:var(--f-display);font-weight:400;font-size:23px">Het vehikel en de motor</div><div class="meta">H3 · Serif 400<br>24px · lh 1.2</div></div>
+      <div class="r"><div class="sp" style="font-size:16px;color:var(--text-2)">Bakken, rappen of bouwen is de buitenkant; groei is de opbrengst.</div><div class="meta">Body · Inter 400<br>16px · lh 1.65</div></div>
+      <div class="r"><div class="sp" style="font-family:var(--f-mono);font-weight:500;font-size:13px;text-transform:uppercase;letter-spacing:.18em;color:var(--accent)">School &amp; Omgeving · GKA</div><div class="meta">Label · Mono 500<br>13px · .18em</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- UI -->
+<section class="band" id="ui">
+  <div class="wrap">
+    <div class="shead rv"><div><span class="num">04</span><h2>UI-componenten</h2></div><p>Live bouwstenen — hover, focus en states zoals in product.</p></div>
+    <div class="play">
+      <div class="panel rv">
+        <h3>Knoppen &amp; navigatie</h3>
+        <div class="row">
+          <button class="btn btn-primary">Plan een kennismaking</button>
+          <button class="btn btn-accent">Doe mee</button>
+          <button class="btn btn-ghost">Lees meer</button>
+        </div>
+        <div class="row"><span class="pill-nav"><b>ment<span class="four">4</span>l</b><a>Trajecten</a><a>Over ons</a><a class="c">Aanmelden</a></span></div>
+        <div class="row" style="margin-top:18px"><span class="badge b-blue">Nieuw</span><span class="badge b-coral">Populair</span><span class="badge b-soft">8 lessen</span></div>
+      </div>
+      <div class="panel rv">
+        <h3>Formulier</h3>
+        <label class="flabel">Naam van de school</label>
+        <input class="field" placeholder="Bijv. OBS De Vaart" />
+        <div class="row" style="margin-top:18px;justify-content:space-between">
+          <span class="muted" style="font-size:13px">Notificaties</span>
+          <div class="switch" id="sw1" role="switch" aria-checked="true"></div>
+        </div>
+      </div>
+      <div class="panel rv" style="grid-column:1/-1">
+        <h3>Kaarten</h3>
+        <div class="bento" style="grid-template-columns:repeat(3,1fr)">
+          <div class="uicard"><div class="ey">Thema</div><h4>Wereldkeuken</h4><div class="muted" style="font-size:13px">Koken &amp; bakken, trots op je verhaal.</div></div>
+          <div class="uicard"><div class="ey">Thema</div><h4>Rap &amp; muziek</h4><div class="muted" style="font-size:13px">Van woord en ritme naar een track.</div></div>
+          <div class="uicard"><div class="ey">Thema</div><h4>AI-app bouwen</h4><div class="muted" style="font-size:13px">Van idee naar een werkende app.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BASIS -->
+<section class="band" id="basis">
+  <div class="wrap">
+    <div class="shead rv"><div><span class="num">05</span><h2>Basis &amp; interactie</h2></div><p>8pt-ritme, ronde hoeken, zachte schaduw, subtiele motion.</p></div>
+    <div class="found">
+      <div class="panel rv">
+        <h3>Spacing · 8pt</h3>
+        <div class="spb"><span style="width:34px">8</span><i style="width:8px"></i></div>
+        <div class="spb"><span style="width:34px">16</span><i style="width:16px"></i></div>
+        <div class="spb"><span style="width:34px">24</span><i style="width:24px"></i></div>
+        <div class="spb"><span style="width:34px">32</span><i style="width:32px"></i></div>
+        <div class="spb"><span style="width:34px">48</span><i style="width:48px"></i></div>
+        <div class="spb"><span style="width:34px">64</span><i style="width:64px"></i></div>
+        <div class="spb"><span style="width:34px">96</span><i style="width:96px"></i></div>
+      </div>
+      <div class="panel rv">
+        <h3>Radius &amp; diepte</h3>
+        <div class="rads">
+          <div style="text-align:center"><div class="radb" style="border-radius:10px">10</div></div>
+          <div style="text-align:center"><div class="radb" style="border-radius:18px">18</div></div>
+          <div style="text-align:center"><div class="radb" style="border-radius:28px">28</div></div>
+          <div style="text-align:center"><div class="radb" style="border-radius:999px">pill</div></div>
+        </div>
+        <p class="muted" style="font-size:13px;margin-top:18px">Zachte, neutrale schaduwen. Motion: 120–320ms, ease-out, met respect voor <span class="mono" style="font-size:12px">prefers-reduced-motion</span>.</p>
+      </div>
+    </div>
+    <div class="princ rv" style="margin-top:16px">
+      <div class="pc do"><h4>Wel</h4><ul>
+        <li>Veel wit/zand — geef inhoud lucht.</li>
+        <li>Donker = neutraal charcoal (#1A1A1A).</li>
+        <li>Blauw als actie; koraal spaarzaam.</li>
+        <li>Pill-knoppen, focus-ring, ≥48px targets.</li>
+      </ul></div>
+      <div class="pc no"><h4>Niet</h4><ul>
+        <li>Navyblauw voor donkere vlakken.</li>
+        <li>Koraal als groot vlak of voor tekst.</li>
+        <li>Meer dan drie lettertypes.</li>
+        <li>Framer-selectieblauw #0099FF (geen merkkleur).</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span class="b">ment<span class="four">4</span>l</span>
+    <span class="m">Brand &amp; UI system v1.0 · It's all about MENT4LITY</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast">Gekopieerd</div>
+
+<script>
+(function(){
+  var root=document.documentElement, rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // theme toggle
+  var saved=localStorage.getItem('m4l-theme'); if(saved) root.setAttribute('data-theme',saved);
+  document.getElementById('themeBtn').addEventListener('click',function(){
+    var n=root.getAttribute('data-theme')==='dark'?'light':'dark';
+    root.setAttribute('data-theme',n); localStorage.setItem('m4l-theme',n);
+  });
+
+  // reveal — robust: IO + immediate in-view pass + safety timeout (never leaves content hidden)
+  var rvs=[].slice.call(document.querySelectorAll('.rv'));
+  function reveal(el){el.classList.add('in');el.style.opacity='1';el.style.transform='none';}
+  if(rm){rvs.forEach(reveal);}
+  else{
+    var io=new IntersectionObserver(function(es){es.forEach(function(en){
+      if(en.isIntersecting){reveal(en.target);io.unobserve(en.target);}});},{threshold:.1,rootMargin:'0px 0px -6% 0px'});
+    rvs.forEach(function(e){io.observe(e);});
+    // some renderers don't fire IO for elements already in view on load:
+    requestAnimationFrame(function(){
+      var h=window.innerHeight||800;
+      rvs.forEach(function(e){if(e.getBoundingClientRect().top < h*0.95) reveal(e);});
+    });
+    // absolute safety net
+    setTimeout(function(){rvs.forEach(reveal);},2000);
+  }
+
+  // copy hex
+  var toast=document.getElementById('toast'),tt;
+  function showToast(msg){toast.textContent=msg;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show');},1400);}
+  document.querySelectorAll('.sw').forEach(function(sw){
+    sw.addEventListener('click',function(){
+      var hex=sw.getAttribute('data-hex');
+      navigator.clipboard&&navigator.clipboard.writeText(hex);
+      showToast(hex+' gekopieerd');
+    });
+  });
+
+  // toggle switch demo
+  var sw1=document.getElementById('sw1');
+  sw1.addEventListener('click',function(){var off=sw1.classList.toggle('off');sw1.setAttribute('aria-checked',(!off).toString());});
+
+  // active nav
+  var links=[].slice.call(document.querySelectorAll('.nav a.lnk'));
+  var map={}; links.forEach(function(l){map[l.getAttribute('href').slice(1)]=l;});
+  var so=new IntersectionObserver(function(es){es.forEach(function(en){
+    if(en.isIntersecting){links.forEach(function(l){l.classList.remove('active');});var m=map[en.target.id];if(m)m.classList.add('active');}});},{rootMargin:'-45% 0px -50% 0px'});
+  ['overzicht','kleur','type','ui','basis'].forEach(function(id){var el=document.getElementById(id);if(el)so.observe(el);});
+})();
+</script>
+</body>
+</html>
