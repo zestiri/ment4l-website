@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Check } from "lucide-react";
+import { Phone } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { DarkPanel } from "@/components/site/DarkPanel";
@@ -10,8 +10,9 @@ import { FaqSection } from "@/components/site/FaqSection";
 import { CtaBlock } from "@/components/site/CtaBlock";
 import { Testimonials } from "@/components/site/Testimonials";
 import { TRAJECT_PAGINAS, getTrajectPagina, trajectHero } from "@/lib/content";
-import { AANMELD_URL } from "@/lib/site";
+import { AANMELD_URL, CONTACT } from "@/lib/site";
 
+import { CheckBullet, IconBadge } from "@/components/site/IconBadge";
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -61,6 +62,27 @@ export default async function TrajectPage({
               {t.tagline && <p className="mt-4 text-ink-soft">{t.tagline}</p>}
             </div>
           </Reveal>
+          {/* Spoedtraject verwijst door naar de call-first spoedpagina */}
+          {t.slug === "ambulante-spoedhulp" && (
+            <Reveal delay={0.06}>
+              <Link
+                href="/spoed"
+                className="mx-auto mt-8 flex max-w-2xl items-center gap-4 rounded-2xl border border-coral/30 bg-coral/[0.06] p-5 transition-colors hover:border-coral/60"
+              >
+                <IconBadge icon={Phone} tone="coral" />
+                <span>
+                  <span className="block font-semibold text-ink">
+                    Is er nú een crisis? Bel {CONTACT.phone}
+                  </span>
+                  <span className="mt-0.5 block text-sm text-ink-soft">
+                    We zijn 24/7 bereikbaar en schakelen vrijwel direct — bekijk hoe
+                    spoedhulp werkt.
+                  </span>
+                </span>
+              </Link>
+            </Reveal>
+          )}
+
           <Reveal delay={0.1}>
             <div className="mt-10 overflow-hidden rounded-3xl">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -121,9 +143,7 @@ export default async function TrajectPage({
                 {t.voordelen.map((v, i) => (
                   <Reveal key={v} delay={i * 0.05}>
                     <div className="flex h-full items-start gap-3 rounded-2xl border border-hairline bg-canvas p-6">
-                      <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand/10 text-brand">
-                        <Check className="h-3.5 w-3.5" strokeWidth={2.5} />
-                      </span>
+                      <CheckBullet className="mt-0.5" />
                       <span className="text-ink">{v}</span>
                     </div>
                   </Reveal>

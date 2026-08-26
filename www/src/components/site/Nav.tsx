@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Logo } from "./Logo";
-import { NAV_LINKS, APP_URL, AANMELD_URL } from "@/lib/site";
+import { NAV_LINKS, NAV_SECUNDAIR, APP_URL, AANMELD_URL } from "@/lib/site";
 
-const LEFT = NAV_LINKS.slice(0, 4); // Trajecten, Workshops, Blog, Over ons
+const LEFT = NAV_LINKS.slice(0, 4); // Jeugdhulp, Spoed, Wachttijden, Verwijzers
 
 export function Nav() {
   const [open, setOpen] = useState(false);
@@ -15,7 +15,7 @@ export function Nav() {
       <nav className="flex w-full max-w-[840px] items-center justify-between gap-3 rounded-2xl border border-white/10 bg-gradient-to-b from-[#1f1f1f]/90 to-charcoal-2/90 py-2.5 pl-5 pr-2.5 text-canvas shadow-[var(--shadow-framer-md)] backdrop-blur-[5px]">
         <div className="flex items-center gap-3 sm:gap-6">
           <Link href="/" className="shrink-0 text-white" aria-label="MENT4L home">
-            <Logo className="text-xl md:text-2xl" />
+            <Logo className="h-5 md:h-6" />
           </Link>
           <div className="hidden items-center gap-1 md:flex">
             {LEFT.map((l) => (
@@ -76,6 +76,17 @@ export function Nav() {
                 href={l.href}
                 onClick={() => setOpen(false)}
                 className="rounded-2xl px-4 py-3 font-display text-lg text-ink hover:bg-sand"
+              >
+                {l.label}
+              </Link>
+            ))}
+            <span className="mt-2 border-t border-hairline pt-2" />
+            {NAV_SECUNDAIR.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="rounded-2xl px-4 py-2.5 text-[15px] text-ink-soft hover:bg-sand"
               >
                 {l.label}
               </Link>

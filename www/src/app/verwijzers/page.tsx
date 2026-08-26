@@ -8,10 +8,11 @@ import { Reveal } from "@/components/site/Reveal";
 import { CONTACT, WBW_GEMEENTEN, TRAJECTEN } from "@/lib/site";
 import { WACHTTIJDEN, WACHTTIJDEN_BIJGEWERKT } from "@/lib/funnel";
 
+import { IconBadge } from "@/components/site/IconBadge";
 export const metadata: Metadata = {
   title: "Voor verwijzers",
   description:
-    "Verwijs in twee minuten naar MENT4L. Gecontracteerd voor jeugdhulp in West-Brabant West, geen wachtlijst, 24/7 bereikbaar. Wij nemen binnen 4 uur contact op met het gezin.",
+    "Verwijs in twee minuten naar MENT4L. Actief in West-Brabant West, geen wachtlijst, 24/7 bereikbaar. Wij nemen binnen 4 uur contact op met het gezin.",
   alternates: { canonical: "/verwijzers" },
 };
 
@@ -61,9 +62,7 @@ export default function VerwijzersPage() {
             {FEITEN.map((f, i) => (
               <Reveal key={f.titel} size="item" delay={i * 0.05}>
                 <div className="h-full rounded-2xl border border-hairline bg-canvas p-5">
-                  <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand/10 text-brand">
-                    <f.Icon className="h-4 w-4" strokeWidth={2} />
-                  </span>
+                  <IconBadge icon={f.Icon} size="sm" />
                   <div className="mt-3 text-sm font-semibold text-ink">{f.titel}</div>
                   <p className="mt-0.5 text-sm text-ink-soft">{f.tekst}</p>
                 </div>
@@ -157,7 +156,7 @@ export default function VerwijzersPage() {
               <Reveal delay={0.06}>
                 <h2 className="text-[clamp(1.5rem,3vw,2rem)]">Werkgebied</h2>
                 <p className="mt-4 text-ink-soft">
-                  Gecontracteerd voor jeugdhulp onder de Jeugdwet in regio West-Brabant West:
+                  Wij zijn actief in de negen gemeenten van regio West-Brabant West:
                 </p>
                 <div className="mt-6 flex flex-wrap gap-2">
                   {WBW_GEMEENTEN.map((g) => (

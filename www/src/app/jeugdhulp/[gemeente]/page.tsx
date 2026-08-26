@@ -9,7 +9,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { FaqSection } from "@/components/site/FaqSection";
 import { Bewijs } from "@/components/funnel/Bewijs";
 import { Stappen } from "@/components/funnel/Stappen";
-import { CONTACT, AANMELD_URL, TRAJECTEN } from "@/lib/site";
+import { CONTACT, AANMELD_URL, TRAJECTEN, FINANCIERING_UITLEG } from "@/lib/site";
 import { GEMEENTEN, getGemeente, WACHTTIJDEN_BIJGEWERKT } from "@/lib/funnel";
 
 export const dynamicParams = false;
@@ -28,7 +28,7 @@ export async function generateMetadata({
   if (!g) return { title: "Niet gevonden" };
   return {
     title: `Jeugdhulp in ${g.naam}`,
-    description: `Ambulante jeugdhulp en jeugdcoaching in ${g.naam}. Geen wachtlijst, reactie binnen 4 uur, 24/7 bereikbaar. MENT4L is gecontracteerd in ${g.naam}.`,
+    description: `Ambulante jeugdhulp en jeugdcoaching in ${g.naam}. Geen wachtlijst, reactie binnen 4 uur, 24/7 bereikbaar. MENT4L is actief in ${g.naam}.`,
     alternates: { canonical: `/jeugdhulp/${g.slug}` },
   };
 }
@@ -100,8 +100,7 @@ export default async function GemeentePage({
                 waar je kind zich prettig voelt.
               </p>
               <p className="mt-4 text-ink-soft">
-                MENT4L is gecontracteerd voor jeugdhulp onder de Jeugdwet in {g.naam}. De
-                gemeente betaalt; er is <strong className="text-ink">geen eigen bijdrage</strong>.
+                Wij zijn actief in {g.naam}. {FINANCIERING_UITLEG}
               </p>
               <Link
                 href="/wachttijden"

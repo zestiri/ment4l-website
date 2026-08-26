@@ -8,7 +8,7 @@ export type Gemeente = {
   kernen: string[];
 };
 
-/** De 9 gemeenten van regio West-Brabant West waar MENT4L gecontracteerd is. */
+/** De 9 gemeenten van regio West-Brabant West waar MENT4L actief is. */
 export const GEMEENTEN: Gemeente[] = [
   { slug: "bergen-op-zoom", naam: "Bergen op Zoom", kernen: ["Bergen op Zoom", "Halsteren", "Lepelstraat"] },
   { slug: "etten-leur", naam: "Etten-Leur", kernen: ["Etten-Leur"] },
@@ -22,6 +22,30 @@ export const GEMEENTEN: Gemeente[] = [
 ];
 
 export const getGemeente = (slug: string) => GEMEENTEN.find((g) => g.slug === slug);
+
+/**
+ * Leidt de gemeente af uit een vrij ingevulde woonplaats.
+ * We vragen de bezoeker bewust NIET om een gemeente te kiezen — een ouder weet
+ * "Oudenbosch", niet "Halderberge". Wij zoeken de gemeente er zelf bij, zodat de
+ * aanmelding meteen goed gerouteerd is.
+ * Geeft null terug als de plaats niet in ons werkgebied ligt; dat is informatie,
+ * geen afwijzing.
+ */
+export function gemeenteVoorPlaats(woonplaats: string): string | null {
+  const norm = (s: string) =>
+    s
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[̀-ͯ]/g, "")
+      .replace(/[^a-z]/g, "");
+  const p = norm(woonplaats);
+  if (!p) return null;
+  for (const g of GEMEENTEN) {
+    if (norm(g.naam) === p) return g.naam;
+    if (g.kernen.some((k) => norm(k) === p)) return g.naam;
+  }
+  return null;
+}
 
 /**
  * Actuele startdatum per traject.
@@ -69,6 +93,6 @@ export const STAPPEN = [
 export const BEWIJS = [
   { waarde: "4 uur", label: "Streeftijd waarbinnen we reageren" },
   { waarde: "24/7", label: "Bereikbaar, ook buiten kantooruren" },
-  { waarde: "9", label: "Gemeenten waar we gecontracteerd zijn" },
+  { waarde: "9", label: "Gemeenten waar we actief zijn" },
   { waarde: "1000+", label: "Jongeren begeleid" },
 ];

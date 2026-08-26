@@ -1,31 +1,26 @@
 import type { Metadata } from "next";
-import { Phone, Clock, ShieldCheck, FileText } from "lucide-react";
+import { Phone, Clock, CalendarCheck, FileText, Wallet } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { DarkPanel } from "@/components/site/DarkPanel";
 import { Reveal } from "@/components/site/Reveal";
 import { AanmeldForm } from "@/components/site/AanmeldForm";
-import { CONTACT, WBW_GEMEENTEN } from "@/lib/site";
+import { CONTACT } from "@/lib/site";
 
+import { IconBadge } from "@/components/site/IconBadge";
 export const metadata: Metadata = {
   title: "Aanmelden",
   description:
-    "Meld je aan voor jeugdhulp bij MENT4L. Geen wachtlijst, reactie binnen 4 uur, 24/7 bereikbaar. Aanmelden mag ook zonder verwijzing — wij helpen je daarbij.",
+    "Meld je aan voor jeugdhulp bij MENT4L. Geen wachtlijst, reactie binnen 4 uur, 24/7 bereikbaar. Aanmelden mag ook zonder verwijzing.",
   alternates: { canonical: "/aanmelden" },
 };
 
-const STAPPEN = [
-  { titel: "Je meldt je aan", tekst: "Vul het korte formulier in of bel ons. Een paar zinnen is genoeg." },
-  { titel: "Wij bellen binnen 4 uur", tekst: "We bespreken wat er speelt en of we kunnen helpen. Ook buiten kantooruren." },
-  { titel: "We regelen de verwijzing", tekst: "Heb je nog geen verwijzing? Dan helpen we je die te krijgen bij huisarts of gemeente." },
-  { titel: "We starten", tekst: "Geen wachtlijst. Bij spoed kunnen we dezelfde dag bij je zijn." },
-];
-
+/** Vier zekerheden — kort, met icoon. Scanbaar, geen alinea's. */
 const ZEKERHEDEN = [
-  { Icon: Clock, titel: "Geen wachtlijst", tekst: "We starten zo snel mogelijk, bij spoed dezelfde dag." },
-  { Icon: Phone, titel: "24/7 bereikbaar", tekst: "Ook 's avonds en in het weekend bereikbaar." },
-  { Icon: FileText, titel: "Wij doen het papierwerk", tekst: "Ook zonder verwijzing kun je je alvast aanmelden." },
-  { Icon: ShieldCheck, titel: "Geen eigen bijdrage", tekst: "Jeugdhulp via de Jeugdwet kost je niets." },
+  { Icon: Clock, kop: "Binnen 4 uur", tekst: "Ook 's avonds en in het weekend" },
+  { Icon: CalendarCheck, kop: "Geen wachtlijst", tekst: "Bij spoed dezelfde dag" },
+  { Icon: FileText, kop: "Geen verwijzing nodig", tekst: "Die regelen we samen" },
+  { Icon: Wallet, kop: "Kost je niets", tekst: "Geen eigen bijdrage" },
 ];
 
 export default function AanmeldenPage() {
@@ -33,83 +28,57 @@ export default function AanmeldenPage() {
     <>
       <Nav />
       <main>
-        <section className="mx-auto max-w-site px-6 pb-24 pt-36 sm:pt-40">
-          <Reveal>
-            <div className="mx-auto max-w-2xl text-center">
-              <span className="eyebrow text-brand">Aanmelden jeugdhulp</span>
-              <h1 className="mt-3 text-[clamp(2.2rem,5vw,3.25rem)]">
-                Aanmelden kan nu al — ook zonder verwijzing
-              </h1>
-              <p className="mt-5 text-lg text-ink-soft">
-                Geen wachtlijst. Je hoort binnen 4 uur van ons, ook buiten kantooruren.
-                Wij helpen je met de verwijzing en de aanvraag bij je gemeente.
-              </p>
-            </div>
-          </Reveal>
+        <section className="relative overflow-hidden bg-mist pt-8">
+          <div className="tex-diagonal pointer-events-none absolute inset-0" aria-hidden />
 
-          {/* Spoed staat bewust bovenaan: bellen is dan de snelste weg */}
-          <Reveal delay={0.06}>
-            <a
-              href={CONTACT.phoneHref}
-              className="mx-auto mt-8 flex max-w-2xl items-center justify-center gap-3 rounded-2xl border border-coral/30 bg-coral/[0.06] px-5 py-4 text-center transition-colors hover:border-coral/60"
-            >
-              <Phone className="h-5 w-5 shrink-0 text-coral" strokeWidth={1.9} />
-              <span className="text-sm text-ink-soft">
-                <span className="font-semibold text-ink">Spoed of crisis?</span> Bel direct{" "}
-                <span className="font-semibold text-ink">{CONTACT.phone}</span> — dan schakelen we vrijwel direct.
-              </span>
-            </a>
-          </Reveal>
-
-          <div className="mt-14 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-            {/* formulier */}
-            <Reveal>
-              <div className="rounded-[32px] border border-hairline bg-mist p-6 sm:p-9">
-                <AanmeldForm />
-              </div>
-            </Reveal>
-
-            {/* wat er daarna gebeurt */}
-            <div>
-              <Reveal delay={0.06}>
-                <h2 className="text-[clamp(1.5rem,3vw,2rem)]">Wat er daarna gebeurt</h2>
-                <ol className="mt-6 flex flex-col gap-5">
-                  {STAPPEN.map((s, i) => (
-                    <li key={s.titel} className="flex gap-4">
-                      <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-brand/10 font-sans text-sm font-semibold text-brand">
-                        {i + 1}
-                      </span>
-                      <span>
-                        <span className="block font-semibold text-ink">{s.titel}</span>
-                        <span className="mt-0.5 block text-sm text-ink-soft">{s.tekst}</span>
-                      </span>
-                    </li>
-                  ))}
-                </ol>
-              </Reveal>
-
-              <Reveal delay={0.12}>
-                <div className="mt-10 grid gap-3 sm:grid-cols-2">
-                  {ZEKERHEDEN.map((z) => (
-                    <div key={z.titel} className="rounded-2xl border border-hairline bg-canvas p-4">
-                      <z.Icon className="h-5 w-5 text-brand" strokeWidth={1.9} />
-                      <div className="mt-2 text-sm font-semibold text-ink">{z.titel}</div>
-                      <p className="mt-0.5 text-sm text-ink-soft">{z.tekst}</p>
-                    </div>
-                  ))}
-                </div>
-              </Reveal>
-
-              <Reveal delay={0.18}>
-                <div className="mt-8 rounded-2xl bg-sand p-5">
-                  <h3 className="text-base">Waar we direct kunnen starten</h3>
-                  <p className="mt-2 text-sm text-ink-soft">
-                    MENT4L is gecontracteerd voor jeugdhulp in {WBW_GEMEENTEN.join(", ")}.
-                    Woon je in een andere gemeente? Meld je gerust aan — dan kijken we samen
-                    naar de mogelijkheden.
+          <div className="relative mx-auto w-full max-w-[1100px] rounded-t-[32px] bg-canvas">
+            <div className="px-6 pb-20 pt-20 sm:pt-24">
+              {/* ── Kop: kort houden ───────────────────────── */}
+              <Reveal>
+                <div className="mx-auto max-w-xl text-center">
+                  <h1 className="text-[clamp(2rem,4.6vw,3rem)]">Aanmelden</h1>
+                  <p className="mt-4 text-lg text-ink-soft">
+                    Laat je nummer achter. Wij bellen binnen 4 uur.
                   </p>
                 </div>
               </Reveal>
+
+              {/* ── Formulier + zekerheden ─────────────────── */}
+              <div className="mx-auto mt-12 grid max-w-4xl gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
+                <Reveal>
+                  <div className="rounded-[28px] border border-hairline bg-mist p-6 sm:p-8">
+                    <AanmeldForm />
+                  </div>
+                </Reveal>
+
+                <div className="flex flex-col gap-3">
+                  {ZEKERHEDEN.map((z, i) => (
+                    <Reveal key={z.kop} size="item" delay={i * 0.05}>
+                      <div className="flex items-center gap-4 rounded-2xl border border-hairline bg-canvas p-4">
+                        <IconBadge icon={z.Icon} />
+                        <span>
+                          <span className="block font-semibold text-ink">{z.kop}</span>
+                          <span className="text-sm text-ink-soft">{z.tekst}</span>
+                        </span>
+                      </div>
+                    </Reveal>
+                  ))}
+
+                  {/* Spoed: bellen is dan sneller dan een formulier */}
+                  <Reveal size="item" delay={0.2}>
+                    <a
+                      href={CONTACT.phoneHref}
+                      className="flex items-center gap-4 rounded-2xl border border-coral/30 bg-coral/[0.06] p-4 transition-colors hover:border-coral/60"
+                    >
+                      <IconBadge icon={Phone} tone="coral" />
+                      <span>
+                        <span className="block font-semibold text-ink">Spoed? Bel liever</span>
+                        <span className="text-sm text-ink-soft">{CONTACT.phone} · 24/7</span>
+                      </span>
+                    </a>
+                  </Reveal>
+                </div>
+              </div>
             </div>
           </div>
         </section>

@@ -7,6 +7,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { ContactForm } from "@/components/site/ContactForm";
 import { CONTACT } from "@/lib/site";
 
+import { IconBadge } from "@/components/site/IconBadge";
 export const metadata: Metadata = {
   title: "Contact",
   description:
@@ -42,9 +43,7 @@ export default function ContactPage() {
                   href={CONTACT.phoneHref}
                   className="mt-6 flex items-start gap-4 rounded-2xl border border-coral/30 bg-coral/[0.06] p-5 transition-colors hover:border-coral/60"
                 >
-                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-coral/15 text-coral">
-                    <Phone className="h-5 w-5" strokeWidth={1.9} />
-                  </span>
+                  <IconBadge icon={Phone} tone="coral" />
                   <span>
                     <span className="block font-semibold text-ink">
                       Spoed of crisis? Bel ons direct

@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+import { Check } from "lucide-react";
+import { IconBadge } from "@/components/site/IconBadge";
 type Status = "idle" | "sending" | "ok" | "error";
 
 export function ContactForm() {
@@ -43,7 +45,7 @@ export function ContactForm() {
   if (status === "ok") {
     return (
       <div className="rounded-3xl border border-hairline bg-cream p-8 text-center">
-        <div className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-brand/12 text-brand">✓</div>
+        <IconBadge icon={Check} className="mx-auto" />
         <h3 className="mt-4 text-xl">Bedankt, we hebben je bericht ontvangen</h3>
         <p className="mt-2 text-ink-soft">
           We streven ernaar binnen 4 uur contact met je op te nemen — ook buiten

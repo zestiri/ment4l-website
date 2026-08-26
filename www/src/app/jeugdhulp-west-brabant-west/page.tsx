@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Phone, ArrowRight, Check } from "lucide-react";
+import { Phone, ArrowRight } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { DarkPanel } from "@/components/site/DarkPanel";
@@ -11,6 +11,7 @@ import { Stappen } from "@/components/funnel/Stappen";
 import { CONTACT, AANMELD_URL, TRAJECTEN } from "@/lib/site";
 import { GEMEENTEN, VERWIJZERS } from "@/lib/funnel";
 
+import { CheckBullet } from "@/components/site/IconBadge";
 export const metadata: Metadata = {
   title: "Jeugdhulp in West-Brabant West",
   description:
@@ -91,9 +92,7 @@ export default function HubPage() {
                 <ul className="mt-4 flex flex-col gap-2.5">
                   {VERWIJZERS.map((v) => (
                     <li key={v} className="flex items-start gap-3 text-sm text-ink">
-                      <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-brand/12 text-brand">
-                        <Check className="h-3 w-3" strokeWidth={3} />
-                      </span>
+                      <CheckBullet className="mt-0.5" />
                       {v}
                     </li>
                   ))}

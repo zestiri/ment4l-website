@@ -9,6 +9,7 @@ import { BelBalk } from "@/components/funnel/BelBalk";
 import { CrisisTriage } from "@/components/funnel/CrisisTriage";
 import { CONTACT, AANMELD_URL, WBW_GEMEENTEN } from "@/lib/site";
 
+import { IconBadge } from "@/components/site/IconBadge";
 export const metadata: Metadata = {
   title: "Ambulante spoedhulp",
   description:
@@ -96,9 +97,7 @@ export default function SpoedPage() {
               {EERSTE_24_UUR.map((s, i) => (
                 <Reveal key={s.titel} size="item" delay={i * 0.05}>
                   <div className="h-full rounded-3xl border border-hairline bg-canvas p-6">
-                    <span className="grid h-10 w-10 place-items-center rounded-xl bg-brand/10 text-brand">
-                      <s.Icon className="h-5 w-5" strokeWidth={1.9} />
-                    </span>
+                    <IconBadge icon={s.Icon} />
                     <h3 className="mt-4 text-lg leading-snug">{s.titel}</h3>
                     <p className="mt-1.5 text-sm leading-6 text-ink-soft">{s.tekst}</p>
                   </div>
@@ -136,14 +135,22 @@ export default function SpoedPage() {
                   Info voor verwijzers <ArrowRight className="h-4 w-4" strokeWidth={2} />
                 </Link>
               </div>
+              <div className="mt-5">
+                <Link
+                  href="/trajecten/ambulante-spoedhulp"
+                  className="inline-flex items-center gap-1.5 text-[15px] font-semibold text-brand hover:underline"
+                >
+                  Lees meer over het traject Ambulante Spoedhulp (ASH)
+                  <ArrowRight className="h-4 w-4" strokeWidth={2} />
+                </Link>
+              </div>
             </Reveal>
 
             <Reveal delay={0.06}>
               <div className="rounded-3xl bg-sand p-7">
                 <h3 className="text-lg">Waar we kunnen instappen</h3>
                 <p className="mt-2 text-sm text-ink-soft">
-                  MENT4L is gecontracteerd voor jeugdhulp onder de Jeugdwet in de regio
-                  West-Brabant West:
+                  Wij zijn actief in de regio West-Brabant West:
                 </p>
                 <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-1.5 text-sm text-ink">
                   {WBW_GEMEENTEN.map((g) => (

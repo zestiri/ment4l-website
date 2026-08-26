@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Phone, Check } from "lucide-react";
+import { Phone } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { DarkPanel } from "@/components/site/DarkPanel";
@@ -10,6 +10,7 @@ import { Stappen } from "@/components/funnel/Stappen";
 import { CONTACT, AANMELD_URL } from "@/lib/site";
 import { VERWIJZERS } from "@/lib/funnel";
 
+import { CheckBullet } from "@/components/site/IconBadge";
 export const metadata: Metadata = {
   title: "Verwijzing voor jeugdhulp",
   description:
@@ -31,8 +32,7 @@ export default function VerwijzingPage() {
               </h1>
               <p className="mt-5 text-lg text-ink-soft">
                 Met een verwijzing van de huisarts, jeugdarts of medisch specialist mag je
-                <strong className="text-ink"> zelf kiezen</strong> bij welke gecontracteerde
-                aanbieder je kind start. Je hoeft niet te wachten tot iemand dat voor je
+                <strong className="text-ink"> zelf kiezen</strong> waar je kind start. Je hoeft niet te wachten tot iemand dat voor je
                 invult.
               </p>
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -81,9 +81,7 @@ export default function VerwijzingPage() {
                 <ul className="mt-4 flex flex-col gap-2.5">
                   {VERWIJZERS.map((v) => (
                     <li key={v} className="flex items-start gap-3 text-sm text-ink">
-                      <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-brand/12 text-brand">
-                        <Check className="h-3 w-3" strokeWidth={3} />
-                      </span>
+                      <CheckBullet className="mt-0.5" />
                       {v}
                     </li>
                   ))}

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { gemeenteVoorPlaats } from "@/lib/funnel";
 
 export const runtime = "nodejs";
 
@@ -17,9 +18,13 @@ export async function POST(req: Request) {
   const phone = String(data.phone ?? "").trim();
   const message = String(data.message ?? "").trim();
   const website = String(data.website ?? "").trim(); // honeypot
-  const gemeente = String(data.gemeente ?? "").trim();
+  const woonplaats = String(data.woonplaats ?? "").trim();
   const rol = String(data.rol ?? "").trim();
   const soort = String(data.soort ?? "Contactformulier").trim();
+
+  // De bezoeker vult alleen een woonplaats in; wij zoeken de gemeente erbij.
+  // Zo hoeft een ouder niet te weten dat Oudenbosch onder Halderberge valt.
+  const gemeente = woonplaats ? gemeenteVoorPlaats(woonplaats) : null;
 
   // Bot? Doe alsof het gelukt is en negeer stil.
   if (website !== "") {
@@ -28,10 +33,13 @@ export async function POST(req: Request) {
 
   // Bij een aanmelding is telefoon leidend en e-mail optioneel (we bellen terug).
   // Bij het contactformulier is e-mail wel verplicht.
+  // Bij een aanmelding zijn naam, telefoon en woonplaats verplicht; e-mail en een
+  // toelichting mogen leeg blijven — we bellen toch terug. Bij het contactformulier
+  // is e-mail wél nodig.
   const isAanmelding = soort.toLowerCase().startsWith("aanmelding");
   const emailOk = isAanmelding ? email === "" || EMAIL_RE.test(email) : EMAIL_RE.test(email);
-  const contactOk = isAanmelding ? phone !== "" : true;
-  if (!name || !message || !emailOk || !contactOk) {
+  const basisOk = isAanmelding ? phone !== "" && woonplaats !== "" : message !== "";
+  if (!name || !emailOk || !basisOk) {
     return NextResponse.json({ ok: false, error: "validation" }, { status: 422 });
   }
 
@@ -50,17 +58,20 @@ export async function POST(req: Request) {
       from,
       to,
       ...(email ? { replyTo: email } : {}),
-      subject: `${soort} via ment4l.nl — ${name}${gemeente ? ` (${gemeente})` : ""}`,
+      subject: `${soort} via ment4l.nl — ${name}${woonplaats ? ` (${woonplaats})` : ""}`,
       text: [
-        `Soort:     ${soort}`,
-        rol ? `Rol:       ${rol}` : null,
-        `Naam:      ${name}`,
-        `Telefoon:  ${phone || "-"}`,
-        `E-mail:    ${email || "-"}`,
-        gemeente ? `Gemeente:  ${gemeente}` : null,
+        `Soort:      ${soort}`,
+        rol ? `Rol:        ${rol}` : null,
+        `Naam:       ${name}`,
+        `Telefoon:   ${phone || "-"}`,
+        `E-mail:     ${email || "-"}`,
+        woonplaats ? `Woonplaats: ${woonplaats}` : null,
+        woonplaats
+          ? `Gemeente:   ${gemeente ?? "buiten werkgebied of niet herkend — handmatig checken"}`
+          : null,
         "",
         "Hulpvraag:",
-        message,
+        message || "(niet ingevuld)",
       ]
         .filter(Boolean)
         .join("\n"),

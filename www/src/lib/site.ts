@@ -14,7 +14,15 @@
 export const AANMELD_URL = "/aanmelden";
 export const APP_URL = "https://app.ment4l.nl";
 
-/** Gemeenten waar MENT4L gecontracteerd is voor jeugdhulp (regio West-Brabant West). */
+/**
+ * Wat de bezoeker over financiering moet weten — meer niet.
+ * Onze contractvorm (onderaannemerschap) is voor de lezer irrelevant en hoort
+ * niet op de site. Schrijf wel "wij zijn actief in", niet "wij zijn gecontracteerd".
+ */
+export const FINANCIERING_UITLEG =
+  "De gemeente betaalt de jeugdhulp. Er is geen eigen bijdrage.";
+
+/** Gemeenten waar MENT4L actief is voor jeugdhulp (regio West-Brabant West). */
 export const WBW_GEMEENTEN = [
   "Bergen op Zoom",
   "Etten-Leur",
@@ -91,13 +99,23 @@ export const PARTNER_LOGOS = [
 
 export const WORKSHOPS_SLUG = "workshops-jeugd-digitale-wereld";
 
-// Hoofdnavigatie (volgorde zoals in de Framer-nav).
+// Hoofdnavigatie. De funnelpagina's die er echt toe doen (spoed, wachttijden)
+// staan hier bewust in — anders zijn ze alleen via advertenties te vinden.
 export const NAV_LINKS = [
-  { href: "/#expertises", label: "Trajecten" },
-  { href: `/trajecten/${WORKSHOPS_SLUG}`, label: "Workshops" },
-  { href: "/blog", label: "Blog" },
+  { href: "/jeugdhulp-west-brabant-west", label: "Jeugdhulp" },
+  { href: "/spoed", label: "Spoed" },
+  { href: "/wachttijden", label: "Wachttijden" },
+  { href: "/verwijzers", label: "Verwijzers" },
   { href: "/over-ons", label: "Over ons" },
   { href: "/contact", label: "Contact" },
+] as const;
+
+/** Extra ingangen, getoond in het mobiele menu en de footer. */
+export const NAV_SECUNDAIR = [
+  { href: "/#expertises", label: "Trajecten" },
+  { href: `/trajecten/${WORKSHOPS_SLUG}`, label: "Workshops" },
+  { href: "/jongeren", label: "Voor jongeren (16+)" },
+  { href: "/blog", label: "Blog" },
 ] as const;
 
 // Kerncijfers (statistieken-sectie) — exact van de live homepage.

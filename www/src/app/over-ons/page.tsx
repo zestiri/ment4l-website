@@ -9,6 +9,7 @@ import { CtaBlock } from "@/components/site/CtaBlock";
 import { Testimonials } from "@/components/site/Testimonials";
 import { PARTNER_LOGOS } from "@/lib/site";
 
+import { IconBadge } from "@/components/site/IconBadge";
 export const metadata: Metadata = {
   title: "Over ons",
   description:
@@ -119,9 +120,7 @@ export default function OverOnsPage() {
               <div className="mt-8 flex flex-col gap-4">
                 {METHODIEK.map((m) => (
                   <div key={m.titel} className="flex items-start gap-4 rounded-2xl border border-hairline bg-canvas p-6">
-                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand/10 text-brand">
-                      <m.Icon className="h-5 w-5" strokeWidth={1.9} />
-                    </span>
+                    <IconBadge icon={m.Icon} />
                     <div>
                       <h3 className="text-lg leading-snug">{m.titel}</h3>
                       <p className="mt-1 text-sm text-ink-soft">{m.tekst}</p>
