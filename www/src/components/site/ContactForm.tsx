@@ -46,8 +46,8 @@ export function ContactForm() {
         <div className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-brand/12 text-brand">✓</div>
         <h3 className="mt-4 text-xl">Bedankt, we hebben je bericht ontvangen</h3>
         <p className="mt-2 text-ink-soft">
-          We nemen zo snel mogelijk contact met je op. Aanmeldingen verwerken we
-          doorgaans binnen 1 werkdag.
+          We streven ernaar binnen 4 uur contact met je op te nemen — ook buiten
+          kantooruren. Is het spoed? Bel dan direct 085 130 7522.
         </p>
         <button
           type="button"

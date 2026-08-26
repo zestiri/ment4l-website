@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { BookOpen, Target, Footprints, Sparkles } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { ScrollProgress } from "@/components/site/ScrollProgress";
+import { DarkPanel } from "@/components/site/DarkPanel";
 import { Reveal } from "@/components/site/Reveal";
 import { FaqSection } from "@/components/site/FaqSection";
 import { CtaBlock } from "@/components/site/CtaBlock";
@@ -31,17 +31,16 @@ const METHODIEK = [
 export default function OverOnsPage() {
   return (
     <>
-      <ScrollProgress />
       <Nav />
       <main>
         {/* ── HERO ─────────────────────────────────────── */}
-        <section className="mx-auto max-w-6xl px-6 pt-36 sm:pt-40">
+        <section className="mx-auto max-w-site px-6 pt-36 sm:pt-40">
           <Reveal>
             <div className="text-center">
               <span className="inline-flex rounded-pill bg-brand px-4 py-1.5 text-sm font-semibold text-canvas">
                 Over ons
               </span>
-              <h1 className="mt-6 text-[clamp(2.2rem,5.4vw,4rem)] font-normal">
+              <h1 className="mt-6 text-[clamp(2.2rem,5.4vw,3.25rem)]">
                 Voor de Jeugd van Nu
               </h1>
               <p className="mt-4 text-ink-soft">Een frisse benadering van sociaal werk.</p>
@@ -53,20 +52,20 @@ export default function OverOnsPage() {
               <img
                 src="/images/overons-hero.png"
                 alt="Het team van MENT4L"
-                className="aspect-[16/9] w-full object-cover"
+                className="aspect-[24/11] w-full object-cover"
               />
             </div>
           </Reveal>
         </section>
 
         {/* ── ONS VERHAAL ──────────────────────────────── */}
-        <section className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
+        <section className="mx-auto max-w-site px-6 py-20 sm:py-24">
           <div className="grid gap-10 md:grid-cols-2 md:gap-14">
             <Reveal>
               <span className="inline-flex items-center gap-2 rounded-pill bg-brand px-4 py-1.5 text-sm font-semibold text-canvas">
                 <BookOpen className="h-4 w-4" strokeWidth={1.9} /> Ons verhaal
               </span>
-              <h2 className="mt-6 text-[clamp(1.9rem,4vw,2.9rem)] font-normal">
+              <h2 className="mt-6 text-[clamp(1.9rem,4vw,2.5rem)]">
                 De Toekomst van Jeugdbegeleiding — MENT4L
               </h2>
             </Reveal>
@@ -82,11 +81,11 @@ export default function OverOnsPage() {
 
         {/* ── SAMENWERKINGEN ───────────────────────────── */}
         <section className="border-y border-hairline bg-mist">
-          <div className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
+          <div className="mx-auto max-w-site px-6 py-20 sm:py-24">
             <Reveal>
               <div className="mx-auto max-w-3xl text-center">
                 <span className="eyebrow text-grey">Samenwerkingen</span>
-                <h2 className="mt-3 text-[clamp(1.5rem,3.2vw,2.25rem)] font-normal leading-snug">
+                <h2 className="mt-3 text-[clamp(1.5rem,3.2vw,2.25rem)] leading-snug">
                   MENT4L brengt diverse culturen samen om jongeren te empoweren. We durven anders te
                   denken en te vernieuwen.
                 </h2>
@@ -102,7 +101,7 @@ export default function OverOnsPage() {
         </section>
 
         {/* ── METHODIEK ────────────────────────────────── */}
-        <section className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
+        <section className="mx-auto max-w-site px-6 py-20 sm:py-24">
           <div className="grid gap-10 md:grid-cols-[0.9fr_1.1fr] md:gap-14">
             <Reveal>
               <div className="overflow-hidden rounded-3xl">
@@ -116,7 +115,7 @@ export default function OverOnsPage() {
             </Reveal>
             <Reveal delay={0.06}>
               <span className="eyebrow text-brand">Stap voor stap</span>
-              <h2 className="mt-3 text-[clamp(1.9rem,4vw,2.75rem)] font-normal">MENT4L Methodiek</h2>
+              <h2 className="mt-3 text-[clamp(1.75rem,4vw,2.5rem)]">MENT4L Methodiek</h2>
               <div className="mt-8 flex flex-col gap-4">
                 {METHODIEK.map((m) => (
                   <div key={m.titel} className="flex items-start gap-4 rounded-2xl border border-hairline bg-canvas p-6">
@@ -134,11 +133,13 @@ export default function OverOnsPage() {
           </div>
         </section>
 
-        <Testimonials />
         <FaqSection />
         <CtaBlock />
       </main>
-      <Footer />
+      <DarkPanel>
+        <Testimonials />
+        <Footer />
+      </DarkPanel>
     </>
   );
 }

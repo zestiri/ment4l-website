@@ -2,8 +2,30 @@
 // Content geëxtraheerd uit de live Framer-site (26 aug 2026). Nog te verrijken
 // per pagina tijdens de 1:1-herbouw.
 
-export const APP_REGISTER_URL = "https://app.ment4l.nl/register";
+/**
+ * BELANGRIJK — twee gescheiden doelgroepen, twee gescheiden routes:
+ *
+ *  AANMELD_URL  → cliënten (ouders, jongeren, verwijzers) die hulp zoeken.
+ *                 Blijft op ment4l.nl zelf, kort formulier, geen BSN.
+ *  APP_URL      → "Het platform voor zorgprofessionals": inlogomgeving voor
+ *                 onze eigen coaches/zorgverleners. NOOIT als CTA voor cliënten
+ *                 gebruiken — daar komt een hulpzoekende ouder verkeerd terecht.
+ */
+export const AANMELD_URL = "/aanmelden";
 export const APP_URL = "https://app.ment4l.nl";
+
+/** Gemeenten waar MENT4L gecontracteerd is voor jeugdhulp (regio West-Brabant West). */
+export const WBW_GEMEENTEN = [
+  "Bergen op Zoom",
+  "Etten-Leur",
+  "Halderberge",
+  "Moerdijk",
+  "Roosendaal",
+  "Rucphen",
+  "Steenbergen",
+  "Woensdrecht",
+  "Zundert",
+] as const;
 
 export const CONTACT = {
   phone: "085 130 7522",
@@ -147,7 +169,7 @@ export const FAQ_ITEMS = [
   {
     vraag: "Hoe meld ik een jongere aan?",
     antwoord:
-      "Aanmelden kan eenvoudig via 'Direct aanmelden' of telefonisch via 085 130 7522. We nemen doorgaans binnen 1 werkdag contact op om de hulpvraag te bespreken.",
+      "Aanmelden kan via 'Direct aanmelden' of telefonisch via 085 130 7522. We streven ernaar binnen 4 uur te reageren, ook buiten kantooruren. Bij spoed of crisis: bel ons, dan schakelen we vrijwel direct.",
   },
   {
     vraag: "Wat is (ambulante) jeugdcoaching?",
@@ -162,7 +184,7 @@ export const FAQ_ITEMS = [
   {
     vraag: "Hoelang is de wachttijd?",
     antwoord:
-      "We werken met korte wachttijden. Aanmeldingen verwerken we doorgaans binnen 1 werkdag en we starten zo snel mogelijk — zeker bij spoed.",
+      "Wij werken zonder wachtlijst. Je hoort binnen 4 uur van ons en we starten zo snel mogelijk. Gaat het om spoed of crisis? Bel ons dan meteen op 085 130 7522 — dan schakelen we vrijwel direct.",
   },
   {
     vraag: "Heb ik een verwijzing nodig",

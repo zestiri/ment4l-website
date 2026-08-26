@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Logo } from "./Logo";
-import { NAV_LINKS, APP_URL } from "@/lib/site";
+import { NAV_LINKS, APP_URL, AANMELD_URL } from "@/lib/site";
 
 const LEFT = NAV_LINKS.slice(0, 4); // Trajecten, Workshops, Blog, Over ons
 
@@ -12,7 +12,7 @@ export function Nav() {
 
   return (
     <header className="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
-      <nav className="flex w-full max-w-5xl items-center justify-between gap-3 rounded-[28px] border border-white/10 bg-gradient-to-b from-charcoal-2/90 to-charcoal/90 py-2.5 pl-5 pr-2.5 text-canvas shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_18px_40px_rgba(0,0,0,0.28)] backdrop-blur-xl backdrop-saturate-150">
+      <nav className="flex w-full max-w-[840px] items-center justify-between gap-3 rounded-2xl border border-white/10 bg-gradient-to-b from-[#1f1f1f]/90 to-charcoal-2/90 py-2.5 pl-5 pr-2.5 text-canvas shadow-[var(--shadow-framer-md)] backdrop-blur-[5px]">
         <div className="flex items-center gap-3 sm:gap-6">
           <Link href="/" className="shrink-0 text-white" aria-label="MENT4L home">
             <Logo className="text-xl md:text-2xl" />
@@ -22,7 +22,7 @@ export function Nav() {
               <Link
                 key={l.href}
                 href={l.href}
-                className="rounded-full px-3 py-2 text-[13.5px] text-white/75 transition-colors hover:bg-white/10 hover:text-white"
+                className="rounded-full px-3 py-2 text-sm text-white/[0.92] transition-colors hover:bg-white/10 hover:text-white"
               >
                 {l.label}
               </Link>
@@ -33,17 +33,26 @@ export function Nav() {
         <div className="flex items-center gap-2">
           <Link
             href="/contact"
-            className="hidden rounded-full px-3 py-2 text-[13.5px] text-white/75 transition-colors hover:bg-white/10 hover:text-white md:inline-flex"
+            className="hidden rounded-full px-3 py-2 text-sm text-white/[0.92] transition-colors hover:bg-white/10 hover:text-white md:inline-flex"
           >
             Contact
           </Link>
+          {/* Cliënt-actie: blijft op ment4l.nl */}
+          <Link
+            href={AANMELD_URL}
+            className="hidden items-center rounded-[10px] bg-brand px-4 py-2.5 text-[13px] font-semibold text-canvas transition-colors hover:bg-brand-2 sm:inline-flex"
+          >
+            Aanmelden
+          </Link>
+          {/* Inlogomgeving voor onze eigen zorgprofessionals — bewust apart en gelabeld */}
           <a
             href={APP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center gap-1.5 rounded-2xl bg-white/10 px-4 py-2.5 text-[13px] font-semibold text-white ring-1 ring-white/15 transition-colors hover:bg-white/15 sm:inline-flex"
+            title="Inloggen op het platform voor zorgprofessionals"
+            className="hidden items-center gap-1.5 rounded-[10px] bg-[#4d4d4d] px-3.5 py-2.5 text-[13px] font-medium text-white/90 ring-1 ring-[#454545] transition-colors hover:bg-[#5a5a5a] md:inline-flex"
           >
-            App
+            Inloggen
             <span aria-hidden className="text-[11px]">↗</span>
           </a>
           <button
@@ -71,14 +80,21 @@ export function Nav() {
                 {l.label}
               </Link>
             ))}
+            <Link
+              href={AANMELD_URL}
+              onClick={() => setOpen(false)}
+              className="mt-1 flex items-center justify-center rounded-2xl bg-brand px-4 py-3 text-center text-sm font-semibold text-canvas"
+            >
+              Aanmelden voor jeugdhulp
+            </Link>
             <a
               href={APP_URL}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setOpen(false)}
-              className="mt-1 flex items-center justify-center gap-1.5 rounded-2xl bg-brand px-4 py-3 text-center text-sm font-semibold text-canvas"
+              className="mt-2 flex items-center justify-center gap-1.5 rounded-2xl border border-hairline px-4 py-3 text-center text-sm font-medium text-ink-soft"
             >
-              App openen <span aria-hidden>↗</span>
+              Inloggen voor zorgprofessionals <span aria-hidden>↗</span>
             </a>
           </div>
         </div>

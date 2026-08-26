@@ -17,13 +17,21 @@ export async function POST(req: Request) {
   const phone = String(data.phone ?? "").trim();
   const message = String(data.message ?? "").trim();
   const website = String(data.website ?? "").trim(); // honeypot
+  const gemeente = String(data.gemeente ?? "").trim();
+  const rol = String(data.rol ?? "").trim();
+  const soort = String(data.soort ?? "Contactformulier").trim();
 
   // Bot? Doe alsof het gelukt is en negeer stil.
   if (website !== "") {
     return NextResponse.json({ ok: true });
   }
 
-  if (!name || !message || !EMAIL_RE.test(email)) {
+  // Bij een aanmelding is telefoon leidend en e-mail optioneel (we bellen terug).
+  // Bij het contactformulier is e-mail wel verplicht.
+  const isAanmelding = soort.toLowerCase().startsWith("aanmelding");
+  const emailOk = isAanmelding ? email === "" || EMAIL_RE.test(email) : EMAIL_RE.test(email);
+  const contactOk = isAanmelding ? phone !== "" : true;
+  if (!name || !message || !emailOk || !contactOk) {
     return NextResponse.json({ ok: false, error: "validation" }, { status: 422 });
   }
 
@@ -41,16 +49,21 @@ export async function POST(req: Request) {
     const { error } = await resend.emails.send({
       from,
       to,
-      replyTo: email,
-      subject: `Nieuwe aanmelding via ment4l.nl — ${name}`,
+      ...(email ? { replyTo: email } : {}),
+      subject: `${soort} via ment4l.nl — ${name}${gemeente ? ` (${gemeente})` : ""}`,
       text: [
+        `Soort:     ${soort}`,
+        rol ? `Rol:       ${rol}` : null,
         `Naam:      ${name}`,
-        `E-mail:    ${email}`,
         `Telefoon:  ${phone || "-"}`,
+        `E-mail:    ${email || "-"}`,
+        gemeente ? `Gemeente:  ${gemeente}` : null,
         "",
         "Hulpvraag:",
         message,
-      ].join("\n"),
+      ]
+        .filter(Boolean)
+        .join("\n"),
     });
 
     if (error) {

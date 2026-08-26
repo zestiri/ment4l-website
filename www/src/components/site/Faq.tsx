@@ -14,24 +14,38 @@ export function Faq() {
   const reduce = useReducedMotion();
 
   return (
-    <div className="mx-auto mt-10 flex max-w-3xl flex-col gap-3">
+    <div className="mx-auto mt-6 flex max-w-[718px] flex-col gap-0.5 rounded-3xl p-2.5">
       {FAQ_ITEMS.map((item, i) => {
         const isOpen = open === i;
         const Icon = FAQ_ICONS[i] ?? Play;
         return (
-          <div key={item.vraag} className="overflow-hidden rounded-2xl bg-sand">
+          <div
+            key={item.vraag}
+            className={`group overflow-hidden rounded-[10px] bg-sand transition-colors duration-[350ms] ${
+              isOpen ? "cursor-default" : "hover:bg-charcoal-2"
+            }`}
+          >
             <button
               type="button"
               onClick={() => setOpen(isOpen ? null : i)}
               aria-expanded={isOpen}
-              className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
+              className="flex w-full cursor-pointer items-center justify-between gap-4 px-6 py-7 text-left"
             >
               <span className="flex items-center gap-3">
-                <Icon className="h-5 w-5 shrink-0 text-ink" strokeWidth={1.6} />
-                <span className="text-[15px] font-normal text-ink">{item.vraag}</span>
+                <Icon
+                  className={`h-5 w-5 shrink-0 text-ink transition-colors duration-[350ms] ${isOpen ? "" : "group-hover:text-canvas"}`}
+                  strokeWidth={1.6}
+                />
+                <span
+                  className={`text-base text-[#0d0d0d] transition-colors duration-[350ms] ${isOpen ? "" : "group-hover:text-canvas"}`}
+                >
+                  {item.vraag}
+                </span>
               </span>
               <span
-                className={`text-2xl font-light leading-none text-ink transition-transform ${isOpen ? "rotate-45" : ""}`}
+                className={`text-2xl font-light leading-none text-ink opacity-30 transition-all duration-[350ms] ${
+                  isOpen ? "rotate-45 opacity-100" : "group-hover:text-sand group-hover:opacity-100"
+                }`}
                 aria-hidden
               >
                 +

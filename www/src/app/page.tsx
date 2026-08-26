@@ -3,8 +3,9 @@ import { TrendingUp, GraduationCap, ClipboardCheck, Star, BarChart3, ArrowUpRigh
 import type { LucideIcon } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { ScrollProgress } from "@/components/site/ScrollProgress";
+import { DarkPanel } from "@/components/site/DarkPanel";
 import { Reveal } from "@/components/site/Reveal";
+import { CharReveal } from "@/components/site/CharReveal";
 import { FaqSection } from "@/components/site/FaqSection";
 import { Testimonials } from "@/components/site/Testimonials";
 import {
@@ -12,26 +13,28 @@ import {
   BLOG_TEASERS,
   HERO_AVATARS,
   PARTNER_LOGOS,
-  APP_REGISTER_URL,
+  AANMELD_URL,
 } from "@/lib/site";
 
 const STAT_CARDS: { waarde: string; label: string; Icon: LucideIcon }[] = [
   { waarde: "54", label: "Workshops op scholen gegeven door onze professionals", Icon: GraduationCap },
   { waarde: "100+", label: "Gezinnen geholpen die zichzelf in een crisissituatie bevonden", Icon: ClipboardCheck },
   { waarde: "4.9/5", label: "Waardering gebaseerd op ervaringen", Icon: Star },
-  { waarde: "98%", label: "Aanmeldingen verwerken wij binnen 1 dag", Icon: BarChart3 },
+  { waarde: "98%", label: "Aanmeldingen verwerken wij binnen 4 uur", Icon: BarChart3 },
 ];
 
 export default function Home() {
   return (
     <>
-      <ScrollProgress />
       <Nav />
       <main>
-        {/* ── HERO ─────────────────────────────────────── */}
-        <section className="relative overflow-hidden">
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-brand/[0.04] to-transparent" aria-hidden />
-          <div className="relative mx-auto flex max-w-4xl flex-col items-center px-6 pb-20 pt-36 text-center sm:pt-44">
+        {/* ── HERO + PARTNERS ──────────────────────────
+            Live is dit één band: een ingelegd crème paneel (1100px, ronde
+            bovenhoeken) op een gestreepte textuurachtergrond. */}
+        <section className="relative overflow-hidden bg-mist pt-8">
+          <div className="tex-diagonal pointer-events-none absolute inset-0" aria-hidden />
+          <div className="relative mx-auto w-full max-w-[1100px] rounded-t-[32px] bg-canvas">
+          <div className="relative mx-auto flex max-w-4xl flex-col items-center px-6 pb-16 pt-28 text-center sm:pt-32">
             <Reveal>
               <span className="inline-flex items-center gap-2 rounded-full border border-hairline bg-canvas px-3.5 py-1.5 text-sm font-medium text-ink-soft shadow-[var(--shadow-soft)]">
                 <span className="relative flex h-2.5 w-2.5">
@@ -41,35 +44,30 @@ export default function Home() {
                 24/7 Bereikbaar
               </span>
             </Reveal>
-            <Reveal delay={0.06}>
-              <h1 className="mt-8 text-[clamp(2.3rem,5.2vw,4.15rem)] leading-[1.06]">
-                Ambulante (spoed) Hulp
-                <br />
-                <span className="inline-flex items-center gap-3">
-                  Jeugd
-                  <span className="inline-grid h-[0.82em] w-[0.82em] place-items-center rounded-[0.26em] bg-sand text-brand">
-                    <TrendingUp className="h-1/2 w-1/2" strokeWidth={2.2} />
-                  </span>
-                  Coaching
+            <h1 className="mt-8 text-[clamp(2.3rem,5.2vw,3.625rem)]">
+              <CharReveal startDelay={0.15}>Ambulante (spoed) Hulp</CharReveal>
+              <br />
+              <span className="inline-flex items-center gap-3">
+                <CharReveal startDelay={0.45}>Jeugd</CharReveal>
+                {/* scheef, glanzend tegeltje: het handtekening-detail van de live hero */}
+                <span className="inline-grid h-[0.82em] w-[0.82em] rotate-[10deg] place-items-center rounded-[16px] border border-black/[0.09] bg-[radial-gradient(86%_150%_at_26.3%_24.4%,rgb(255,248,235)_0%,rgb(238,235,255)_100%)] text-brand shadow-[var(--shadow-framer-sm)] transition-transform duration-500 hover:scale-110">
+                  <TrendingUp className="h-1/2 w-1/2" strokeWidth={2.2} />
                 </span>
-              </h1>
-            </Reveal>
+                <CharReveal startDelay={0.6}>Coaching</CharReveal>
+              </span>
+            </h1>
             <Reveal delay={0.12}>
               <div className="mt-9 flex items-center justify-center gap-2.5">
                 <a
-                  href={APP_REGISTER_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-pill bg-brand px-7 py-3.5 text-[15px] font-semibold text-canvas shadow-[0_12px_26px_rgba(31,102,255,0.28)] transition-transform hover:-translate-y-0.5"
+                  href={AANMELD_URL}
+                  className="rounded-pill bg-brand px-7 py-3.5 text-[15px] font-semibold text-canvas transition-colors"
                 >
                   Direct Aanmelden
                 </a>
                 <a
-                  href={APP_REGISTER_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={AANMELD_URL}
                   aria-label="Direct aanmelden"
-                  className="grid h-12 w-12 place-items-center rounded-full bg-brand text-lg text-canvas transition-transform hover:-translate-y-0.5"
+                  className="grid h-12 w-12 place-items-center rounded-full bg-brand-2 text-lg text-canvas transition-colors"
                 >
                   ↗
                 </a>
@@ -97,38 +95,41 @@ export default function Home() {
               </div>
             </Reveal>
           </div>
-        </section>
 
-        {/* ── PARTNERS ─────────────────────────────────── */}
-        <section className="border-y border-hairline bg-mist">
-          <div className="mx-auto max-w-6xl px-6 py-10">
-            <p className="eyebrow text-center text-grey">Onze samenwerkingen</p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
-              {PARTNER_LOGOS.map((src) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  key={src}
-                  src={src}
-                  alt="Samenwerkingspartner"
-                  className="h-8 w-auto object-contain sm:h-10"
-                />
-              ))}
+            {/* partnerlogo's staan live binnen hetzelfde paneel */}
+            <div className="px-6 pb-14">
+              <p className="text-center text-[19px] text-ink">Onze samenwerkingen</p>
+              {/* logo's lopen door en vervagen aan beide randen, zoals live */}
+              <div className="mt-8 overflow-hidden [mask-image:linear-gradient(to_right,transparent_0%,#000_12.5%,#000_87.5%,transparent_100%)]">
+                <div className="animate-logos flex w-max items-center gap-12 lg:gap-[72px]">
+                  {[...PARTNER_LOGOS, ...PARTNER_LOGOS].map((src, i) => (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      key={`${src}-${i}`}
+                      src={src}
+                      alt={i < PARTNER_LOGOS.length ? "Samenwerkingspartner" : ""}
+                      aria-hidden={i >= PARTNER_LOGOS.length}
+                      className="h-8 w-auto shrink-0 object-contain sm:h-10"
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* ── EXPERTISES ───────────────────────────────── */}
-        <section id="expertises" className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
+        <section id="expertises" className="mx-auto max-w-site px-6 py-20 sm:py-24">
           <Reveal>
             <div className="text-center">
               <span className="eyebrow text-brand">Trajecten</span>
-              <h2 className="mt-3 text-[clamp(1.9rem,4vw,2.75rem)]">
+              <h2 className="mt-3 text-[clamp(1.75rem,4vw,2.5rem)]">
                 Expertises op gebied van jeugdcoaching
               </h2>
             </div>
           </Reveal>
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2">
+          <div className="mt-14 grid gap-6 sm:grid-cols-2">
             {TRAJECTEN.map((t, i) => (
               <Reveal key={t.slug} delay={i * 0.06}>
                 <Link
@@ -139,15 +140,16 @@ export default function Home() {
                   <img
                     src={t.image}
                     alt={t.naam}
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="absolute inset-0 h-full w-full object-cover"
                   />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent" />
-                  <span className="absolute right-5 top-5 grid h-11 w-11 place-items-center rounded-full bg-white text-ink shadow-md transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
-                    <ArrowUpRight className="h-5 w-5" strokeWidth={2} />
+                  {/* live gebruikt een lichte grijze scrim, geen zwarte gradient */}
+                  <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(51,54,81,0)_51%,rgb(163,162,160)_103%)]" />
+                  <span className="absolute right-3 top-3 grid h-12 w-12 place-items-center rounded-full bg-white text-ink transition-colors duration-[850ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:bg-brand group-hover:text-white">
+                    <ArrowUpRight className="h-[14px] w-[14px] transition-transform duration-[850ms] group-hover:rotate-45" strokeWidth={2} />
                   </span>
-                  <div className="relative p-7">
-                    <h3 className="text-2xl font-bold leading-tight text-white">{t.naam}</h3>
-                    <p className="mt-1.5 text-sm text-white/85">{t.tagline}</p>
+                  <div className="relative p-5">
+                    <h3 className="font-sans text-[22px] font-bold leading-[30px] tracking-[-0.02em] text-white">{t.naam}</h3>
+                    <p className="mt-1.5 text-sm text-white/90">{t.tagline}</p>
                   </div>
                 </Link>
               </Reveal>
@@ -156,32 +158,33 @@ export default function Home() {
         </section>
 
         {/* ── CIJFERS (bento) ──────────────────────────── */}
-        <section className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
+        <section className="mx-auto max-w-site px-6 py-20 sm:py-24">
           <Reveal>
-            <h2 className="text-[clamp(1.9rem,4vw,2.75rem)]">Uw zorg, onze taak</h2>
+            <h2 className="text-[clamp(1.75rem,4vw,2.5rem)]">Uw zorg, onze taak</h2>
             <p className="mt-2 text-lg text-ink-soft">wij staan voor groei &amp; vooruitgang</p>
           </Reveal>
 
-          {/* bovenblok: foto-kaart (10+) + 2x2 stat-grid */}
-          <div className="mt-10 grid gap-4 lg:grid-cols-3">
+          {/* bovenblok: foto-kaart (10+) + 2x2 stat-grid.
+              Live is dit een strak lijnenraster met de foto's als lichte vlakken. */}
+          <div className="mt-14 grid gap-6 lg:grid-cols-3">
             <Reveal className="lg:row-span-2">
               <div className="relative h-full min-h-[280px] overflow-hidden rounded-3xl">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/images/stats-ervaring.png" alt="Jaren ervaring" className="absolute inset-0 h-full w-full object-cover" />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 to-transparent p-6">
-                  <div className="font-display text-4xl font-extrabold text-white">10+</div>
-                  <div className="text-sm text-white/90">Jaren ervaring</div>
+                <div className="absolute bottom-6 left-6 rounded-2xl border border-[#222] bg-white/25 px-4 py-3 backdrop-blur-md">
+                  <div className="font-sans text-[40px] font-medium leading-none tracking-[-0.02em] text-ink">10+</div>
+                  <div className="mt-1 text-sm text-ink-soft">Jaren ervaring</div>
                 </div>
               </div>
             </Reveal>
             {STAT_CARDS.map((s, i) => (
               <Reveal key={s.label} delay={i * 0.05}>
-                <div className="flex h-full items-start justify-between gap-4 rounded-3xl border border-hairline bg-canvas p-6">
+                <div className="flex h-full items-start justify-between gap-4 rounded-3xl border border-[#222] bg-transparent p-6">
                   <div>
-                    <div className="font-display text-4xl font-extrabold text-ink">{s.waarde}</div>
-                    <p className="mt-2 text-sm text-ink-soft">{s.label}</p>
+                    <div className="font-sans text-[48px] font-medium leading-none tracking-[-0.02em] text-ink">{s.waarde}</div>
+                    <p className="mt-2 text-base leading-6 text-ink">{s.label}</p>
                   </div>
-                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-coral/10 text-coral">
+                  <span className="shrink-0 text-coral">
                     <s.Icon className="h-5 w-5" strokeWidth={1.9} />
                   </span>
                 </div>
@@ -190,14 +193,14 @@ export default function Home() {
           </div>
 
           {/* onderblok: wereldkaart (100+) + 98% foto */}
-          <div className="mt-4 grid gap-4 lg:grid-cols-2">
+          <div className="mt-6 grid gap-6 lg:grid-cols-2">
             <Reveal>
-              <div className="flex h-full flex-col rounded-3xl border border-hairline bg-mist p-6">
+              <div className="flex h-full flex-col rounded-3xl bg-sand p-6">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/images/stats-map.jpg" alt="Jeugdcoaches van verschillende culturen" className="w-full rounded-2xl object-contain" />
                 <div className="mt-5">
-                  <div className="font-display text-4xl font-extrabold text-ink">100+</div>
-                  <p className="mt-1 text-sm text-ink-soft">Jeugdcoaches van verschillende culturen</p>
+                  <div className="font-sans text-[48px] font-medium leading-none tracking-[-0.02em] text-ink">100+</div>
+                  <p className="mt-2 text-base leading-6 text-ink">Jeugdcoaches van verschillende culturen</p>
                 </div>
               </div>
             </Reveal>
@@ -205,9 +208,9 @@ export default function Home() {
               <div className="relative h-full min-h-[320px] overflow-hidden rounded-3xl">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/images/stats-98.png" alt="Jongeren voelen zich geholpen" className="absolute inset-0 h-full w-full object-cover" />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-6">
-                  <div className="font-display text-5xl font-extrabold text-white">98%</div>
-                  <p className="mt-1 max-w-xs text-white/90">Van de jongeren voelt zich daadwerkelijk geholpen</p>
+                <div className="absolute bottom-6 left-6 max-w-xs rounded-2xl border border-[#222] bg-white/25 px-4 py-3 backdrop-blur-md">
+                  <div className="font-sans text-[48px] font-medium leading-none tracking-[-0.02em] text-ink">98%</div>
+                  <p className="mt-2 text-base leading-6 text-ink-soft">Van de jongeren voelt zich daadwerkelijk geholpen</p>
                 </div>
               </div>
             </Reveal>
@@ -219,27 +222,27 @@ export default function Home() {
 
         {/* ── BLOG ─────────────────────────────────────── */}
         <section className="border-t border-hairline bg-mist">
-          <div className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
+          <div className="mx-auto max-w-site px-6 py-20 sm:py-24">
             <Reveal>
               <span className="eyebrow text-brand">Updates</span>
-              <h2 className="mt-3 text-[clamp(1.9rem,4vw,2.75rem)]">Inzichten &amp; meer</h2>
+              <h2 className="mt-3 text-[clamp(1.75rem,4vw,2.5rem)]">Inzichten &amp; meer</h2>
               <p className="mt-4 max-w-xl text-ink-soft">
                 Jouw bron voor inspiratie, strategieën en succesverhalen.
               </p>
             </Reveal>
-            <div className="mt-10 grid gap-5 sm:grid-cols-2">
+            <div className="mt-14 grid gap-6 sm:grid-cols-2">
               {BLOG_TEASERS.map((b, i) => (
                 <Reveal key={b.slug} delay={i * 0.06}>
                   <Link
                     href={`/blog/${b.slug}`}
-                    className="group flex h-full flex-col overflow-hidden rounded-2xl border border-hairline bg-canvas transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-lift)]"
+                    className="group flex h-full flex-col overflow-hidden rounded-2xl border border-hairline bg-canvas transition-shadow"
                   >
                     <div className="relative aspect-[16/10] overflow-hidden">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={b.image}
                         alt={b.titel}
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        className="h-full w-full object-cover"
                       />
                     </div>
                     <div className="flex flex-1 flex-col gap-3 p-6">
@@ -266,11 +269,12 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── TESTIMONIALS (donker) ────────────────────── */}
-        <Testimonials />
-
       </main>
-      <Footer />
+      {/* live: testimonials en footer zitten samen in één donker paneel */}
+      <DarkPanel>
+        <Testimonials />
+        <Footer />
+      </DarkPanel>
     </>
   );
 }

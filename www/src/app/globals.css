@@ -12,10 +12,16 @@
   --color-sand: #f2f0ed;
   --color-hairline: #e6e6e6;
 
-  --color-ink: #121212;
-  --color-ink-soft: #4d4d4d;
-  --color-charcoal: #1a1a1a;
+  /* Gemeten op de live site: koppen near-black, prose donkerder dan wij hadden,
+     en het donkere paneel is #050505 (niet #1a1a1a). */
+  --color-ink: #030303;
+  --color-ink-soft: #1d1d1d;
+  /* Donker paneel: gemeten uit de live DOM (1376x1431, 32px marge, radius 20px) */
+  --color-charcoal: #121212;
   --color-charcoal-2: #262626;
+
+  /* Contentcontainer: live is 1200px content (120px marge bij 1440). */
+  --container-site: 78rem; /* 1248px - 2x24px padding = 1200px content */
 
   --color-brand: #1f66ff;
   --color-brand-2: #4d85ff;
@@ -43,6 +49,12 @@
 
   --shadow-soft: 0 1px 2px rgba(18, 18, 18, 0.04), 0 14px 36px rgba(18, 18, 18, 0.07);
   --shadow-lift: 0 28px 64px rgba(18, 18, 18, 0.13);
+  /* Gelaagde, strakke schaduwen zoals Framer ze zet (gemeten op de live site) */
+  --shadow-framer-sm: 0 0.7px 0.7px -1px rgba(0, 0, 0, 0.145),
+    0 2.3px 2.3px -2px rgba(0, 0, 0, 0.137), 0 5px 5px -3px rgba(0, 0, 0, 0.1);
+  --shadow-framer-md: 0 0.7px 0.7px -1px rgba(0, 0, 0, 0.145),
+    0 2.3px 2.3px -2px rgba(0, 0, 0, 0.137), 0 6px 6px -3px rgba(0, 0, 0, 0.12),
+    0 16px 16px -4px rgba(0, 0, 0, 0.09);
 
   --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
 
@@ -51,6 +63,8 @@
      gemeten op de live site. Baan = 4x [2 kaarten van 528px + 32px gap] = 2240px per helft. */
   --animate-wall-ltr: marquee 90s linear infinite reverse;
   --animate-wall-rtl: marquee 64s linear infinite;
+  /* partnerlogo's lopen op de live site door de rand heen (~25px/s) */
+  --animate-logos: marquee 52s linear infinite;
   --animate-shimmer: shimmer 2.2s linear infinite;
   --animate-floaty: floaty 16s ease-in-out infinite alternate;
 
@@ -77,12 +91,16 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
+  /* Live zet koppen in IBM Plex Serif REGULAR met sterk negatieve tracking;
+     h2 krijgt juist lucht (line-height 1.4). Gemeten: h1 58px/-3px, h2 40px/-2px. */
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    line-height: 1.06;
+    font-weight: 400;
+    letter-spacing: -0.05em;
+    line-height: 1.15;
   }
+  h2 { line-height: 1.4; }
+  h3 { line-height: 1.25; }
   ::selection {
     background: var(--color-brand);
     color: #fff;
@@ -94,22 +112,40 @@
   }
 }
 
-/* mono eyebrow helper */
+/* Eyebrow: live gebruikt sans (geen mono) met veel minder tracking. */
 .eyebrow {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-weight: 500;
-  font-size: 0.72rem;
+  font-size: 0.8125rem;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.02em;
 }
 
-/* subtiele diagonale textuur, zoals de marges op ment4l.nl */
-.texture {
+/* ── Texturen van de live site ────────────────────────────────────────────
+   Drie getegelde lagen. De bron zijn 126x126 SVG-tegels die op 38px worden
+   gerenderd, waardoor de 2px lijnen tot ~0.6px verdunnen: heel subtiel. */
+
+/* 1. Diagonale strepen — achter de hero-band */
+.tex-diagonal {
   background-image: repeating-linear-gradient(
     135deg,
-    transparent 0 22px,
-    rgba(120, 120, 120, 0.035) 22px 23px
+    rgba(0, 0, 0, 0.09) 0 0.603px,
+    transparent 0.603px 8.957px
   );
+}
+
+/* 2. Ruitjespapier — achter de FAQ/blog-zone */
+.tex-grid {
+  background-image:
+    repeating-linear-gradient(to right, rgba(0, 0, 0, 0.07) 0 0.603px, transparent 0.603px 12.667px),
+    repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.07) 0 0.603px, transparent 0.603px 12.667px);
+}
+
+/* 3. Korrel — over het donkere paneel */
+.tex-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='128'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='128' height='128' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+  opacity: 0.12;
 }
 
 @media (prefers-reduced-motion: reduce) {

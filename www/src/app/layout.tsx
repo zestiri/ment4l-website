@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, IBM_Plex_Serif, IBM_Plex_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
+import { BottomBlur } from "@/components/site/BottomBlur";
 import "./globals.css";
 
 // Switzer (Fontshare / ITF Free Font License) — hoofd-body-font van de live site.
@@ -76,6 +77,7 @@ export default function RootLayout({
     >
       <body className="min-h-screen bg-canvas font-sans text-ink antialiased">
         {children}
+        <BottomBlur />
         <Analytics />
       </body>
     </html>

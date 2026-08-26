@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { ScrollProgress } from "@/components/site/ScrollProgress";
+import { DarkPanel } from "@/components/site/DarkPanel";
 import { Reveal } from "@/components/site/Reveal";
 import { FaqSection } from "@/components/site/FaqSection";
 import { CtaBlock } from "@/components/site/CtaBlock";
@@ -44,15 +44,14 @@ export default async function BlogArtikelPage({
 
   return (
     <>
-      <ScrollProgress />
       <Nav />
       <main>
-        <article className="mx-auto max-w-3xl px-6 pt-36 sm:pt-40">
+        <article className="mx-auto max-w-[808px] px-6 pt-36 sm:pt-40">
           <Reveal>
             <span className="inline-flex rounded-full bg-sand px-3 py-1 text-sm font-medium text-ink-soft">
               {a.categorie}
             </span>
-            <h1 className="mt-5 text-[clamp(2rem,4.6vw,3.1rem)] font-normal">{a.titel}</h1>
+            <h1 className="mt-5 text-[clamp(2rem,4.6vw,2.5rem)]">{a.titel}</h1>
             <hr className="mt-8 border-t border-dashed border-hairline" />
           </Reveal>
 
@@ -82,7 +81,7 @@ export default async function BlogArtikelPage({
                   {s.level === "h3" ? (
                     <h3 className="text-xl leading-snug">{s.kop}</h3>
                   ) : (
-                    <h2 className="text-[clamp(1.4rem,2.8vw,1.85rem)] font-normal leading-snug">
+                    <h2 className="text-[clamp(1.4rem,2.8vw,1.85rem)] leading-snug">
                       {s.kop}
                     </h2>
                   )}
@@ -98,23 +97,23 @@ export default async function BlogArtikelPage({
         </article>
 
         {/* ── MEER LEZEN ───────────────────────────────── */}
-        <section className="mx-auto max-w-6xl px-6 pt-20">
+        <section className="mx-auto max-w-site px-6 pt-20">
           <Reveal>
-            <h2 className="text-2xl font-normal">Meer lezen</h2>
+            <h2 className="text-2xl">Meer lezen</h2>
           </Reveal>
-          <div className="mt-6 grid gap-5 sm:grid-cols-3">
+          <div className="mt-10 grid gap-6 sm:grid-cols-3">
             {anderen.map((o, i) => (
               <Reveal key={o.slug} delay={i * 0.05}>
                 <Link
                   href={`/blog/${o.slug}`}
-                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-hairline bg-canvas transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-lift)]"
+                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-hairline bg-canvas transition-shadow"
                 >
                   <div className="relative aspect-[16/10] overflow-hidden">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={blogHero(o.slug)}
                       alt={o.titel}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="h-full w-full object-cover"
                     />
                   </div>
                   <div className="flex flex-1 flex-col gap-2 p-5">
@@ -130,7 +129,9 @@ export default async function BlogArtikelPage({
         <FaqSection />
         <CtaBlock />
       </main>
-      <Footer />
+      <DarkPanel>
+        <Footer />
+      </DarkPanel>
     </>
   );
 }

@@ -13,7 +13,7 @@ type Item = (typeof TESTIMONIALS)[number];
  */
 function Kaart({ t, index }: { t: Item; index: number }) {
   return (
-    <figure className="relative flex h-[380px] w-[528px] shrink-0 flex-col gap-5 overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-7">
+    <figure className="relative flex h-[381px] w-[524px] shrink-0 flex-col gap-5 overflow-hidden rounded-xl border border-white/[0.07] bg-[#090909] p-7">
       <span
         aria-hidden
         className="pointer-events-none absolute right-6 top-2 font-display text-7xl leading-none text-white/12"
@@ -58,7 +58,7 @@ function Rij({
   // waardoor translateX(-50%) naadloos aansluit.
   const baan = [...items, ...items, ...items, ...items];
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent_0%,#000_12.5%,#000_87.5%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,#000_12.5%,#000_87.5%,transparent_100%)]">
       <div className={`flex w-max gap-8 ${animatie}`}>
         {baan.map((k, i) => (
           <Kaart key={`${k.t.naam}-${i}`} t={k.t} index={k.index} />
@@ -73,10 +73,12 @@ export function Testimonials() {
   const rij2 = [2, 3].map((i) => ({ t: TESTIMONIALS[i], index: i }));
 
   return (
-    <section className="relative overflow-hidden bg-charcoal py-20 text-white/90 sm:py-24">
+    <section className="relative overflow-hidden py-20 text-white/90 sm:py-24">
+      {/* korreltextuur + bredere, sterkere glow zoals op de live site */}
+      <div aria-hidden className="tex-grain pointer-events-none absolute inset-0" />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-[radial-gradient(60%_100%_at_50%_0%,rgba(255,255,255,0.10),transparent)]"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[380px] bg-[radial-gradient(50%_100%_at_50%_0%,rgba(255,255,255,0.34),rgba(255,255,255,0))]"
       />
       <div className="relative">
         <Reveal>
@@ -84,7 +86,7 @@ export function Testimonials() {
             <span className="eyebrow inline-flex items-center gap-2 text-white/60">
               <Lightbulb className="h-4 w-4" strokeWidth={1.8} /> Success verhalen
             </span>
-            <h2 className="mt-3 text-[clamp(1.9rem,4vw,2.75rem)] font-normal text-white">
+            <h2 className="mt-3 text-[clamp(1.75rem,4vw,2.5rem)] text-white">
               Echte verhalen, echte resultaten
             </h2>
             <p className="mt-4 text-white/60">
