@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect } from "react";
-import { leesKlikId, metKlikId } from "@/lib/conversie";
+import { usePathname } from "next/navigation";
+import { onthoudKlikId, schrijfKlikIdInUrl } from "@/lib/conversie";
 
 /**
- * Neemt de Google-klik-id mee door de site, zonder iets op het apparaat op te
- * slaan.
+ * Houdt de Google-klik-id vast tijdens het bezoek, zonder iets op het apparaat
+ * op te slaan.
  *
  * Het probleem: de advertentieklik landt op /ambulante-begeleiding?gclid=X,
  * maar het formulier staat op /aanmelden. Zonder tussenstap is de id daar weg.
@@ -13,41 +14,24 @@ import { leesKlikId, metKlikId } from "@/lib/conversie";
  * hier niet willen: opslag op het apparaat vraagt toestemming, en een banner
  * kost bij dit volume meer meting dan hij oplevert (zie `lib/conversie.ts`).
  *
- * Dus doen we wat Google's eigen url_passthrough doet: de id in de URL houden.
- * Bij een klik op een interne link plakken we hem aan de bestemming. Geen
- * cookie, geen localStorage, geen toestemming nodig.
+ * De oplossing: de id blijft in het geheugen van de draaiende app. De site is
+ * één client-side app, dus dat overleeft elke navigatie binnen het bezoek.
+ * Daarnaast zetten we hem met `replaceState` terug in de adresbalk, zodat een
+ * herlading hem ook niet verliest.
  *
- * De listener staat in de capture-fase, dus vóór de router van Next de klik
- * afhandelt. Die leest de href pas daarna en ziet dus de aangepaste versie.
+ * Wat NIET werkt, voor wie het opnieuw wil proberen: het href-attribuut van
+ * interne links herschrijven bij een klik. De Next-router navigeert op de
+ * React-prop en negeert het aangepaste attribuut.
  */
 export function KlikId() {
+  const pathname = usePathname();
+
   useEffect(() => {
-    function opKlik(e: MouseEvent) {
-      // Alleen een gewone linkerklik. Ctrl/cmd-klik, middenklik en
-      // rechtsklik laten we met rust: die opent de browser zelf.
-      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-
-      const klikId = leesKlikId();
-      if (!klikId) return;
-
-      const link = (e.target as HTMLElement | null)?.closest?.("a");
-      if (!(link instanceof HTMLAnchorElement)) return;
-
-      // Downloads en alles wat geen http(s) is (tel:, mailto:) overslaan.
-      if (link.hasAttribute("download")) return;
-      if (link.protocol !== "http:" && link.protocol !== "https:") return;
-      if (link.target && link.target !== "_self") return;
-
-      const href = link.getAttribute("href");
-      if (!href || href.startsWith("#")) return;
-
-      const nieuw = metKlikId(href, klikId);
-      if (nieuw !== href) link.setAttribute("href", nieuw);
-    }
-
-    document.addEventListener("click", opKlik, true);
-    return () => document.removeEventListener("click", opKlik, true);
-  }, []);
+    // Eerst lezen (op de landingspagina staat hij in de URL), dan terugschrijven
+    // op elke volgende pagina waar hij ontbreekt.
+    onthoudKlikId();
+    schrijfKlikIdInUrl();
+  }, [pathname]);
 
   return null;
 }

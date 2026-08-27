@@ -90,36 +90,54 @@ export function klikIdUit(zoekstring: string): string {
 }
 
 /**
- * De klik-id van de huidige pagina, in de vorm `gclid:abc123`.
- * Leest alleen de URL. Bewust geen cookie of localStorage: opslag op het
- * apparaat vraagt toestemming, de URL lezen niet.
+ * De klik-id van dit bezoek, in de vorm `gclid:abc123`.
+ *
+ * Waarom een variabele in het geheugen en geen cookie: opslag op het apparaat
+ * vraagt toestemming, een variabele niet. De site is één client-side app, dus
+ * deze waarde overleeft alle navigatie van landingspagina naar formulier. Bij
+ * een harde herlading is hij weg, en dat is het eerlijke gedrag: dan hebben we
+ * niets bewaard om terug te halen.
+ *
+ * LET OP: eerder probeerden we de id mee te geven door het href-attribuut van
+ * interne links te herschrijven. Dat werkt niet: de Next-router navigeert op de
+ * React-prop, niet op het DOM-attribuut, dus de herschrijving werd genegeerd.
+ * Vandaar deze opzet.
  */
+let onthouden = "";
+
+/** Leest de klik-id uit de huidige URL en onthoudt hem voor de rest van het bezoek. */
+export function onthoudKlikId(): string {
+  if (typeof window === "undefined") return "";
+  const uitUrl = klikIdUit(window.location.search);
+  if (uitUrl) onthouden = uitUrl;
+  return onthouden;
+}
+
+/** De onthouden klik-id, met de huidige URL als terugval. */
 export function leesKlikId(): string {
   if (typeof window === "undefined") return "";
-  return klikIdUit(window.location.search);
+  return onthouden || klikIdUit(window.location.search);
 }
 
 /**
- * Plakt de klik-id aan een interne URL, zodat hij de navigatie overleeft
- * zonder ergens opgeslagen te worden. Laat een bestaande klik-id staan en
- * raakt externe links niet aan.
+ * Zet de klik-id terug in de adresbalk als hij daar ontbreekt, zonder een
+ * navigatie te veroorzaken. Puur zodat een herlading of een gedeelde link de
+ * id niet verliest; de meting zelf leunt op `leesKlikId`.
  */
-export function metKlikId(href: string, klikId: string): string {
-  if (!klikId) return href;
-  // Splitsen op de eerste dubbele punt: de waarde zelf mag er ook een bevatten.
-  const scheiding = klikId.indexOf(":");
-  if (scheiding < 1) return href;
-  const naam = klikId.slice(0, scheiding);
-  const waarde = klikId.slice(scheiding + 1);
-  if (!waarde) return href;
+export function schrijfKlikIdInUrl() {
+  if (typeof window === "undefined" || !onthouden) return;
+  const scheiding = onthouden.indexOf(":");
+  if (scheiding < 1) return;
+  const naam = onthouden.slice(0, scheiding);
+  const waarde = onthouden.slice(scheiding + 1);
+  if (!waarde) return;
   try {
-    const url = new URL(href, window.location.origin);
-    if (url.origin !== window.location.origin) return href;
-    if (KLIK_PARAMS.some((p) => url.searchParams.has(p))) return href;
+    const url = new URL(window.location.href);
+    if (KLIK_PARAMS.some((p) => url.searchParams.has(p))) return;
     url.searchParams.set(naam, waarde);
-    return url.pathname + url.search + url.hash;
+    window.history.replaceState(window.history.state, "", url.toString());
   } catch {
-    return href;
+    // De adresbalk bijwerken is een extraatje, geen voorwaarde.
   }
 }
 
