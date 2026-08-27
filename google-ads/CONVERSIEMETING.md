@@ -19,7 +19,12 @@ zijn kind is dat precies het gegeven dat niet weg mag.
 Daarom loopt de meting hier via de **Google-klik-id (GCLID)**. Die bevat geen persoonsgegeven,
 alleen een verwijzing naar de advertentieklik. Het is de enige route naar offline conversies
 die in deze sector overblijft, en de site is er al op gebouwd: de klik-id komt binnen via de
-URL, gaat in een eigen cookie en staat in elke aanmeldmail.
+URL, blijft in het geheugen van de draaiende app en staat in elke aanmeldmail.
+
+Bewust geen cookie en geen localStorage: opslag op het apparaat vraagt toestemming, en een
+banner kost hier meer meting dan hij oplevert. Google's conversiemodellering, die de gaten van
+geweigerde toestemming vult, start pas rond 700 klikken per dag; wij verwachten er 15 tot 25
+per maand. Wat een banner wegneemt komt dus nooit terug.
 
 ## Wat er al in de code zit
 
