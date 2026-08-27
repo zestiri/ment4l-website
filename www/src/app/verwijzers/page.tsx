@@ -84,7 +84,7 @@ export default function VerwijzersPage() {
                 gezin niet hoeft te gokken of er plek is.
               </p>
               <p className="mt-4 text-ink-soft">
-                Twijfel je of een casus bij ons past? Bel gerust even — we denken mee, ook
+                Twijfel je of een casus bij ons past? Bel gerust even. We denken mee, ook
                 als het uiteindelijk ergens anders thuishoort.
               </p>
               <Link

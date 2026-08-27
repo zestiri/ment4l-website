@@ -22,7 +22,7 @@ const WA_LINK =
 
 const WAT_WEL = [
   "Je krijgt een vaste coach, geen wisselend team",
-  "We komen naar jou toe — thuis, op school of ergens anders",
+  "We komen naar jou toe: thuis, op school of ergens anders",
   "Je mag vragen om een coach die jouw taal spreekt of je achtergrond kent",
   "Wat je vertelt blijft tussen jou en je coach, tenzij je onveilig bent",
 ];
@@ -44,7 +44,7 @@ export default function JongerenPage() {
                 </h1>
                 <p className="mx-auto mt-5 max-w-xl text-lg text-ink-soft">
                   Ben je 16 of ouder? Dan hoef je niet te wachten tot je ouders of school
-                  iets doen. Je kunt jezelf aanmelden. Wij bellen je terug — meestal binnen
+                  iets doen. Je kunt jezelf aanmelden. Wij bellen je terug, meestal binnen
                   4 uur.
                 </p>
 
@@ -125,7 +125,7 @@ export default function JongerenPage() {
                 </p>
                 <h3 className="mt-7 text-lg">Hoe lang duurt het voordat ik iemand spreek?</h3>
                 <p className="mt-2 text-ink-soft">
-                  We streven ernaar je binnen 4 uur terug te bellen — ook &rsquo;s avonds en
+                  We streven ernaar je binnen 4 uur terug te bellen, ook &rsquo;s avonds en
                   in het weekend. Er is geen wachtlijst.
                 </p>
               </div>

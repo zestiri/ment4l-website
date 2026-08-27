@@ -77,8 +77,8 @@ export const VERWIJZERS = [
 /** Officiële nummers bij acute onveiligheid — altijd tonen náást ons eigen nummer. */
 export const CRISISNUMMERS = [
   { nummer: "112", href: "tel:112", wanneer: "Direct gevaar of een noodsituatie" },
-  { nummer: "0800-0113", href: "tel:08000113", wanneer: "Zelfmoordgedachten — 113 Zelfmoordpreventie, 24/7" },
-  { nummer: "0800-2000", href: "tel:08002000", wanneer: "Veilig Thuis — advies bij huiselijk geweld of kindermishandeling" },
+  { nummer: "0800-0113", href: "tel:08000113", wanneer: "Zelfmoordgedachten: 113 Zelfmoordpreventie, 24/7" },
+  { nummer: "0800-2000", href: "tel:08002000", wanneer: "Veilig Thuis: advies bij huiselijk geweld of kindermishandeling" },
 ];
 
 /** Wat een gezin kan verwachten na de aanmelding. */

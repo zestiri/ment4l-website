@@ -49,7 +49,7 @@ export default function SpoedPage() {
                 Crisis in het gezin? Bel ons nu.
               </h1>
               <p className="mt-5 text-lg text-white/70">
-                Ambulante spoedhulp in West-Brabant West. We schakelen vrijwel direct —
+                Ambulante spoedhulp in West-Brabant West. We schakelen vrijwel direct,
                 ook &rsquo;s avonds, in het weekend en op feestdagen.
               </p>
 
@@ -64,8 +64,8 @@ export default function SpoedPage() {
                 Liever eerst schrijven?{" "}
                 <Link href={AANMELD_URL} className="underline hover:text-white">
                   Meld je aan
-                </Link>{" "}
-                — dan bellen we binnen 4 uur terug.
+                </Link>
+                , dan bellen we binnen 4 uur terug.
               </p>
             </div>
           </div>
@@ -160,7 +160,7 @@ export default function SpoedPage() {
                 <p className="mt-5 text-sm text-ink-soft">
                   Voor jeugdhulp is een verwijzing nodig van een huisarts, jeugdarts,
                   medisch specialist, de gemeente of een gecertificeerde instelling. Heb je
-                  die nog niet? Bel gerust — we denken mee.
+                  die nog niet? Bel gerust. We denken mee.
                 </p>
               </div>
             </Reveal>

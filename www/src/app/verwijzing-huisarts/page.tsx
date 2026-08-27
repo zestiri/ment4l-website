@@ -14,7 +14,7 @@ import { CheckBullet } from "@/components/site/IconBadge";
 export const metadata: Metadata = {
   title: "Verwijzing voor jeugdhulp",
   description:
-    "Heb je een verwijzing van de huisarts voor jeugdhulp? Dan mag je zelf kiezen bij welke aanbieder je start. Meld je aan bij MENT4L — geen wachtlijst, reactie binnen 4 uur.",
+    "Heb je een verwijzing van de huisarts voor jeugdhulp? Dan mag je zelf kiezen bij welke aanbieder je start. Meld je aan bij MENT4L: geen wachtlijst, reactie binnen 4 uur.",
   alternates: { canonical: "/verwijzing-huisarts" },
 };
 
@@ -60,7 +60,7 @@ export default function VerwijzingPage() {
             <Reveal>
               <h2 className="text-[clamp(1.75rem,4vw,2.5rem)]">Nog geen verwijzing?</h2>
               <p className="mt-5 text-ink-soft">
-                Dat hoeft je niet tegen te houden. Je kunt je alvast bij ons aanmelden — we
+                Dat hoeft je niet tegen te houden. Je kunt je alvast bij ons aanmelden. We
                 bespreken dan telefonisch wat er speelt en helpen je de verwijzing te
                 regelen bij je huisarts of het wijkteam van je gemeente.
               </p>

@@ -12,7 +12,7 @@ import { WACHTTIJDEN, WACHTTIJDEN_BIJGEWERKT } from "@/lib/funnel";
 export const metadata: Metadata = {
   title: "Wachttijden",
   description:
-    "Actuele wachttijden per traject bij MENT4L, wekelijks bijgewerkt. Jeugdhulp in West-Brabant West zonder wachtlijst — reactie binnen 4 uur.",
+    "Actuele wachttijden per traject bij MENT4L, wekelijks bijgewerkt. Jeugdhulp in West-Brabant West zonder wachtlijst. Reactie binnen 4 uur.",
   alternates: { canonical: "/wachttijden" },
 };
 
@@ -28,7 +28,7 @@ export default function WachttijdenPage() {
               <h1 className="mt-4 text-[clamp(2.1rem,5vw,3.25rem)]">Onze actuele wachttijden</h1>
               <p className="mt-5 text-lg text-ink-soft">
                 In de jeugdzorg is een wachtlijst eerder regel dan uitzondering. Wij
-                publiceren daarom wekelijks per traject wanneer we kunnen starten — zodat
+                publiceren daarom wekelijks per traject wanneer we kunnen starten, zodat
                 je het kunt vergelijken in plaats van erop te moeten hopen.
               </p>
               <p className="mt-4 font-mono text-sm text-grey">
@@ -71,7 +71,7 @@ export default function WachttijdenPage() {
             <div className="mx-auto mt-8 max-w-3xl rounded-2xl border border-hairline bg-stone/60 p-5 text-sm text-ink-soft">
               <strong className="text-ink">Wat een wachttijd hier betekent.</strong> Dit is de
               tijd tot de kennismaking. Wanneer de begeleiding daadwerkelijk start hangt ook
-              af van de verwijzing en de toewijzing door je gemeente — dat deel ligt niet bij
+              af van de verwijzing en de toewijzing door je gemeente. Dat deel ligt niet bij
               ons, maar we helpen je er wel doorheen.
             </div>
           </Reveal>

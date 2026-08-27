@@ -67,7 +67,7 @@ export default function OverOnsPage() {
                 <BookOpen className="h-4 w-4" strokeWidth={1.9} /> Ons verhaal
               </span>
               <h2 className="mt-6 text-[clamp(1.9rem,4vw,2.5rem)]">
-                De Toekomst van Jeugdbegeleiding — MENT4L
+                De Toekomst van Jeugdbegeleiding: MENT4L
               </h2>
             </Reveal>
             <Reveal delay={0.06}>

@@ -75,7 +75,7 @@ export default async function TrajectPage({
                     Is er nú een crisis? Bel {CONTACT.phone}
                   </span>
                   <span className="mt-0.5 block text-sm text-ink-soft">
-                    We zijn 24/7 bereikbaar en schakelen vrijwel direct — bekijk hoe
+                    We zijn 24/7 bereikbaar en schakelen vrijwel direct. Bekijk hoe
                     spoedhulp werkt.
                   </span>
                 </span>

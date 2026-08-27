@@ -32,7 +32,7 @@ export default function ContactPage() {
               </Reveal>
               <Reveal delay={0.12}>
                 <p className="mt-5 max-w-md text-lg text-ink-soft">
-                  Geen wachtlijst. Je hoort binnen 4 uur van ons — ook buiten
+                  Geen wachtlijst. Je hoort binnen 4 uur van ons, ook buiten
                   kantooruren.
                 </p>
               </Reveal>
@@ -49,7 +49,7 @@ export default function ContactPage() {
                       Spoed of crisis? Bel ons direct
                     </span>
                     <span className="mt-0.5 block text-sm text-ink-soft">
-                      Dan schakelen we vrijwel direct —{" "}
+                      Dan schakelen we vrijwel direct:{" "}
                       <span className="font-semibold text-ink">{CONTACT.phone}</span>, 24/7
                       bereikbaar.
                     </span>
