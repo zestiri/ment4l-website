@@ -112,6 +112,7 @@ export const NAV_LINKS = [
 
 /** Extra ingangen, getoond in het mobiele menu en de footer. */
 export const NAV_SECUNDAIR = [
+  { href: "/ambulante-begeleiding", label: "Ambulante begeleiding" },
   { href: "/#expertises", label: "Trajecten" },
   { href: `/trajecten/${WORKSHOPS_SLUG}`, label: "Workshops" },
   { href: "/jongeren", label: "Voor jongeren (16+)" },
@@ -192,7 +193,7 @@ export const FAQ_ITEMS = [
   {
     vraag: "Wat is (ambulante) jeugdcoaching?",
     antwoord:
-      "Ambulante jeugdcoaching is begeleiding op maat in de eigen omgeving van de jongere — thuis, op school of in de wijk. Een vaste jeugdcoach werkt samen aan concrete doelen.",
+      "Ambulante jeugdcoaching is begeleiding op maat in de eigen omgeving van de jongere: thuis, op school of in de wijk. Een vaste jeugdcoach werkt samen aan concrete doelen.",
   },
   {
     vraag: "Welke soort jeugdcoaching bied MENT4L?",
@@ -202,7 +203,7 @@ export const FAQ_ITEMS = [
   {
     vraag: "Hoelang is de wachttijd?",
     antwoord:
-      "Wij werken zonder wachtlijst. Je hoort binnen 4 uur van ons en we starten zo snel mogelijk. Gaat het om spoed of crisis? Bel ons dan meteen op 085 130 7522 — dan schakelen we vrijwel direct.",
+      "Wij werken zonder wachtlijst. Je hoort binnen 4 uur van ons en we starten zo snel mogelijk. Gaat het om spoed of crisis? Bel ons dan meteen op 085 130 7522. Dan schakelen we vrijwel direct.",
   },
   {
     vraag: "Heb ik een verwijzing nodig",

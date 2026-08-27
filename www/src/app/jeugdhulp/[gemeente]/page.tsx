@@ -59,9 +59,12 @@ export default async function GemeentePage({
                   Jeugdhulp in {g.naam}, zonder wachtlijst
                 </h1>
                 <p className="mx-auto mt-5 max-w-xl text-lg text-ink-soft">
-                  Ambulante begeleiding en jeugdcoaching bij jullie thuis, op school of in de
-                  wijk — in {g.kernen.slice(0, 3).join(", ")} en de rest van de gemeente. Je
-                  hoort binnen 4 uur van ons.
+                  <Link href="/ambulante-begeleiding" className="underline decoration-hairline underline-offset-4 transition-colors hover:decoration-brand hover:text-ink">
+                    Ambulante begeleiding
+                  </Link>{" "}
+                  en jeugdcoaching bij jullie thuis, op school of in de wijk, in{" "}
+                  {g.kernen.slice(0, 3).join(", ")} en de rest van de gemeente. Je hoort binnen
+                  4 uur van ons.
                 </p>
                 <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
                   <Link
@@ -96,7 +99,7 @@ export default async function GemeentePage({
               </h2>
               <p className="mt-5 text-ink-soft">
                 Ambulante hulp betekent dat wij komen, niet dat jullie moeten reizen. Onze
-                jeugdcoaches werken in {g.kernen.join(", ")} — thuis, op school of ergens
+                jeugdcoaches werken in {g.kernen.join(", ")}: thuis, op school of ergens
                 waar je kind zich prettig voelt.
               </p>
               <p className="mt-4 text-ink-soft">
@@ -121,7 +124,7 @@ export default async function GemeentePage({
                 </div>
                 <p className="mt-4 text-sm text-ink-soft">
                   We plannen de kennismaking binnen een week. Bij spoed schakelen we
-                  vrijwel direct — dan kun je ons het beste bellen.
+                  vrijwel direct, dan kun je ons het beste bellen.
                 </p>
                 <p className="mt-4 font-mono text-xs text-grey">
                   Bijgewerkt op {WACHTTIJDEN_BIJGEWERKT}

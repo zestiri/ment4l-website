@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Check } from "lucide-react";
 import { CONTACT } from "@/lib/site";
+import { leesKlikId, meldConversie } from "@/lib/conversie";
 
 import { IconBadge } from "@/components/site/IconBadge";
 type Status = "idle" | "sending" | "ok" | "error";
@@ -29,11 +30,14 @@ export function AanmeldForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, soort: "Aanmelding jeugdhulp", rol }),
+        body: JSON.stringify({ ...data, soort: "Aanmelding jeugdhulp", rol, gclid: leesKlikId() }),
       });
       if (res.ok) {
         setStatus("ok");
         form.reset();
+        // Hier, en nergens anders. Er is geen bedankt-URL waar we op kunnen
+        // meten, dus dit punt in de success-handler ís het conversiemoment.
+        meldConversie("aanmelding");
       } else {
         const body = await res.json().catch(() => ({}));
         setStatus("error");
@@ -55,7 +59,7 @@ export function AanmeldForm() {
     return (
       <div className="py-6 text-center">
         <IconBadge icon={Check} size="lg" className="mx-auto" />
-        <h2 className="mt-5 text-2xl">Gelukt — we bellen je</h2>
+        <h2 className="mt-5 text-2xl">Gelukt, we bellen je</h2>
         <p className="mx-auto mt-3 max-w-sm text-ink-soft">
           Binnen 4 uur, ook buiten kantooruren. Spoed?{" "}
           <a href={CONTACT.phoneHref} className="font-semibold text-brand underline">

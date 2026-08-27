@@ -21,8 +21,8 @@
   "ad_groups": [
     {
       "name": "Ambulante begeleiding",
-      "final_url": "https://www.ment4l.nl/jeugdhulp-west-brabant-west",
-      "_landing_todo": "Vervangen door https://www.ment4l.nl/ambulante-begeleiding zodra die pagina bestaat. Nu 404. Dit is de term met 90 zoekopdrachten/mnd in de regio en er is geen pagina die hem in title of H1 voert.",
+      "final_url": "https://www.ment4l.nl/ambulante-begeleiding",
+      "_landing": "Eigen landingspagina, gebouwd op 27 aug 2026. Voert de term in title, H1 en eerste zin, met FAQPage- en Service-schema en een link naar de acht blogartikelen over het onderwerp. Was hiervoor een 404, wat kwaliteitsscore kostte op precies de term waar we op bieden.",
       "keywords": [
         { "text": "ambulante begeleiding", "match": "PHRASE" },
         { "text": "ambulante begeleiding jeugd", "match": "PHRASE" },

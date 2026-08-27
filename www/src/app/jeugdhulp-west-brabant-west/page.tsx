@@ -35,8 +35,11 @@ export default function HubPage() {
                   Hulp voor je kind, zonder wachtlijst
                 </h1>
                 <p className="mx-auto mt-5 max-w-xl text-lg text-ink-soft">
-                  Ambulante begeleiding en jeugdcoaching bij jullie thuis, op school of in de
-                  wijk. Je hoort binnen 4 uur van ons — ook buiten kantooruren.
+                  <Link href="/ambulante-begeleiding" className="underline decoration-hairline underline-offset-4 transition-colors hover:decoration-brand hover:text-ink">
+                    Ambulante begeleiding
+                  </Link>{" "}
+                  en jeugdcoaching bij jullie thuis, op school of in de wijk. Je hoort binnen
+                  4 uur van ons, ook buiten kantooruren.
                 </p>
                 <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
                   <Link
@@ -76,7 +79,7 @@ export default function HubPage() {
               </p>
               <p className="mt-4 text-ink-soft">
                 Voor jeugdhulp is wel een verwijzing nodig. Heb je die nog niet? Meld je
-                gerust alvast aan — we helpen je die te regelen.
+                gerust alvast aan. Wij helpen je die te regelen.
               </p>
               <Link
                 href="/verwijzing-huisarts"

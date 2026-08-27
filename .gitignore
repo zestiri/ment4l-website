@@ -2,6 +2,8 @@
 secrets/
 .env
 .env.*
+# .env.example documenteert welke variabelen er nodig zijn en hoort juist WEL mee.
+!www/.env.example
 *.pem
 *.key
 *.p12

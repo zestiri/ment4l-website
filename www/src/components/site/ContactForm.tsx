@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { Check } from "lucide-react";
 import { IconBadge } from "@/components/site/IconBadge";
+import { leesKlikId, meldConversie } from "@/lib/conversie";
 type Status = "idle" | "sending" | "ok" | "error";
 
 export function ContactForm() {
@@ -20,11 +21,12 @@ export function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, gclid: leesKlikId() }),
       });
       if (res.ok) {
         setStatus("ok");
         form.reset();
+        meldConversie("contact");
       } else {
         const body = await res.json().catch(() => ({}));
         setStatus("error");
@@ -48,7 +50,7 @@ export function ContactForm() {
         <IconBadge icon={Check} className="mx-auto" />
         <h3 className="mt-4 text-xl">Bedankt, we hebben je bericht ontvangen</h3>
         <p className="mt-2 text-ink-soft">
-          We streven ernaar binnen 4 uur contact met je op te nemen — ook buiten
+          We streven ernaar binnen 4 uur contact met je op te nemen, ook buiten
           kantooruren. Is het spoed? Bel dan direct 085 130 7522.
         </p>
         <button

@@ -1,9 +1,43 @@
 import type { Metadata } from "next";
 import { Inter, IBM_Plex_Serif, IBM_Plex_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import localFont from "next/font/local";
+import Script from "next/script";
 import Tracker from "@/components/site/Tracker";
+import { KlikId } from "@/components/site/KlikId";
+import { Meting } from "@/components/site/Meting";
 import { BottomBlur } from "@/components/site/BottomBlur";
+import { ADS_ID, METING_AAN } from "@/lib/conversie";
 import "./globals.css";
+
+// De id komt uit onze eigen env, maar hij wordt in een inline script gezet.
+// Alles buiten [A-Za-z0-9-] eruit, zodat een typefout in .env geen scriptfout wordt.
+const ADS_ID_VEILIG = ADS_ID.replace(/[^A-Za-z0-9-]/g, "");
+
+/**
+ * Toestemming eerst, tag daarna, in één blok.
+ *
+ * De volgorde is de hele truc: Consent Mode werkt alleen als de defaults in de
+ * dataLayer staan vóórdat gtag.js draait. Daarom laadt dit script gtag.js zélf,
+ * als laatste regel. Dan kan de volgorde niet omvallen door een andere
+ * laadstrategie of een trage verbinding.
+ *
+ * Alles staat op "denied" tot de bezoeker ja zegt. `ads_data_redaction` en
+ * `url_passthrough` zorgen dat Google in de tussentijd zonder cookies meet en
+ * de klik-id via de URL doorgeeft in plaats van via opslag.
+ */
+const CONSENT_EN_TAG = `
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments)}
+window.gtag=gtag;
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});
+gtag('set','ads_data_redaction',true);
+gtag('set','url_passthrough',true);
+gtag('js',new Date());
+gtag('config','${ADS_ID_VEILIG}');
+var s=document.createElement('script');
+s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=${ADS_ID_VEILIG}';
+document.head.appendChild(s);
+`;
 
 // Switzer (Fontshare / ITF Free Font License) — hoofd-body-font van de live site.
 const switzer = localFont({
@@ -76,9 +110,18 @@ export default function RootLayout({
       className={`${switzer.variable} ${inter.variable} ${plexSerif.variable} ${plexMono.variable} ${jakarta.variable}`}
     >
       <body className="min-h-screen bg-canvas font-sans text-ink antialiased">
+        {METING_AAN && (
+          <Script id="consent-en-tag" strategy="afterInteractive">
+            {CONSENT_EN_TAG}
+          </Script>
+        )}
         {children}
         <BottomBlur />
         <Tracker />
+        {/* Primaire meting: draait altijd, slaat niets op. */}
+        <KlikId />
+        {/* Aanvulling: alleen actief met een Ads-id, en dan mét toestemmingsbalk. */}
+        <Meting />
       </body>
     </html>
   );

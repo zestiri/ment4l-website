@@ -21,6 +21,11 @@ export async function POST(req: Request) {
   const woonplaats = String(data.woonplaats ?? "").trim();
   const rol = String(data.rol ?? "").trim();
   const soort = String(data.soort ?? "Contactformulier").trim();
+  // Google-klik-id. Staat in de mail zodat je later een offline conversie kunt
+  // importeren: "deze aanmelding werd een intake". Google accepteert die import
+  // tot 90 dagen na de klik, dus koppelen moet binnen dat venster gebeuren.
+  // Gekapt op 200 tekens: het is een id, geen vrij tekstveld.
+  const gclid = String(data.gclid ?? "").trim().slice(0, 200);
 
   // De bezoeker vult alleen een woonplaats in; wij zoeken de gemeente erbij.
   // Zo hoeft een ouder niet te weten dat Oudenbosch onder Halderberge valt.
@@ -58,7 +63,7 @@ export async function POST(req: Request) {
       from,
       to,
       ...(email ? { replyTo: email } : {}),
-      subject: `${soort} via ment4l.nl — ${name}${woonplaats ? ` (${woonplaats})` : ""}`,
+      subject: `${soort} via ment4l.nl: ${name}${woonplaats ? ` (${woonplaats})` : ""}`,
       text: [
         `Soort:      ${soort}`,
         rol ? `Rol:        ${rol}` : null,
@@ -67,8 +72,9 @@ export async function POST(req: Request) {
         `E-mail:     ${email || "-"}`,
         woonplaats ? `Woonplaats: ${woonplaats}` : null,
         woonplaats
-          ? `Gemeente:   ${gemeente ?? "buiten werkgebied of niet herkend — handmatig checken"}`
+          ? `Gemeente:   ${gemeente ?? "buiten werkgebied of niet herkend, handmatig checken"}`
           : null,
+        gclid ? `Klik-id:    ${gclid}` : null,
         "",
         "Hulpvraag:",
         message || "(niet ingevuld)",
