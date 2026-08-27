@@ -3,12 +3,47 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Logo } from "./Logo";
-import { NAV_LINKS, NAV_SECUNDAIR, APP_URL, AANMELD_URL } from "@/lib/site";
+import { NAV_LINKS, NAV_SECUNDAIR, APP_URL, AANMELD_URL, CONTACT } from "@/lib/site";
 
 const LEFT = NAV_LINKS.slice(0, 4); // Jeugdhulp, Spoed, Wachttijden, Verwijzers
 
-export function Nav() {
+/**
+ * `variant="landing"` kleedt de nav uit voor betaalde advertentieroutes: alleen
+ * het logo, het telefoonnummer en een knop die naar het formulier scrollt.
+ *
+ * Waarom: op een advertentiepagina is elke extra uitgang een lek. De Inloggen-knop
+ * is bovendien de verkeerde deur voor een hulpzoekende ouder, want die leidt naar
+ * het portaal voor onze eigen zorgprofessionals. De reguliere site houdt de
+ * volledige nav.
+ */
+export function Nav({ variant = "volledig" }: { variant?: "volledig" | "landing" } = {}) {
   const [open, setOpen] = useState(false);
+
+  if (variant === "landing") {
+    return (
+      <header className="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
+        <nav className="flex w-full max-w-[840px] items-center justify-between gap-3 rounded-2xl border border-white/10 bg-gradient-to-b from-[#1f1f1f]/90 to-charcoal-2/90 py-2.5 pl-5 pr-2.5 text-canvas shadow-[var(--shadow-framer-md)] backdrop-blur-[5px]">
+          <Link href="/" className="shrink-0 text-white" aria-label="MENT4L home">
+            <Logo variant="mark" className="h-7 md:h-8" />
+          </Link>
+          <div className="flex items-center gap-2">
+            <a
+              href={CONTACT.phoneHref}
+              className="hidden min-h-11 items-center rounded-full px-3 text-sm text-white/[0.92] transition-colors hover:bg-white/10 hover:text-white sm:inline-flex"
+            >
+              {CONTACT.phone}
+            </a>
+            <a
+              href="#bel-mij-terug"
+              className="inline-flex min-h-11 items-center rounded-[10px] bg-brand px-4 text-[13px] font-semibold text-canvas transition-colors hover:bg-brand-2"
+            >
+              Bel mij terug
+            </a>
+          </div>
+        </nav>
+      </header>
+    );
+  }
 
   return (
     <header className="fixed inset-x-0 top-4 z-50 flex justify-center px-4">

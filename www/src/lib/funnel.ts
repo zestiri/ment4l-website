@@ -85,7 +85,7 @@ export const CRISISNUMMERS = [
 export const STAPPEN = [
   { titel: "Je meldt je aan", tekst: "Via het formulier of telefonisch. Een paar zinnen over wat er speelt is genoeg." },
   { titel: "Wij bellen binnen 4 uur", tekst: "Ook 's avonds en in het weekend. We bespreken de situatie en of we passend zijn." },
-  { titel: "We regelen de verwijzing", tekst: "Nog geen verwijzing? We helpen je die te krijgen bij de huisarts of het wijkteam." },
+  { titel: "Nog geen verwijzing?", tekst: "Wij geven die niet zelf af, maar we helpen je eraan: we leggen uit wat je vraagt en bij wie." },
   { titel: "Kennismaking en start", tekst: "Zodra de verwijzing rond is, plannen we de kennismaking. Geen wachtlijst." },
 ];
 
@@ -94,5 +94,4 @@ export const BEWIJS = [
   { waarde: "4 uur", label: "Streeftijd waarbinnen we reageren" },
   { waarde: "24/7", label: "Bereikbaar, ook buiten kantooruren" },
   { waarde: "9", label: "Gemeenten waar we actief zijn" },
-  { waarde: "1000+", label: "Jongeren begeleid" },
 ];

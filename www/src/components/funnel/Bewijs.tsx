@@ -1,10 +1,14 @@
 import { Reveal } from "@/components/site/Reveal";
 import { BEWIJS } from "@/lib/funnel";
 
-/** Kernbewijs-strip: vier cijfers die op elke landingspagina terugkomen. */
+/**
+ * Kernbewijs-strip: de cijfers die op elke landingspagina terugkomen.
+ * Waren er vier; "1000+ jongeren begeleid" is eruit omdat die claim niet houdbaar
+ * is naast een KVK-inschrijving van 12-02-2026 met twee werknemers.
+ */
 export function Bewijs() {
   return (
-    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="grid gap-3 sm:grid-cols-3">
       {BEWIJS.map((b, i) => (
         <Reveal key={b.label} size="item" delay={i * 0.04}>
           <div className="h-full rounded-2xl border border-hairline bg-canvas p-5">
