@@ -115,7 +115,7 @@ export function ContactForm() {
 
       <p className="text-xs text-grey">
         Door te verzenden ga je akkoord met ons{" "}
-        <a href="/privacybeleid.pdf" className="underline hover:text-ink">privacybeleid</a>.
+        <a href="/privacybeleid.pdf" target="_blank" rel="noopener" className="underline hover:text-ink">privacybeleid</a>.
       </p>
     </form>
   );

@@ -28,6 +28,16 @@ export function BelBalk({
   terugNaar?: string;
 }) {
   const [zichtbaar, setZichtbaar] = useState(false);
+  const [klaar, setKlaar] = useState(false);
+
+  // Zodra de aanmelding gelukt is, verdwijnt de balk voorgoed. Anders blijft hij
+  // met "Bel nu" boven iemand hangen die net is aangemeld, en telt een klik daar
+  // een tweede keer. AanmeldForm stuurt dit event bij succes.
+  useEffect(() => {
+    const opAangemeld = () => setKlaar(true);
+    window.addEventListener("m4l:aangemeld", opAangemeld);
+    return () => window.removeEventListener("m4l:aangemeld", opAangemeld);
+  }, []);
 
   useEffect(() => {
     const doel = volgSelector ? document.querySelector(volgSelector) : null;
@@ -53,8 +63,9 @@ export function BelBalk({
 
   return (
     <div
+      aria-hidden={klaar || !zichtbaar}
       className={`fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-charcoal/95 backdrop-blur-md transition-transform duration-300 motion-reduce:transition-none ${breedte} ${
-        zichtbaar ? "translate-y-0" : "translate-y-full"
+        zichtbaar && !klaar ? "translate-y-0" : "translate-y-full"
       }`}
     >
       <div className="mx-auto flex max-w-site items-center justify-between gap-4 px-5 py-3">

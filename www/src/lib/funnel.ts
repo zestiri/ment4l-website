@@ -32,12 +32,18 @@ export const getGemeente = (slug: string) => GEMEENTEN.find((g) => g.slug === sl
  * geen afwijzing.
  */
 export function gemeenteVoorPlaats(woonplaats: string): string | null {
+  // Collapse "sint" naar "st", zodat de kern "St. Willebrord" ook matcht als een
+  // ouder "Sint Willebrord" typt. In de negen gemeenten en hun kernen komt "sint"
+  // alleen voor als die afkorting, dus dit raakt niets anders (Steenbergen blijft
+  // steenbergen). Zonder dit ging elke aanmelding uit St. Willebrord, de grootste
+  // kern van Rucphen, als "buiten werkgebied" de mail in.
   const norm = (s: string) =>
     s
       .toLowerCase()
       .normalize("NFD")
       .replace(/[̀-ͯ]/g, "")
-      .replace(/[^a-z]/g, "");
+      .replace(/[^a-z]/g, "")
+      .replace(/sint/g, "st");
   const p = norm(woonplaats);
   if (!p) return null;
   for (const g of GEMEENTEN) {

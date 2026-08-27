@@ -20,7 +20,7 @@ type Stap = { tijd: string; label: string; sub?: string };
 const STAPPEN: Stap[] = [
   { tijd: "Nu", label: "Je laat je nummer achter" },
   { tijd: "Binnen 4 uur", label: "Wij bellen je terug", sub: "ook 's avonds en in het weekend" },
-  { tijd: "Daarna", label: "Nog geen verwijzing? Wij helpen je eraan" },
+  { tijd: "Daarna", label: "Nog geen verwijzing? Wij helpen je die te krijgen" },
   { tijd: "Binnen een week", label: "Kennismaking, zodra de verwijzing rond is" },
 ];
 

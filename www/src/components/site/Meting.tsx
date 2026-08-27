@@ -3,6 +3,7 @@
 import { useEffect, useSyncExternalStore } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { METING_AAN, meldConversie } from "@/lib/conversie";
+import { CONTACT } from "@/lib/site";
 
 /**
  * De optionele Google Ads-tag en de toestemming die daarbij hoort.
@@ -98,10 +99,16 @@ export function Meting() {
   // staan telefoonlinks in de nav, de footer, de belbalk, het aanmeldformulier
   // en op acht funnelpagina's; die stuk voor stuk aanpassen is vragen om er
   // volgend jaar een te vergeten.
+  //
+  // BEWUST alleen ons EIGEN nummer, niet elke tel-link. De crisistriage op /spoed
+  // en /jongeren toont ook 112, 113 Zelfmoordpreventie en Veilig Thuis; die als
+  // advertentieconversie van 120 euro boeken is fout, zowel in de cijfers als in
+  // wat het betekent om een klik naar de zelfmoordpreventielijn zo te tellen.
   useEffect(() => {
     function opKlik(e: MouseEvent) {
       const doel = e.target as HTMLElement | null;
-      if (doel?.closest?.('a[href^="tel:"]')) meldConversie("telefoon");
+      const link = doel?.closest?.<HTMLAnchorElement>('a[href^="tel:"]');
+      if (link && link.getAttribute("href") === CONTACT.phoneHref) meldConversie("telefoon");
     }
     document.addEventListener("click", opKlik, true);
     return () => document.removeEventListener("click", opKlik, true);

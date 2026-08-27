@@ -11,6 +11,11 @@
   --color-cream: #fffdf5;
   --color-sand: #f2f0ed;
   --color-hairline: #e6e6e6;
+  /* Rand voor BEDIENBARE elementen (invoervelden, keuzeknoppen). Hairline haalt
+     maar ~1,1:1 tegen sand, dus een veld leest daar niet als veld. #8a8a8a haalt
+     ~3:1, de WCAG-grens voor UI-componenten. Hairline blijft voor decoratieve
+     scheidingslijnen. */
+  --color-field: #8a8a8a;
 
   /* Gemeten op de live site: koppen near-black, prose donkerder dan wij hadden,
      en het donkere paneel is #050505 (niet #1a1a1a). */
@@ -25,6 +30,10 @@
 
   --color-brand: #1f66ff;
   --color-brand-2: #4d85ff;
+  /* Donkerder blauw voor brand-gekleurde TEKST op lichte grond. Brand #1f66ff
+     haalt op wit maar ~3,7:1 en zakt door AA voor normale tekst; brand-ink haalt
+     ruim 4,5:1, ook op de coral-tint van het foutblok. */
+  --color-brand-ink: #143c9e;
   --color-coral: #ee634e;
   --color-coral-2: #f07865;
 

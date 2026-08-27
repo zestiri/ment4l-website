@@ -44,7 +44,7 @@ export const metadata: Metadata = {
 };
 
 /** Drie ware feiten. Geen kaarten: een hairline-strip weegt lichter dan vier dozen. */
-const FEITEN = ["Geen wachtlijst", "Geen eigen bijdrage", "Reactie binnen 4 uur"];
+const FEITEN = ["Geen wachtlijst", "Geen eigen bijdrage", "Reactie binnen 4 uur", "24/7 bereikbaar"];
 
 /**
  * De drie plekken waar de begeleiding plaatsvindt. Hier vervangt beeld de tekst:
@@ -244,7 +244,7 @@ export default function AmbulanteBegeleidingPage() {
 
                   <a
                     href={CONTACT.phoneHref}
-                    className="mt-7 inline-flex min-h-12 items-center gap-2.5 rounded-pill border border-ink/15 px-7 text-[16px] font-semibold text-ink transition-colors hover:border-ink"
+                    className="mt-7 inline-flex min-h-12 items-center gap-2.5 rounded-pill border border-ink/45 px-7 text-[16px] font-semibold text-ink transition-colors hover:border-ink"
                   >
                     <Phone className="h-4 w-4" strokeWidth={2} />
                     Bel {CONTACT.phone}
@@ -259,13 +259,28 @@ export default function AmbulanteBegeleidingPage() {
                 <div id="bel-mij-terug" className="scroll-mt-28">
                   <div className="rounded-[28px] bg-sand p-6 shadow-[var(--shadow-framer-md)] sm:p-8">
                     <h2 className="text-[clamp(1.35rem,2.4vw,1.7rem)] leading-[1.1] tracking-[-0.03em]">
-                      Wij bellen je terug
+                      Wij bellen je terug, binnen 4 uur
                     </h2>
                     <div className="mt-5">
                       <AanmeldForm variant="landing" submitId="bel-mij-terug-knop" />
                     </div>
                   </div>
-                  <p className="mt-4 text-center text-sm text-grey">
+                  {/* Controleerbaar autoriteitssignaal, geen keurmerk-badge: SKJ
+                      registreert individuele professionals, niet organisaties, dus
+                      geen logo. De ouder kan het zelf naslaan. */}
+                  <p className="mt-4 text-center text-sm text-ink-soft">
+                    Onze jeugdcoaches staan in het{" "}
+                    <a
+                      href="https://register.skjeugd.nl/"
+                      target="_blank"
+                      rel="noopener"
+                      className="font-medium text-brand-ink underline underline-offset-2"
+                    >
+                      SKJ-register
+                    </a>
+                    , het wettelijke kwaliteitsregister voor de jeugdzorg.
+                  </p>
+                  <p className="mt-2 text-center text-sm text-grey">
                     Actief in {GEMEENTEN.map((g) => g.naam).slice(0, -1).join(", ")} en{" "}
                     {GEMEENTEN[GEMEENTEN.length - 1].naam}.
                   </p>
@@ -409,7 +424,7 @@ export default function AmbulanteBegeleidingPage() {
                 </a>
                 <a
                   href={CONTACT.phoneHref}
-                  className="inline-flex min-h-12 items-center gap-2 rounded-pill border border-white/25 px-7 text-[15px] font-semibold text-white transition-colors hover:border-white"
+                  className="inline-flex min-h-12 items-center gap-2 rounded-pill border border-white/40 px-7 text-[15px] font-semibold text-white transition-colors hover:border-white"
                 >
                   <Phone className="h-4 w-4" strokeWidth={2} />
                   {CONTACT.phone}
@@ -468,7 +483,7 @@ export default function AmbulanteBegeleidingPage() {
       {/* Volgt de VERZENDKNOP, niet de formuliercontainer: bij een lang formulier
           is de container nog in beeld terwijl de knop er allang uit is. */}
       <BelBalk
-        label="Wij bellen je binnen 4 uur"
+        label="Liever direct bellen?"
         volgSelector="#bel-mij-terug-knop"
         terugNaar="#bel-mij-terug"
       />
