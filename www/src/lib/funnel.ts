@@ -60,6 +60,9 @@ export function gemeenteVoorPlaats(woonplaats: string): string | null {
  * wachttijdpagina is schadelijker dan geen wachttijdpagina.
  */
 export const WACHTTIJDEN_BIJGEWERKT = "26 augustus 2026";
+/** Machineleesbare versie van dezelfde datum, voor de vers-controle in de
+ *  wachttijden-widget. Houd hem gelijk aan WACHTTIJDEN_BIJGEWERKT. */
+export const WACHTTIJDEN_BIJGEWERKT_ISO = "2026-08-26";
 
 export type Wachttijd = { traject: string; wachttijd: string; toelichting: string };
 

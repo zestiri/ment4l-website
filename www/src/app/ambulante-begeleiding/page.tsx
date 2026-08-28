@@ -44,8 +44,10 @@ export const metadata: Metadata = {
   alternates: { canonical: "/ambulante-begeleiding" },
 };
 
-/** Drie ware feiten. Geen kaarten: een hairline-strip weegt lichter dan vier dozen. */
-const FEITEN = ["Geen wachtlijst", "Geen eigen bijdrage", "Reactie binnen 4 uur", "24/7 bereikbaar"];
+/** Drie ware feiten. Geen kaarten: een hairline-strip weegt lichter dan vier dozen.
+ *  "Reactie binnen 4 uur" staat bewust NIET in deze strip: die belofte staat al op
+ *  de formulierkop en op de tijdlijn. Zes keer dezelfde claim ondermijnt de rust. */
+const FEITEN = ["Geen wachtlijst", "Geen eigen bijdrage", "24/7 bereikbaar"];
 
 /**
  * De drie plekken waar de begeleiding plaatsvindt. Hier vervangt beeld de tekst:
@@ -214,49 +216,57 @@ export default function AmbulanteBegeleidingPage() {
           <div aria-hidden className="tex-diagonal pointer-events-none absolute inset-0 opacity-60" />
           <div className="relative mx-auto max-w-site px-6 pb-16 pt-28 sm:pt-32">
             <Reveal>
-              <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-16">
-                {/* Linkerkolom: de belofte en de telefoon */}
-                <div>
-                  {/* Geen uppercase kicker: de H1 draagt zelf. De kwalificatie
-                      (regio, leeftijd) staat als meta-regel met icoon onder de belofte. */}
-                  <h1 className="max-w-[15ch] font-display text-[clamp(2.6rem,5.4vw,4.15rem)] leading-[0.96] tracking-[-0.045em] text-balance">
-                    Ambulante begeleiding voor je kind,{" "}
-                    <em className="italic text-brand">gewoon thuis</em>
-                  </h1>
-                  <p className="mt-5 max-w-[46ch] text-[17px] leading-[1.6] text-ink-soft text-pretty">
-                    Ambulante begeleiding betekent: een vaste jeugdcoach komt naar jullie toe.
-                  </p>
-                  <p className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-[14px] text-grey">
-                    <MapPin aria-hidden className="h-4 w-4 text-brand" strokeWidth={2} />
-                    West-Brabant West
-                    <span aria-hidden className="h-1 w-1 rounded-full bg-grey-2" />
-                    Voor kinderen en jongeren van 0 tot 18 jaar
-                  </p>
+              {/* Drie blokken. Op mobiel is de volgorde kop, formulier, geruststelling:
+                  de primaire actie staat zo niet anderhalf scherm onder de belofte.
+                  Op lg staan kop en geruststelling in kolom 1 (rij 1 en 2) en het
+                  formulier ernaast in kolom 2, over beide rijen gecentreerd. */}
+                <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-x-16 lg:gap-y-8">
+                  {/* 1. Kop */}
+                  <div className="lg:col-start-1 lg:row-start-1 lg:self-end">
+                    {/* Geen uppercase kicker: de H1 draagt zelf. De kwalificatie
+                        (regio, leeftijd) staat als meta-regel met icoon onder de belofte. */}
+                    <h1 className="max-w-[15ch] font-display text-[clamp(2.6rem,5.4vw,4.15rem)] leading-[0.96] tracking-[-0.045em] text-balance">
+                      Ambulante begeleiding voor je kind,{" "}
+                      <em className="italic text-brand">gewoon thuis</em>
+                    </h1>
+                    <p className="mt-5 max-w-[46ch] text-[17px] leading-[1.6] text-ink-soft text-pretty">
+                      Ambulante begeleiding betekent: een vaste jeugdcoach komt naar jullie toe.
+                    </p>
+                    <p className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-[14px] text-grey">
+                      <MapPin aria-hidden className="h-4 w-4 text-brand" strokeWidth={2} />
+                      West-Brabant West
+                      <span aria-hidden className="h-1 w-1 rounded-full bg-grey-2" />
+                      Voor kinderen en jongeren van 0 tot 18 jaar
+                    </p>
+                  </div>
 
-                  <ul className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 border-y border-hairline py-3.5 text-[15px] text-ink">
-                    {FEITEN.map((f) => (
-                      <li key={f} className="flex items-center gap-2">
-                        <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-brand" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
+                  {/* 3. Geruststelling: feiten, telefoon, crisis. In de DOM na het
+                      formulier, dus op mobiel eronder; op lg in kolom 1 rij 2. */}
+                  <div className="order-last lg:order-none lg:col-start-1 lg:row-start-2 lg:self-start">
+                    <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 border-y border-hairline py-3.5 text-[15px] text-ink">
+                      {FEITEN.map((f) => (
+                        <li key={f} className="flex items-center gap-2">
+                          <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-brand" />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
 
-                  <a
-                    href={CONTACT.phoneHref}
-                    className="mt-7 inline-flex min-h-12 items-center gap-2.5 rounded-pill border border-ink/45 px-7 text-[16px] font-semibold text-ink transition-colors hover:border-ink"
-                  >
-                    <Phone className="h-4 w-4" strokeWidth={2} />
-                    Bel {CONTACT.phone}
-                  </a>
+                    <a
+                      href={CONTACT.phoneHref}
+                      className="mt-7 inline-flex min-h-12 items-center gap-2.5 rounded-pill border border-ink/45 px-7 text-[16px] font-semibold text-ink transition-colors hover:border-ink"
+                    >
+                      <Phone className="h-4 w-4" strokeWidth={2} />
+                      Bel {CONTACT.phone}
+                    </a>
 
-                  <p className="mt-4 max-w-[46ch] text-sm text-grey">{CRISIS}</p>
-                </div>
+                    <p className="mt-4 max-w-[46ch] text-sm text-grey">{CRISIS}</p>
+                  </div>
 
-                {/* Rechterkolom: het conversiepunt zelf. Geen doorklik meer naar
-                    /aanmelden, want daar breekt het geurspoor van de advertentie
-                    precies op het punt van de grootste twijfel. */}
-                <div id="bel-mij-terug" className="scroll-mt-28">
+                {/* 2. Het conversiepunt zelf. Geen doorklik meer naar /aanmelden,
+                    want daar breekt het geurspoor van de advertentie precies op het
+                    punt van de grootste twijfel. */}
+                <div id="bel-mij-terug" className="scroll-mt-28 lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:self-center">
                   <div className="rounded-[28px] border border-black/[0.06] bg-sand p-6 shadow-[var(--shadow-framer-md)] sm:p-8">
                     <h2 className="text-[clamp(1.35rem,2.4vw,1.7rem)] leading-[1.1] tracking-[-0.03em]">
                       Wij bellen je terug, binnen 4 uur
@@ -314,9 +324,11 @@ export default function AmbulanteBegeleidingPage() {
                         zonder dat de foto er donker uitziet. */}
                     <div
                       aria-hidden
-                      className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 via-40% to-transparent"
+                      className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 via-45% to-transparent"
                     />
-                    <figcaption className="absolute bottom-4 left-5 flex items-center gap-2 text-[15px] font-semibold tracking-[-0.01em] text-white">
+                    {/* text-shadow garandeert leesbaarheid ook op een fel deel van
+                        de foto, los van de scrim. */}
+                    <figcaption className="absolute bottom-4 left-5 flex items-center gap-2 text-[15px] font-semibold tracking-[-0.01em] text-white [text-shadow:0_1px_4px_rgba(0,0,0,0.55)]">
                       <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-brand-2" />
                       {p.label}
                     </figcaption>
@@ -369,6 +381,25 @@ export default function AmbulanteBegeleidingPage() {
             <div className="mt-12 sm:mt-16">
               <Tijdlijn />
             </div>
+            {/* Actie op het overtuigingsmoment. De telefoon eerst, want die werkt
+                meteen zonder terug te scrollen naar het formulier bovenaan. */}
+            <Reveal size="item">
+              <div className="mt-12 flex flex-wrap items-center gap-3 border-t border-white/10 pt-8">
+                <a
+                  href={CONTACT.phoneHref}
+                  className="inline-flex min-h-12 items-center gap-2.5 rounded-pill bg-brand px-7 text-[15px] font-semibold text-canvas transition-colors hover:bg-brand-2"
+                >
+                  <Phone className="h-4 w-4" strokeWidth={2} />
+                  Bel {CONTACT.phone}
+                </a>
+                <a
+                  href="#bel-mij-terug"
+                  className="inline-flex min-h-12 items-center rounded-pill border border-white/30 px-7 text-[15px] font-semibold text-white transition-colors hover:border-white"
+                >
+                  Laat je terugbellen
+                </a>
+              </div>
+            </Reveal>
           </div>
         </section>
 

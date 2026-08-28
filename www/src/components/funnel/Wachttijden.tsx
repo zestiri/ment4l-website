@@ -1,32 +1,65 @@
-import { WACHTTIJDEN, WACHTTIJDEN_BIJGEWERKT } from "@/lib/funnel";
+"use client";
+
+import { useSyncExternalStore } from "react";
+import { WACHTTIJDEN, WACHTTIJDEN_BIJGEWERKT, WACHTTIJDEN_BIJGEWERKT_ISO } from "@/lib/funnel";
 
 /**
  * Live-status van de wachttijden, direct in de funnel in plaats van een
  * doorverwijzing naar /wachttijden. De ouder wil weten of hij lang moet wachten;
  * dat antwoord hoort op de pagina zelf te staan, niet achter een klik.
  *
- * De groene stip met de zachte ping leest als "actuele status". Semantisch:
- * groen = beschikbaar. Bij prefers-reduced-motion valt de ping stil.
+ * De widget degradeert EERLIJK. Een pulserende "live" stip boven een verouderde
+ * datum is een leugen op de meest vertrouwensgevoelige plek van de funnel.
+ * Daarom checkt hij in de browser hoe oud de datum is: tot tien dagen toont hij
+ * de groene puls en "Nu geen wachtlijst"; daarna valt de puls weg en zegt hij
+ * alleen nog "Geen wachtlijst", met de datum als eerlijke kanttekening.
  *
- * LET OP: het datumstempel maakt van een evergreen claim een bederfelijke claim.
- * De data komt uit lib/funnel.ts (WACHTTIJDEN_BIJGEWERKT); werk die wekelijks bij,
- * anders staat hier een verouderde datum op de zichtbaarste plek van de funnel.
+ * De vers-check draait client-side omdat alleen de browser de echte datum van nu
+ * kent; een statisch gebouwde pagina zou anders de bouwdatum bevriezen. Server
+ * rendert de veilige (niet-live) stand, de client zet de puls aan als het mag.
+ *
+ * LET OP: werk WACHTTIJDEN_BIJGEWERKT en _ISO wekelijks bij in lib/funnel.ts.
  */
+
+const VERS_DAGEN = 10;
+
+/** Is de datum vers genoeg om de status als "live" te presenteren? Client-side,
+ *  want alleen de browser kent de echte datum van nu. */
+function berekenVers(): boolean {
+  const gezet = new Date(WACHTTIJDEN_BIJGEWERKT_ISO).getTime();
+  if (Number.isNaN(gezet)) return false;
+  const dagen = (Date.now() - gezet) / 86_400_000;
+  return dagen >= 0 && dagen <= VERS_DAGEN;
+}
+
 export function Wachttijden() {
   const hoofd = WACHTTIJDEN.find((w) => w.traject === "Ambulante begeleiding jeugd");
   const overig = WACHTTIJDEN.filter((w) => w !== hoofd);
 
+  // Server rendert de veilige, niet-live stand (false); de client bepaalt na
+  // hydratie of de datum vers genoeg is. useSyncExternalStore houdt server en
+  // client uit elkaar zonder setState-in-effect en zonder hydratie-mismatch.
+  const vers = useSyncExternalStore(
+    () => () => {},
+    berekenVers,
+    () => false,
+  );
+
   return (
     <div className="mx-auto max-w-2xl rounded-3xl border border-black/[0.06] bg-mist p-5 shadow-[var(--shadow-framer-sm)] sm:p-6">
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-        {/* Live-indicator */}
+        {/* Status-indicator. De ping alleen als de datum vers is. */}
         <span aria-hidden className="relative flex h-2.5 w-2.5 shrink-0">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-good/60 motion-reduce:hidden" />
+          {vers && (
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-good/60 motion-reduce:hidden" />
+          )}
           <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-good" />
         </span>
 
         <div className="min-w-0 flex-1">
-          <p className="text-[15px] font-semibold text-ink">Nu geen wachtlijst</p>
+          <p className="text-[15px] font-semibold text-ink">
+            {vers ? "Nu geen wachtlijst" : "Geen wachtlijst"}
+          </p>
           <p className="mt-0.5 text-sm text-ink-soft">
             Ambulante begeleiding: de kennismaking plannen we binnen een week nadat de
             verwijzing rond is.
@@ -34,7 +67,7 @@ export function Wachttijden() {
         </div>
 
         <p className="w-full text-xs text-grey sm:w-auto sm:text-right">
-          Bijgewerkt op <time>{WACHTTIJDEN_BIJGEWERKT}</time>
+          Bijgewerkt op <time dateTime={WACHTTIJDEN_BIJGEWERKT_ISO}>{WACHTTIJDEN_BIJGEWERKT}</time>
         </p>
       </div>
 
