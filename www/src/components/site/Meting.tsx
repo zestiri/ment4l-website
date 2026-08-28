@@ -100,10 +100,10 @@ export function Meting() {
   // en op acht funnelpagina's; die stuk voor stuk aanpassen is vragen om er
   // volgend jaar een te vergeten.
   //
-  // BEWUST alleen ons EIGEN nummer, niet elke tel-link. De crisistriage op
-  // /jongeren toont ook 112, 113 Zelfmoordpreventie en Veilig Thuis; die als
-  // advertentieconversie van 120 euro boeken is fout, zowel in de cijfers als in
-  // wat het betekent om een klik naar de zelfmoordpreventielijn zo te tellen.
+  // BEWUST alleen ons EIGEN nummer, niet elke tel-link. Mocht er ergens toch een
+  // ander telefoonnummer op de site staan (bijvoorbeeld een landelijke hulplijn),
+  // dan is een klik daarop geen advertentieconversie van 120 euro. We tellen
+  // alleen een belletje naar MENT4L zelf.
   useEffect(() => {
     function opKlik(e: MouseEvent) {
       const doel = e.target as HTMLElement | null;

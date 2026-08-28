@@ -5,7 +5,6 @@ import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { DarkPanel } from "@/components/site/DarkPanel";
 import { Reveal } from "@/components/site/Reveal";
-import { CrisisTriage } from "@/components/funnel/CrisisTriage";
 import { CONTACT, AANMELD_URL, HERO_AVATARS } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -130,13 +129,6 @@ export default function JongerenPage() {
                 </p>
               </div>
             </Reveal>
-          </div>
-        </section>
-
-        {/* ── TRIAGE ──────────────────────────────────────── */}
-        <section className="mx-auto max-w-site px-6 pb-24">
-          <div className="mx-auto max-w-2xl">
-            <CrisisTriage />
           </div>
         </section>
       </main>
