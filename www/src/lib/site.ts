@@ -168,18 +168,8 @@ export const NAV_PRIMAIR = [
   { href: "/over-ons", label: "Over ons" },
 ] as const;
 
-/** Snelkoppelingen onderin de dropdown en boven in het mobiele menu. */
-export const NAV_SNEL = [
-  { href: "/wachttijden", label: "Wachttijden", hint: "geen wachtlijst" },
-  { href: "/jongeren", label: "Voor jongeren (16+)", hint: "meld jezelf aan" },
-] as const;
-
-/** Randzaken: alleen in het mobiele menu en de footer. */
-export const NAV_MEER = [
-  { href: `/trajecten/${WORKSHOPS_SLUG}`, label: "Workshops" },
-  { href: "/verwijzing-huisarts", label: "Verwijzing via de huisarts" },
-  { href: "/blog", label: "Blog" },
-] as const;
+// Wachttijden, jongeren, workshops, huisartsverwijzing en blog staan alleen nog
+// in de footer — bewust uit het mobiele menu gehaald om het rustig te houden.
 
 // Kerncijfers (statistieken-sectie) — exact van de live homepage.
 export const STATS = [

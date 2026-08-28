@@ -18,8 +18,6 @@ import { Logo } from "./Logo";
 import {
   NAV_AANBOD,
   NAV_PRIMAIR,
-  NAV_SNEL,
-  NAV_MEER,
   JEUGDHULP_HUB,
   APP_URL,
   AANMELD_URL,
@@ -88,7 +86,6 @@ function VolledigeNav() {
 
   const aanbodActief =
     NAV_AANBOD.some((i) => path.startsWith(i.href)) ||
-    NAV_SNEL.some((s) => path.startsWith(s.href)) ||
     path.startsWith(JEUGDHULP_HUB.href);
 
   // Route-wissel sluit alles. Zonder dit blijft de dropdown na een klik hangen.
@@ -253,7 +250,7 @@ function VolledigeNav() {
             <span className="my-2 block border-t border-hairline" />
 
             <div className="flex flex-col">
-              {[...NAV_PRIMAIR, { href: "/contact", label: "Contact" }, ...NAV_SNEL, ...NAV_MEER].map(
+              {[...NAV_PRIMAIR, { href: "/contact", label: "Contact" }].map(
                 (l) => (
                   <Link
                     key={l.href}
