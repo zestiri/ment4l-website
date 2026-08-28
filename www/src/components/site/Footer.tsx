@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Logo } from "./Logo";
-import { CONTACT, SLOGAN, AANMELD_URL, APP_URL } from "@/lib/site";
+import { CONTACT, SLOGAN, AANMELD_URL, APP_URL, JEUGDHULP_HUB } from "@/lib/site";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -28,6 +28,7 @@ export function Footer() {
         <div className="flex flex-col gap-0.5 text-sm text-white/70">
           <span className="eyebrow mb-1.5 text-white/40">Hulp nodig</span>
           <Link href={AANMELD_URL} className="py-1.5 hover:text-white">Aanmelden voor jeugdhulp</Link>
+          <Link href={JEUGDHULP_HUB.href} className="py-1.5 hover:text-white">Jeugdhulp West-Brabant West</Link>
           <Link href="/spoed" className="py-1.5 hover:text-white">Ambulante spoedhulp</Link>
           <Link href="/wachttijden" className="py-1.5 hover:text-white">Wachttijden</Link>
           <Link href="/jongeren" className="py-1.5 hover:text-white">Voor jongeren (16+)</Link>

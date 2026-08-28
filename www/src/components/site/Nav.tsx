@@ -10,8 +10,6 @@ import {
   GraduationCap,
   Route,
   Compass,
-  CalendarClock,
-  Sparkles,
   ChevronDown,
   ArrowUpRight,
   type LucideIcon,
@@ -35,11 +33,6 @@ const AANBOD_ICONS: Record<AanbodItem["icon"], LucideIcon> = {
   school: GraduationCap,
   reintegratie: Route,
   amv: Compass,
-};
-
-const SNEL_ICONS: Record<string, LucideIcon> = {
-  "/wachttijden": CalendarClock,
-  "/jongeren": Sparkles,
 };
 
 /**
@@ -185,7 +178,7 @@ function VolledigeNav() {
                     exit={reduce ? { opacity: 0 } : { opacity: 0, y: 6, scale: 0.98 }}
                     transition={{ type: "spring", stiffness: 460, damping: 34 }}
                     style={{ transformOrigin: "top left" }}
-                    className="absolute left-0 top-full z-50 w-[23rem] pt-3"
+                    className="absolute left-0 top-full z-50 w-72 pt-3"
                   >
                     <div className="overflow-hidden rounded-3xl border border-hairline bg-canvas p-2 text-ink shadow-[var(--shadow-lift)]">
                       <div className="flex flex-col">
@@ -193,45 +186,6 @@ function VolledigeNav() {
                           <AanbodRij key={item.href} item={item} onKlik={() => setAanbodOpen(false)} />
                         ))}
                       </div>
-
-                      <div className="mt-1.5 grid grid-cols-2 gap-1.5">
-                        {NAV_SNEL.map((s) => {
-                          const Icon = SNEL_ICONS[s.href];
-                          return (
-                            <Link
-                              key={s.href}
-                              href={s.href}
-                              role="menuitem"
-                              onClick={() => setAanbodOpen(false)}
-                              className="group flex items-center gap-2 rounded-2xl bg-sand/70 px-2.5 py-2 outline-none transition-colors hover:bg-sand focus-visible:bg-sand"
-                            >
-                              {Icon && (
-                                <Icon aria-hidden className="h-4 w-4 shrink-0 text-brand" strokeWidth={1.9} />
-                              )}
-                              <span className="min-w-0">
-                                <span className="block text-[12.5px] font-semibold leading-tight text-ink">
-                                  {s.label}
-                                </span>
-                                <span className="block text-[11px] leading-tight text-good">{s.hint}</span>
-                              </span>
-                            </Link>
-                          );
-                        })}
-                      </div>
-
-                      <Link
-                        href={JEUGDHULP_HUB.href}
-                        role="menuitem"
-                        onClick={() => setAanbodOpen(false)}
-                        className="group mt-1.5 flex items-center justify-between rounded-2xl px-3 py-2.5 text-[13px] font-medium text-ink-soft outline-none transition-colors hover:bg-sand focus-visible:bg-sand"
-                      >
-                        {JEUGDHULP_HUB.label}
-                        <ArrowUpRight
-                          aria-hidden
-                          className="h-4 w-4 text-grey transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand"
-                          strokeWidth={2}
-                        />
-                      </Link>
                     </div>
                   </motion.div>
                 )}
@@ -368,32 +322,17 @@ function VolledigeNav() {
 
 function AanbodRij({ item, onKlik }: { item: AanbodItem; onKlik: () => void }) {
   const Icon = AANBOD_ICONS[item.icon];
-  const tegel = item.spoed
-    ? "bg-coral/10 text-coral group-hover:bg-coral/20"
-    : "bg-brand/10 text-brand group-hover:bg-brand/15";
   return (
     <Link
       href={item.href}
       role="menuitem"
       onClick={onKlik}
-      className="group flex items-start gap-3 rounded-2xl px-3 py-2.5 outline-none transition-colors hover:bg-sand focus-visible:bg-sand"
+      className="group flex items-center gap-3 rounded-2xl px-3 py-2.5 outline-none transition-colors hover:bg-sand focus-visible:bg-sand"
     >
-      <span className={`mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-xl transition-colors ${tegel}`}>
-        <Icon aria-hidden className="h-[18px] w-[18px]" strokeWidth={1.9} />
+      <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-brand/10 text-brand transition-colors group-hover:bg-brand/15">
+        <Icon aria-hidden className="h-[17px] w-[17px]" strokeWidth={1.9} />
       </span>
-      <span className="min-w-0">
-        <span className="flex items-center gap-2 text-[14px] font-semibold text-ink">
-          {item.label}
-          {item.spoed && (
-            <span className="rounded-full bg-coral/10 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-coral">
-              Direct
-            </span>
-          )}
-        </span>
-        <span className="mt-0.5 block text-[12.5px] leading-snug text-ink-soft/70">
-          {item.omschrijving}
-        </span>
-      </span>
+      <span className="text-[14.5px] font-semibold text-ink">{item.label}</span>
     </Link>
   );
 }
