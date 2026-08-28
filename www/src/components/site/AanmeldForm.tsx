@@ -31,7 +31,7 @@ const LABELS: Record<Veld, string> = {
 };
 
 const VELD_BASIS =
-  "w-full rounded-2xl border bg-canvas px-4 py-3.5 text-ink outline-none transition-[border-color,box-shadow] duration-150 placeholder:text-grey-2 focus:border-brand focus:ring-4 focus:ring-brand/12";
+  "w-full rounded-2xl border bg-canvas px-4 py-3.5 text-ink outline-none transition-[border-color,box-shadow] duration-150 placeholder:text-grey-2 focus:border-brand focus:shadow-[0_0_0_4px_color-mix(in_srgb,var(--color-brand)_14%,transparent)]";
 
 /**
  * Een veld met zichtbaar label en een foutmelding eronder.
