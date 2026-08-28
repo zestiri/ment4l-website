@@ -20,6 +20,7 @@ import {
   NAV_PRIMAIR,
   JEUGDHULP_HUB,
   APP_URL,
+  WERKEN_BIJ_URL,
   AANMELD_URL,
   CONTACT,
   type AanbodItem,
@@ -272,16 +273,29 @@ function VolledigeNav() {
               Aanmelden voor jeugdhulp
             </Link>
 
-            <a
-              href={APP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setMenuOpen(false)}
-              className="mt-2 flex items-center justify-center gap-1.5 rounded-2xl border border-hairline px-4 py-3 text-center text-[13px] font-medium text-ink-soft transition-colors hover:border-ink"
-            >
-              Inloggen voor zorgprofessionals
-              <ArrowUpRight aria-hidden className="h-3.5 w-3.5" strokeWidth={2} />
-            </a>
+            <p className="eyebrow px-2 pb-1 pt-4 text-grey">Voor professionals</p>
+            <div className="grid grid-cols-2 gap-2">
+              <a
+                href={WERKEN_BIJ_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center justify-center gap-1 rounded-2xl border border-hairline px-3 py-3 text-center text-[13px] font-medium text-ink-soft transition-colors hover:border-ink"
+              >
+                Werken bij
+                <ArrowUpRight aria-hidden className="h-3.5 w-3.5" strokeWidth={2} />
+              </a>
+              <a
+                href={APP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center justify-center gap-1 rounded-2xl border border-hairline px-3 py-3 text-center text-[13px] font-medium text-ink-soft transition-colors hover:border-ink"
+              >
+                Inloggen
+                <ArrowUpRight aria-hidden className="h-3.5 w-3.5" strokeWidth={2} />
+              </a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

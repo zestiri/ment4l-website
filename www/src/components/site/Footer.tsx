@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Logo } from "./Logo";
-import { CONTACT, SLOGAN, AANMELD_URL, APP_URL, JEUGDHULP_HUB } from "@/lib/site";
+import { CONTACT, SLOGAN, AANMELD_URL, APP_URL, WERKEN_BIJ_URL, JEUGDHULP_HUB } from "@/lib/site";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -48,12 +48,23 @@ export function Footer() {
           <a href={CONTACT.phoneHref} className="py-1.5 hover:text-white">{CONTACT.phone}</a>
           <a href={`mailto:${CONTACT.email}`} className="py-1.5 hover:text-white">{CONTACT.email}</a>
           <span className="py-1.5 text-white/55">{CONTACT.address}</span>
-          {/* Personeelsportaal — bewust hier, niet in de hoofdnav */}
+          {/* Voor professionals — bewust hier, niet in de ouder-nav.
+              Werken bij = registreren in het portaal; Inloggen = bestaande login. */}
+          <span className="eyebrow mb-1 mt-4 text-white/40">Voor professionals</span>
+          <a
+            href={WERKEN_BIJ_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 py-1.5 hover:text-white"
+          >
+            Werken bij MENT4L
+            <ArrowUpRight aria-hidden className="h-3.5 w-3.5" strokeWidth={2} />
+          </a>
           <a
             href={APP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-1.5 inline-flex items-center gap-1 py-1.5 text-white/55 hover:text-white"
+            className="inline-flex items-center gap-1 py-1.5 text-white/55 hover:text-white"
           >
             Inloggen zorgprofessionals
             <ArrowUpRight aria-hidden className="h-3.5 w-3.5" strokeWidth={2} />

@@ -7,12 +7,16 @@
  *
  *  AANMELD_URL  → cliënten (ouders, jongeren, verwijzers) die hulp zoeken.
  *                 Blijft op ment4l.nl zelf, kort formulier, geen BSN.
- *  APP_URL      → "Het platform voor zorgprofessionals": inlogomgeving voor
- *                 onze eigen coaches/zorgverleners. NOOIT als CTA voor cliënten
- *                 gebruiken — daar komt een hulpzoekende ouder verkeerd terecht.
+ *  APP_URL        → "Het platform voor zorgprofessionals": login voor onze eigen
+ *                   coaches/zorgverleners. NOOIT als CTA voor cliënten gebruiken —
+ *                   daar komt een hulpzoekende ouder verkeerd terecht.
+ *  WERKEN_BIJ_URL → registratie in datzelfde portaal (/register), voor NIEUWE
+ *                   zorgprofessionals die bij ons willen werken. Geen login- maar
+ *                   een aanmeldpagina; hoort bij "Werken bij", niet bij "Inloggen".
  */
 export const AANMELD_URL = "/aanmelden";
 export const APP_URL = "https://app.ment4l.nl";
+export const WERKEN_BIJ_URL = "https://app.ment4l.nl/register";
 
 /**
  * Wat de bezoeker over financiering moet weten — meer niet.
