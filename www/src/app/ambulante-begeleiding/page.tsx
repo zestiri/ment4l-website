@@ -217,16 +217,20 @@ export default function AmbulanteBegeleidingPage() {
       {/* pb-24 zodat de sticky belbalk de laatste regel nooit afdekt */}
       <main id="inhoud" className="pb-24">
         {/* ── HERO: vraag 1, wat is dit en kan ik nu iets doen ───────── */}
-        <section className="bg-canvas">
-          <div className="mx-auto max-w-site px-6 pb-16 pt-28 sm:pt-32">
+        <section className="relative overflow-hidden bg-canvas">
+          {/* Fluistertextuur, dezelfde die de andere funnelheroes dragen: geeft de
+              hero materiaal zonder de rust te breken. */}
+          <div aria-hidden className="tex-diagonal pointer-events-none absolute inset-0 opacity-60" />
+          <div className="relative mx-auto max-w-site px-6 pb-16 pt-28 sm:pt-32">
             <Reveal>
               <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-16">
                 {/* Linkerkolom: de belofte en de telefoon */}
                 <div>
                   {/* Geen uppercase kicker: de H1 draagt zelf. De kwalificatie
                       (regio, leeftijd) staat als meta-regel met icoon onder de belofte. */}
-                  <h1 className="max-w-[14ch] font-display text-[clamp(2.6rem,5.4vw,4.15rem)] leading-[0.96] tracking-[-0.045em] text-balance">
-                    Ambulante begeleiding voor je kind, gewoon thuis
+                  <h1 className="max-w-[15ch] font-display text-[clamp(2.6rem,5.4vw,4.15rem)] leading-[0.96] tracking-[-0.045em] text-balance">
+                    Ambulante begeleiding voor je kind,{" "}
+                    <em className="italic text-brand">gewoon thuis</em>
                   </h1>
                   <p className="mt-5 max-w-[46ch] text-[17px] leading-[1.6] text-ink-soft text-pretty">
                     Ambulante begeleiding betekent: een vaste jeugdcoach komt naar jullie toe.
@@ -363,11 +367,12 @@ export default function AmbulanteBegeleidingPage() {
         </section>
 
         {/* ── INK: vraag 4, wat gebeurt er nadat ik bel ──────────────── */}
-        <section className="bg-charcoal text-white">
-          <div className="mx-auto max-w-site px-6 py-24 sm:py-32">
+        <section className="relative overflow-hidden bg-charcoal text-white">
+          <div aria-hidden className="tex-grain pointer-events-none absolute inset-0" />
+          <div className="relative mx-auto max-w-site px-6 py-24 sm:py-32">
             <Reveal>
               <h2 className="max-w-[18ch] text-[clamp(2rem,4.4vw,3.25rem)] leading-[1.05] tracking-[-0.04em] text-white">
-                Wat er gebeurt nadat je belt
+                Wat er gebeurt <em className="italic text-brand-2">nadat je belt</em>
               </h2>
             </Reveal>
             <div className="mt-12 sm:mt-16">
@@ -413,8 +418,9 @@ export default function AmbulanteBegeleidingPage() {
         </section>
 
         {/* ── SLOT-CTA op ink ───────────────────────────────────────── */}
-        <section className="bg-charcoal text-white">
-          <div className="mx-auto max-w-site px-6 py-20 text-center sm:py-24">
+        <section className="relative overflow-hidden bg-charcoal text-white">
+          <div aria-hidden className="tex-grain pointer-events-none absolute inset-0" />
+          <div className="relative mx-auto max-w-site px-6 py-20 text-center sm:py-24">
             <Reveal size="item">
               <h2 className="mx-auto max-w-[16ch] text-[clamp(2rem,4.4vw,3.25rem)] leading-[1.05] tracking-[-0.04em] text-white">
                 Zullen we bellen?
