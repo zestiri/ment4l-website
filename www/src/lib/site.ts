@@ -99,23 +99,85 @@ export const PARTNER_LOGOS = [
 
 export const WORKSHOPS_SLUG = "workshops-jeugd-digitale-wereld";
 
-// Hoofdnavigatie. De funnelpagina's die er echt toe doen (spoed, wachttijden)
-// staan hier bewust in — anders zijn ze alleen via advertenties te vinden.
-export const NAV_LINKS = [
-  { href: "/jeugdhulp-west-brabant-west", label: "Jeugdhulp" },
-  { href: "/spoed", label: "Spoed" },
-  { href: "/wachttijden", label: "Wachttijden" },
-  { href: "/verwijzers", label: "Verwijzers" },
+// ── Navigatie ──────────────────────────────────────────────────────────
+//
+// Opgebouwd rond wat een ouder of verwijzer zoekt, niet rond de oude Framer-
+// indeling. Eerder hingen de funnelpagina's (/spoed, /ambulante-begeleiding,
+// /wachttijden) en de trajectpagina's (/trajecten/*) als één platte lijst naast
+// elkaar, terwijl het dezelfde diensten zijn. Nu bundelt "Ons aanbod" ze; de
+// randzaken (workshops, blog, huisartsverwijzing) zakken naar de footer.
+//
+// Spoed staat BEWUST ook los en altijd zichtbaar: bij crisis mag hulp geen
+// dropdown-diepte weg zijn. En het personeelsportaal (APP_URL) hoort niet in de
+// hoofdnav — dat is de verkeerde deur voor een hulpzoekende ouder (zie boven).
+
+/** Icoon-sleutel; Nav.tsx mapt hem op een lucide-component. */
+export type AanbodItem = {
+  href: string;
+  label: string;
+  omschrijving: string;
+  icon: "begeleiding" | "spoed" | "school" | "reintegratie" | "amv";
+  /** Markeert de spoedingang, krijgt een eigen (coral) accent. */
+  spoed?: boolean;
+};
+
+/** De diensten, gebundeld onder "Ons aanbod". */
+export const NAV_AANBOD: AanbodItem[] = [
+  {
+    href: "/ambulante-begeleiding",
+    label: "Ambulante begeleiding",
+    omschrijving: "Een vaste jeugdcoach, gewoon bij jullie thuis.",
+    icon: "begeleiding",
+  },
+  {
+    href: "/spoed",
+    label: "Ambulante spoedhulp",
+    omschrijving: "Direct hulp wanneer het thuis vastloopt.",
+    icon: "spoed",
+    spoed: true,
+  },
+  {
+    href: "/trajecten/jeugdcoaching-op-scholen",
+    label: "Jeugdcoaching op school",
+    omschrijving: "Begeleiding op de plek waar het speelt.",
+    icon: "school",
+  },
+  {
+    href: "/trajecten/re-integratie-begeleiding-jeugd-gedetineerden",
+    label: "Re-integratiebegeleiding",
+    omschrijving: "Van instelling terug naar een eigen leven.",
+    icon: "reintegratie",
+  },
+  {
+    href: "/trajecten/alleenstaande-minderjarige-vreemdelingen",
+    label: "Begeleiding AMV",
+    omschrijving: "Een veilige basis voor jongeren ver van huis.",
+    icon: "amv",
+  },
+];
+
+/** De regionale hub; als "bekijk alles"-anker onderin de aanbod-dropdown. */
+export const JEUGDHULP_HUB = {
+  href: "/jeugdhulp-west-brabant-west",
+  label: "Alle jeugdhulp in West-Brabant West",
+} as const;
+
+/** Top-level items naast de aanbod-dropdown. */
+export const NAV_PRIMAIR = [
+  { href: "/verwijzers", label: "Voor verwijzers" },
   { href: "/over-ons", label: "Over ons" },
-  { href: "/contact", label: "Contact" },
 ] as const;
 
-/** Extra ingangen, getoond in het mobiele menu en de footer. */
-export const NAV_SECUNDAIR = [
-  { href: "/ambulante-begeleiding", label: "Ambulante begeleiding" },
-  { href: "/#expertises", label: "Trajecten" },
+/** Snelkoppelingen onderin de dropdown en boven in het mobiele menu. */
+export const NAV_SNEL = [
+  { href: "/wachttijden", label: "Wachttijden", hint: "geen wachtlijst" },
+  { href: "/jongeren", label: "Voor jongeren (16+)", hint: "meld jezelf aan" },
+] as const;
+
+/** Randzaken: alleen in het mobiele menu en de footer. */
+export const NAV_MEER = [
   { href: `/trajecten/${WORKSHOPS_SLUG}`, label: "Workshops" },
-  { href: "/jongeren", label: "Voor jongeren (16+)" },
+  { href: "/verwijzing-huisarts", label: "Verwijzing via de huisarts" },
   { href: "/blog", label: "Blog" },
 ] as const;
 
