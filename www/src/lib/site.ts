@@ -102,14 +102,15 @@ export const WORKSHOPS_SLUG = "workshops-jeugd-digitale-wereld";
 // ── Navigatie ──────────────────────────────────────────────────────────
 //
 // Opgebouwd rond wat een ouder of verwijzer zoekt, niet rond de oude Framer-
-// indeling. Eerder hingen de funnelpagina's (/spoed, /ambulante-begeleiding,
-// /wachttijden) en de trajectpagina's (/trajecten/*) als één platte lijst naast
-// elkaar, terwijl het dezelfde diensten zijn. Nu bundelt "Ons aanbod" ze; de
-// randzaken (workshops, blog, huisartsverwijzing) zakken naar de footer.
+// indeling. Eerder hingen de funnelpagina's en de trajectpagina's als één platte
+// lijst naast elkaar, terwijl het dezelfde diensten zijn. Nu bundelt "Ons aanbod"
+// ze als een kale lijst; de randzaken (workshops, blog, huisartsverwijzing)
+// zakken naar de footer, net als het personeelsportaal (APP_URL) — dat is de
+// verkeerde deur voor een hulpzoekende ouder.
 //
-// Spoed staat BEWUST ook los en altijd zichtbaar: bij crisis mag hulp geen
-// dropdown-diepte weg zijn. En het personeelsportaal (APP_URL) hoort niet in de
-// hoofdnav — dat is de verkeerde deur voor een hulpzoekende ouder (zie boven).
+// De losse /spoed-funnel is opgeheven: de crisis-triage met landelijke
+// noodnummers hoort niet bij MENT4L. De dienst "ambulante spoedhulp" blijft als
+// trajectpagina bestaan en zit gewoon in Ons aanbod.
 
 /** Icoon-sleutel; Nav.tsx mapt hem op een lucide-component. */
 export type AanbodItem = {
@@ -130,11 +131,10 @@ export const NAV_AANBOD: AanbodItem[] = [
     icon: "begeleiding",
   },
   {
-    href: "/spoed",
+    href: "/trajecten/ambulante-spoedhulp",
     label: "Ambulante spoedhulp",
     omschrijving: "Direct hulp wanneer het thuis vastloopt.",
     icon: "spoed",
-    spoed: true,
   },
   {
     href: "/trajecten/jeugdcoaching-op-scholen",

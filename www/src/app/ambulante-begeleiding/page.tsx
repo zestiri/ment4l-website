@@ -168,11 +168,11 @@ const MEER_LEZEN = [
 
 const CRISIS = (
   <>
-    Direct gevaar? Bel 112. Crisis thuis?{" "}
-    <Link href="/spoed" className="underline underline-offset-2">
-      Kijk bij ambulante spoedhulp
-    </Link>
-    .
+    Is er nú een crisis thuis? Bel ons direct via{" "}
+    <a href={CONTACT.phoneHref} className="underline underline-offset-2">
+      {CONTACT.phone}
+    </a>
+    , we schakelen vrijwel direct.
   </>
 );
 

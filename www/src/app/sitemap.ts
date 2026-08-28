@@ -8,7 +8,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Funnelpagina's krijgen de hoogste prioriteit: dit zijn de landingspagina's.
   const funnel = [
     { p: "/aanmelden", prio: 1 },
-    { p: "/spoed", prio: 1 },
     { p: "/jeugdhulp-west-brabant-west", prio: 1 },
     { p: "/ambulante-begeleiding", prio: 1 },
     { p: "/wachttijden", prio: 0.9 },

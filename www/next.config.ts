@@ -1,7 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* Next 16 draait lint niet meer tijdens de build; niets nodig hier voorlopig. */
+  async redirects() {
+    return [
+      // /spoed is opgeheven: de crisis-triage met landelijke noodnummers hoort
+      // niet bij MENT4L. Verkeer gaat 301 naar de reguliere ambulante-funnel.
+      { source: "/spoed", destination: "/ambulante-begeleiding", permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

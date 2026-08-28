@@ -207,17 +207,6 @@ function VolledigeNav() {
         {/* Rechts: spoed + contact + aanmelden */}
         <div className="flex items-center gap-1.5">
           <Link
-            href="/spoed"
-            className={`hidden items-center gap-1.5 ${topLink} ${path.startsWith("/spoed") ? topLinkActief : ""} md:inline-flex`}
-          >
-            <span aria-hidden className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full rounded-full bg-coral opacity-70 motion-safe:animate-ping motion-reduce:hidden" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-coral" />
-            </span>
-            Spoed
-          </Link>
-
-          <Link
             href="/contact"
             className={`hidden ${topLink} ${path.startsWith("/contact") ? topLinkActief : ""} md:inline-flex`}
           >
@@ -254,22 +243,7 @@ function VolledigeNav() {
             transition={{ type: "spring", stiffness: 460, damping: 36 }}
             className="absolute inset-x-4 top-[84px] max-h-[calc(100dvh-6.5rem)] overflow-y-auto overscroll-contain rounded-3xl border border-hairline bg-canvas p-3 text-ink shadow-[var(--shadow-lift)] md:hidden"
           >
-            {/* Spoed vooraan: bij crisis geen zoekwerk */}
-            <Link
-              href="/spoed"
-              onClick={() => setMenuOpen(false)}
-              className="flex items-center gap-3 rounded-2xl bg-coral/10 px-3.5 py-3 text-ink transition-colors hover:bg-coral/15"
-            >
-              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-coral/15 text-coral">
-                <PhoneCall aria-hidden className="h-[18px] w-[18px]" strokeWidth={1.9} />
-              </span>
-              <span>
-                <span className="block text-[15px] font-semibold">Spoed of crisis?</span>
-                <span className="block text-[13px] text-ink-soft/75">Bel ons, we schakelen direct</span>
-              </span>
-            </Link>
-
-            <p className="eyebrow px-2 pb-1 pt-4 text-grey">Ons aanbod</p>
+            <p className="eyebrow px-2 pb-1 pt-1 text-grey">Ons aanbod</p>
             <div className="flex flex-col">
               {NAV_AANBOD.map((item) => (
                 <AanbodRij key={item.href} item={item} onKlik={() => setMenuOpen(false)} />

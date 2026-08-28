@@ -29,7 +29,7 @@ export function Footer() {
           <span className="eyebrow mb-1.5 text-white/40">Hulp nodig</span>
           <Link href={AANMELD_URL} className="py-1.5 hover:text-white">Aanmelden voor jeugdhulp</Link>
           <Link href={JEUGDHULP_HUB.href} className="py-1.5 hover:text-white">Jeugdhulp West-Brabant West</Link>
-          <Link href="/spoed" className="py-1.5 hover:text-white">Ambulante spoedhulp</Link>
+          <Link href="/trajecten/ambulante-spoedhulp" className="py-1.5 hover:text-white">Ambulante spoedhulp</Link>
           <Link href="/wachttijden" className="py-1.5 hover:text-white">Wachttijden</Link>
           <Link href="/jongeren" className="py-1.5 hover:text-white">Voor jongeren (16+)</Link>
           <Link href="/verwijzers" className="py-1.5 hover:text-white">Voor verwijzers</Link>

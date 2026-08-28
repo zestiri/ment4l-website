@@ -88,7 +88,7 @@ export default function VerwijzersPage() {
                 als het uiteindelijk ergens anders thuishoort.
               </p>
               <Link
-                href="/spoed"
+                href="/trajecten/ambulante-spoedhulp"
                 className="mt-6 inline-flex items-center gap-1.5 text-[15px] font-semibold text-brand hover:underline"
               >
                 Spoed of dreigende uithuisplaatsing <ArrowRight className="h-4 w-4" strokeWidth={2} />

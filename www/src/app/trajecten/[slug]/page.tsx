@@ -65,8 +65,8 @@ export default async function TrajectPage({
           {/* Spoedtraject verwijst door naar de call-first spoedpagina */}
           {t.slug === "ambulante-spoedhulp" && (
             <Reveal delay={0.06}>
-              <Link
-                href="/spoed"
+              <a
+                href={CONTACT.phoneHref}
                 className="mx-auto mt-8 flex max-w-2xl items-center gap-4 rounded-2xl border border-coral/30 bg-coral/[0.06] p-5 transition-colors hover:border-coral/60"
               >
                 <IconBadge icon={Phone} tone="coral" />
@@ -75,11 +75,10 @@ export default async function TrajectPage({
                     Is er nú een crisis? Bel {CONTACT.phone}
                   </span>
                   <span className="mt-0.5 block text-sm text-ink-soft">
-                    We zijn 24/7 bereikbaar en schakelen vrijwel direct. Bekijk hoe
-                    spoedhulp werkt.
+                    We zijn 24/7 bereikbaar en schakelen vrijwel direct.
                   </span>
                 </span>
-              </Link>
+              </a>
             </Reveal>
           )}
 
