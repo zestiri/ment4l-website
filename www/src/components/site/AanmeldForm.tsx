@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Check, AlertCircle, User, UserRound, Stethoscope, Phone, MapPin, Plus } from "lucide-react";
+import { Check, AlertCircle, User, Phone, MapPin, Plus } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { CONTACT } from "@/lib/site";
 import { leesKlikId, meldConversie } from "@/lib/conversie";
@@ -15,14 +15,6 @@ const ROLLEN: { id: Rol; label: string; emoji: string }[] = [
   { id: "ouder", label: "Voor mijn kind", emoji: "👪" },
   { id: "jongere", label: "Voor mezelf", emoji: "🙋" },
   { id: "verwijzer", label: "Ik verwijs door", emoji: "🩺" },
-];
-
-/** Rolkeuze voor de landingsvariant: iconen met label, geen emoji.
- *  Elk icoon anders, anders draagt het icoon geen betekenis. */
-const ROLLEN_LANDING: { id: Rol; label: string; Icon: typeof User }[] = [
-  { id: "ouder", label: "Voor mijn kind", Icon: User },
-  { id: "jongere", label: "Voor mezelf", Icon: UserRound },
-  { id: "verwijzer", label: "Ik verwijs door", Icon: Stethoscope },
 ];
 
 const LABELS: Record<Veld, string> = {
@@ -120,9 +112,10 @@ function foutVoor(veld: Veld, waarde: string): string {
  * Aanmeldformulier.
  *
  * `variant="landing"` is de versie voor de advertentiepagina: zichtbare labels
- * boven de velden, rol staat vast op ouder (de advertentie beantwoordt die vraag
- * al) met een link om dat te wijzigen, en het vrije tekstveld zit achter een link
- * zodat de eerste indruk drie velden is.
+ * boven de velden, rol staat vast op ouder (de advertentie richt zich op ouders;
+ * jongeren en verwijzers hebben hun eigen ingang), en het enige optionele veld
+ * ("wat speelt er") zit achter een link zodat de eerste indruk drie velden is en
+ * het formulier kort blijft.
  *
  * NIET AANRAKEN zonder na te denken: `meldConversie("aanmelding")` in de
  * success-handler en `leesKlikId()` in de body. Er is geen bedankt-URL, dus dat
@@ -142,7 +135,6 @@ export function AanmeldForm({
   const [fout, setFout] = useState("");
   const [veldFouten, setVeldFouten] = useState<Partial<Record<Veld, string>>>({});
   const [toonToelichting, setToonToelichting] = useState(false);
-  const [toonRollen, setToonRollen] = useState(false);
   // Het ingevulde nummer bewaren voor de bevestiging: form.reset() wist het,
   // dus we leggen het bij verzenden vast om het te kunnen teruglezen.
   const [gebeldNummer, setGebeldNummer] = useState("");
@@ -289,37 +281,10 @@ export function AanmeldForm({
             </button>
           )}
 
-          {/* Rol staat vast op ouder; de advertentie beantwoordt die vraag al. */}
-          {toonRollen ? (
-            <fieldset>
-              <legend className="mb-1.5 text-sm font-medium text-ink">Voor wie meld je aan?</legend>
-              <div className="grid grid-cols-3 gap-2">
-                {ROLLEN_LANDING.map((r) => (
-                  <button
-                    key={r.id}
-                    type="button"
-                    onClick={() => setRol(r.id)}
-                    aria-pressed={rol === r.id}
-                    className={`flex min-h-11 flex-col items-center gap-1.5 rounded-2xl border px-2 py-3 text-center transition-colors ${
-                      rol === r.id ? "border-brand bg-brand/[0.06]" : "border-field hover:border-ink/45"
-                    }`}
-                  >
-                    <r.Icon aria-hidden className="h-4 w-4 text-brand" strokeWidth={1.9} />
-                    <span className="text-[13px] font-medium leading-tight text-ink">{r.label}</span>
-                  </button>
-                ))}
-              </div>
-            </fieldset>
-          ) : (
-            <button
-              type="button"
-              onClick={() => setToonRollen(true)}
-              className="inline-flex min-h-11 items-center gap-1.5 self-start text-sm font-medium text-brand-ink hover:underline"
-            >
-              <Plus aria-hidden className="h-4 w-4" strokeWidth={2} />
-              Aanmelden voor mezelf of als verwijzer
-            </button>
-          )}
+          {/* Bewust GEEN rol-keuze op deze advertentiepagina: de advertentie richt
+              zich op ouders, dus rol staat vast op "ouder". Eén optioneel veld
+              ("wat speelt er") houdt het formulier kort en drempelloos. Jongeren
+              en verwijzers hebben hun eigen ingang (/jongeren, /verwijzers). */}
         </>
       ) : (
         <>
