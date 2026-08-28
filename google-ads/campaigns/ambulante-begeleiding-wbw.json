@@ -1,13 +1,14 @@
 {
   "_formaat": "v2 - uitgebreid t.o.v. voorbeeld-campagne.json: meerdere advertentiegroepen en negatieve zoekwoorden. LET OP: 'ad' staat nu PER advertentiegroep (ad_groups[].ad), niet op hoofdniveau. Elke groep heeft claims die op ZIJN eigen landingspagina staan. create_search_campaign.py (v1) leest 'ad' van hoofdniveau en moet dus uitgebreid worden, of bouw via Porter (aanbevolen). Bouw deze campagne daarom via Porter (google_ads.budget_create -> campaign_create -> adgroup_create -> keyword_create -> ad_create), of breid het script uit.",
-  "_onderbouwing": "Zoekvolume gemeten op 26 aug 2026 binnen de 9 WBW-gemeenten via Google Keyword Planner (Ads-account 6199567507). Regio-totaal 970/mnd over 80 termen, waarvan 33% werk- of opleidingsintentie. Enige termen met echt volume: jeugdzorg 140, ambulante begeleiding 90, jeugdzorg roosendaal 70, jeugdzorg bergen op zoom 40. Alles daaronder is 10/mnd of nul.",
+  "_onderbouwing": "Zoekvolume gemeten op 26 aug 2026 binnen de 9 WBW-gemeenten via Google Keyword Planner (Ads-account 6199567507). Regio-totaal 970/mnd over 80 termen, waarvan 33% werk- of opleidingsintentie. Enige termen met echt volume: jeugdzorg 140, ambulante begeleiding 90, jeugdzorg roosendaal 70, jeugdzorg bergen op zoom 40. Alles daaronder is 10/mnd of nul. Verse geo-pull 28 aug 2026 met ouder-taal als seed (opvoedondersteuning, hulp bij opvoeding, gezinscoach, jeugdcoaching): elke hulpzoek-term zit op 10/mnd of 0. De ouder-zoekmarkt is zo goed als leeg; de vraag loopt via CJG en verwijzers. Daarom een aparte groep op de ouder-taal (zuiverste intentie) plus CJG/entertainment als negatief. Funnel- en metingsblokkers zijn opgelost: /ambulante-begeleiding leeft en klik-id-meting staat.",
   "campaign_name": "MENT4L - Search - Ambulante begeleiding WBW",
   "status": "PAUSED",
+  "_gebouwd": "Aangemaakt via Porter op 28 aug 2026. Campagne-ID 24195114151 (customers/6199567507/campaigns/24195114151), PAUSED. Gebouwd: budget EUR 5/dag, 9 locaties, NL-taal, 5 advertentiegroepen, 29 zoekwoorden, 5 RSA's, belasset + 4 sitelinks. NOG HANDMATIG IN DE UI VOOR LIVEGANG: (1) locatie-optie op 'Aanwezigheid' zetten - staat nu op 'Aanwezigheid of interesse', Porter kan dit veld niet zetten; (2) onderstaande negatieve zoekwoorden als campagne-negatievenlijst plakken, Porter kan geen negatieven op campagneniveau aanmaken. LET OP: 'ambulante begeleiding autisme' is NIET aangemaakt, geblokkeerd door het gevoelige-gezondheidsbeleid (HEALTH_IN_PERSONALIZED_ADS) - autisme is een gezondheidsconditie.",
   "daily_budget_eur": 5,
   "_budget_toelichting": "Veiligheidsrail, geen doel. Verwachte werkelijke uitgave EUR 25-50/mnd; de campagne is volumebeperkt, niet budgetbeperkt. Zet hem niet hoger: meer budget koopt hier alleen werkzoekenden of verkeer buiten het contractgebied.",
-  "bidding": "MAXIMIZE_CLICKS",
-  "default_cpc_bid_eur": 1.5,
-  "_bod_toelichting": "Geen conversiehistorie in het account, dus geen Smart Bidding. Max-CPC-plafond 1.50; gemeten toppositie-biedingen in de regio liggen op 0.28-1.42. Pas bij 15-30 conversies per 30 dagen door naar maximaliseer conversies.",
+  "bidding": "MANUAL_CPC",
+  "default_cpc_bid_eur": 1.0,
+  "_bod_toelichting": "Handmatige CPC, standaardbod 1.00 per advertentiegroep (gebouwd). Bewuste keuze boven maximaliseer klikken: zonder conversiehistorie en met de negatieven nog niet compleet zou maximaliseer klikken het budget vol kopen met werkzoekers. Handmatige CPC biedt gewoon en pakt de echte klikken; gemeten toppositie-biedingen 0.28-1.42. Blijf handmatig, want bij 1-3 conversies/mnd haalt Smart Bidding nooit de leerdrempel.",
   "target_search_network": false,
   "_netwerk_toelichting": "Zoekpartners uit. Geen Display, geen PMax, geen Demand Gen, geen remarketing: gevoelige categorie.",
   "locations": [
@@ -54,10 +55,6 @@
         {
           "text": "ambulante gezinsbegeleiding",
           "match": "PHRASE"
-        },
-        {
-          "text": "ambulante begeleiding autisme",
-          "match": "PHRASE"
         }
       ],
       "ad": {
@@ -87,6 +84,48 @@
         ],
         "path1": "ambulante",
         "path2": "begeleiding"
+      }
+    },
+    {
+      "name": "Opvoedhulp en gezinscoach",
+      "final_url": "https://www.ment4l.nl/ambulante-begeleiding",
+      "_landing": "Ouder-taal, geen dienstnaam. Toegevoegd 28 aug 2026 na verse geo-pull: opvoedondersteuning, hulp bij opvoeding, gezinscoach etc. zitten elk op 10/mnd maar zijn de zuiverste ouder-intentie in het account. Route naar de funnelpagina met formulier.",
+      "keywords": [
+        { "text": "hulp bij opvoeding", "match": "PHRASE" },
+        { "text": "opvoedondersteuning", "match": "PHRASE" },
+        { "text": "hulp bij opvoeden", "match": "PHRASE" },
+        { "text": "hulp opvoeden", "match": "PHRASE" },
+        { "text": "gezinscoach", "match": "PHRASE" },
+        { "text": "jeugdcoaching", "match": "PHRASE" },
+        { "text": "opvoedhulp", "match": "PHRASE" }
+      ],
+      "ad": {
+        "_match": "Ouder-taal in kop 1-3; zelfde funnel met formulier (naam, telefoon, woonplaats).",
+        "headlines": [
+          "Hulp Bij De Opvoeding",
+          "Een Vaste Jeugdcoach Thuis",
+          "Opvoeden Gaat Even Moeilijk?",
+          "Begeleiding Bij Jullie Thuis",
+          "Geen Wachtlijst",
+          "Reactie Binnen 4 Uur",
+          "24/7 Bereikbaar",
+          "Geen Eigen Bijdrage",
+          "SKJ-Geregistreerde Coaches",
+          "Hulp Voor Je Kind",
+          "Thuis, Op School Of Wijk",
+          "De Gemeente Betaalt",
+          "Aanmelden In 3 Velden",
+          "Wij Bellen Je Terug",
+          "Actief In 9 Gemeenten"
+        ],
+        "descriptions": [
+          "Loopt het thuis vast? Een vaste jeugdcoach helpt bij jullie thuis, op school of wijk.",
+          "Geen wachtlijst en je hoort binnen 4 uur van ons, ook 's avonds en in het weekend.",
+          "SKJ-geregistreerde begeleiders. De gemeente betaalt, er is geen eigen bijdrage.",
+          "Je nummer achterlaten kost drie velden. Actief in negen gemeenten in West-Brabant."
+        ],
+        "path1": "opvoedhulp",
+        "path2": "jeugdcoach"
       }
     },
     {
@@ -381,6 +420,13 @@
       "vlissingen",
       "goes",
       "antwerpen"
+    ],
+    "ruis_en_navigatie": [
+      "cjg",
+      "centrum voor jeugd en gezin",
+      "supernanny",
+      "jo frost",
+      "eerste hulp bij opvoeden"
     ]
   },
   "assets": {
@@ -400,8 +446,8 @@
         "url": "https://www.ment4l.nl/verwijzers"
       },
       {
-        "tekst": "Spoed en crisis",
-        "url": "https://www.ment4l.nl/spoed"
+        "tekst": "Over ons",
+        "url": "https://www.ment4l.nl/over-ons"
       }
     ]
   }
