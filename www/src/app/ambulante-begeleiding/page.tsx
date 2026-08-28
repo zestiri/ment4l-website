@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { Phone } from "lucide-react";
+import { Phone, MapPin } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { DarkPanel } from "@/components/site/DarkPanel";
@@ -223,14 +223,19 @@ export default function AmbulanteBegeleidingPage() {
               <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-16">
                 {/* Linkerkolom: de belofte en de telefoon */}
                 <div>
-                  <span className="eyebrow text-ink-soft">
-                    Ambulante begeleiding · 0 tot 18 jaar · West-Brabant West
-                  </span>
-                  <h1 className="mt-4 max-w-[14ch] font-display text-[clamp(2.5rem,5.2vw,4rem)] leading-[0.98] tracking-[-0.045em]">
+                  {/* Geen uppercase kicker: de H1 draagt zelf. De kwalificatie
+                      (regio, leeftijd) staat als meta-regel met icoon onder de belofte. */}
+                  <h1 className="max-w-[14ch] font-display text-[clamp(2.6rem,5.4vw,4.15rem)] leading-[0.96] tracking-[-0.045em] text-balance">
                     Ambulante begeleiding voor je kind, gewoon thuis
                   </h1>
-                  <p className="mt-5 max-w-[46ch] text-[17px] leading-[1.6] text-ink-soft">
+                  <p className="mt-5 max-w-[46ch] text-[17px] leading-[1.6] text-ink-soft text-pretty">
                     Ambulante begeleiding betekent: een vaste jeugdcoach komt naar jullie toe.
+                  </p>
+                  <p className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-[14px] text-grey">
+                    <MapPin aria-hidden className="h-4 w-4 text-brand" strokeWidth={2} />
+                    West-Brabant West
+                    <span aria-hidden className="h-1 w-1 rounded-full bg-grey-2" />
+                    Voor kinderen en jongeren van 0 tot 18 jaar
                   </p>
 
                   <ul className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 border-y border-hairline py-3.5 text-[15px] text-ink">
@@ -257,7 +262,7 @@ export default function AmbulanteBegeleidingPage() {
                     /aanmelden, want daar breekt het geurspoor van de advertentie
                     precies op het punt van de grootste twijfel. */}
                 <div id="bel-mij-terug" className="scroll-mt-28">
-                  <div className="rounded-[28px] bg-sand p-6 shadow-[var(--shadow-framer-md)] sm:p-8">
+                  <div className="rounded-[28px] border border-black/[0.06] bg-sand p-6 shadow-[var(--shadow-framer-md)] sm:p-8">
                     <h2 className="text-[clamp(1.35rem,2.4vw,1.7rem)] leading-[1.1] tracking-[-0.03em]">
                       Wij bellen je terug, binnen 4 uur
                     </h2>
@@ -301,7 +306,7 @@ export default function AmbulanteBegeleidingPage() {
                 {PLEKKEN.map((p) => (
                   <figure
                     key={p.label}
-                    className={`relative overflow-hidden rounded-3xl ${p.cel} ${p.vorm}`}
+                    className={`relative overflow-hidden rounded-3xl ring-1 ring-black/[0.06] ${p.cel} ${p.vorm}`}
                   >
                     <Image
                       src={p.src}
@@ -310,12 +315,14 @@ export default function AmbulanteBegeleidingPage() {
                       sizes={p.sizes}
                       className="object-cover object-center"
                     />
-                    {/* Scrim zodat het label leesbaar blijft, ongeacht de foto */}
+                    {/* Zachtere, diepere scrim in twee stops: het label blijft leesbaar
+                        zonder dat de foto er donker uitziet. */}
                     <div
                       aria-hidden
-                      className="pointer-events-none absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-black/55 to-transparent"
+                      className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 via-40% to-transparent"
                     />
-                    <figcaption className="absolute bottom-4 left-5 text-[15px] font-semibold text-white">
+                    <figcaption className="absolute bottom-4 left-5 flex items-center gap-2 text-[15px] font-semibold tracking-[-0.01em] text-white">
+                      <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-brand-2" />
                       {p.label}
                     </figcaption>
                   </figure>

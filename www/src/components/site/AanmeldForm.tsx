@@ -31,7 +31,7 @@ const LABELS: Record<Veld, string> = {
 };
 
 const VELD_BASIS =
-  "w-full rounded-2xl border bg-canvas px-4 py-3.5 text-ink outline-none transition-colors placeholder:text-grey-2 focus:border-brand";
+  "w-full rounded-2xl border bg-canvas px-4 py-3.5 text-ink outline-none transition-[border-color,box-shadow] duration-150 placeholder:text-grey-2 focus:border-brand focus:ring-4 focus:ring-brand/12";
 
 /**
  * Een veld met zichtbaar label en een foutmelding eronder.
@@ -360,7 +360,7 @@ export function AanmeldForm({
         id={submitId}
         type="submit"
         disabled={status === "sending"}
-        className="mt-1 min-h-12 rounded-pill bg-brand px-7 py-4 text-[15px] font-semibold text-canvas transition-colors hover:bg-brand-2 disabled:cursor-not-allowed disabled:opacity-60"
+        className="mt-1 min-h-12 rounded-pill bg-brand px-7 py-4 text-[15px] font-semibold text-canvas shadow-[0_10px_24px_-8px_rgba(31,102,255,0.55)] transition-[background-color,transform,box-shadow] duration-150 hover:-translate-y-0.5 hover:bg-brand-2 hover:shadow-[0_14px_30px_-8px_rgba(31,102,255,0.6)] active:translate-y-0 motion-reduce:transform-none disabled:cursor-not-allowed disabled:opacity-60 disabled:shadow-none"
       >
         {status === "sending" ? "Versturen…" : "Bel mij terug"}
       </button>

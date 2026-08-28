@@ -58,10 +58,11 @@ export function Tijdlijn() {
     >
       {STAPPEN.map((s) => (
         <li key={s.tijd} className="relative pb-9 pl-8 last:pb-0 sm:pb-0 sm:pl-0 sm:pt-9">
-          {/* Knooppunt */}
+          {/* Knooppunt, met een zachte brand-halo zodat het op de donkere band
+              als een lichtpunt leest in plaats van een platte stip. */}
           <span
             aria-hidden
-            className="absolute left-0 top-1.5 h-2.5 w-2.5 rounded-full bg-brand-2 sm:left-0 sm:top-0"
+            className="absolute left-0 top-1.5 h-2.5 w-2.5 rounded-full bg-brand-2 shadow-[0_0_0_4px_rgba(77,133,255,0.16)] sm:left-0 sm:top-0"
           />
 
           {/* Verbindingslijn: verticaal op mobiel, horizontaal vanaf sm.
