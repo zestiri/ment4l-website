@@ -2,7 +2,7 @@
 
 import { useEffect, useSyncExternalStore } from "react";
 import { motion, useReducedMotion } from "motion/react";
-import { METING_AAN, meldConversie } from "@/lib/conversie";
+import { TAG_AAN, meldConversie } from "@/lib/conversie";
 import { CONTACT } from "@/lib/site";
 
 /**
@@ -121,11 +121,11 @@ export function Meting() {
   // geweigerd binnenkomen. Ook een expliciete "denied" sturen we door, zodat
   // Google weet dat er echt gekozen is en niet alleen de default geldt.
   useEffect(() => {
-    if (METING_AAN && stand !== "onbekend") pasToe(stand);
+    if (TAG_AAN && stand !== "onbekend") pasToe(stand);
   }, [stand]);
 
-  // Geen tag, geen balk. Dit is de normale toestand tot de Ads-id gezet wordt.
-  if (!METING_AAN || stand !== "onbekend") return null;
+  // Geen tag, geen balk. Dit is de normale toestand tot een meet-id gezet wordt.
+  if (!TAG_AAN || stand !== "onbekend") return null;
 
   return (
     <motion.div
@@ -137,10 +137,11 @@ export function Meting() {
       className="fixed inset-x-3 bottom-3 z-50 sm:inset-x-auto sm:bottom-4 sm:left-4 sm:max-w-[26rem]"
     >
       <div className="rounded-3xl border border-hairline bg-canvas p-5 shadow-lift">
-        <p className="text-[15px] font-semibold text-ink">Mogen we meten of onze advertentie werkt?</p>
+        <p className="text-[15px] font-semibold text-ink">Mogen we meten hoe onze site gebruikt wordt?</p>
         <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-          Dan plaatst Google een cookie die laat zien of iemand ons via een advertentie vond.
-          Wij gebruiken hem nergens anders voor. Zeg je nee, dan werkt de site precies hetzelfde.
+          Met een cookie van Google zien we welke pagina&rsquo;s mensen bekijken en of onze
+          advertenties werken. We koppelen dat nooit aan wie je bent en gebruiken het nergens
+          anders voor. Zeg je nee, dan werkt de site precies hetzelfde.
         </p>
         <div className="mt-4 flex flex-wrap gap-2">
           <button

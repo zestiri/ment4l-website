@@ -29,8 +29,21 @@
 
 export const ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID ?? "";
 
-/** Staat de optionele Google Ads-tag aan? Bepaalt tag én toestemmingsbalk. */
+/** Staat de optionele Google Ads-tag aan? Bepaalt de Ads-conversie. */
 export const METING_AAN = ADS_ID.length > 0;
+
+/**
+ * GA4-analytics, los van Ads en optioneel. Zelfde gtag, eigen meet-id, achter
+ * dezelfde toestemmingsbalk. Statistiek zoals concurrenten (Youz e.a.) dat doen.
+ * Google Signals en ad-personalisatie staan UIT (zie layout.tsx), zodat het
+ * pure bezoekcijfers zijn en geen personalisatie op gevoelig gedrag. Wel GA4,
+ * NIET GA4-conversies naar Ads importeren: dan zou je alsnog op zorggedrag bieden.
+ */
+export const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID ?? "";
+export const GA4_AAN = GA4_ID.length > 0;
+
+/** Staat er een Google-tag aan die cookies zet? Bepaalt het tag-script én de balk. */
+export const TAG_AAN = METING_AAN || GA4_AAN;
 
 const LABELS: Record<Conversie, string> = {
   aanmelding: process.env.NEXT_PUBLIC_GADS_LABEL_AANMELDING ?? "",
@@ -152,20 +165,30 @@ export function meldConversie(soort: Conversie) {
   if (typeof window === "undefined") return;
   try {
     window.dataLayer = window.dataLayer ?? [];
-    // Altijd het losse event: ook zonder Ads-id blijft de dataLayer bruikbaar
-    // voor een latere koppeling.
+    // Altijd het losse event: ook zonder tag blijft de dataLayer bruikbaar.
     window.dataLayer.push({ event: EVENT_NAAM[soort] });
 
-    if (!METING_AAN || typeof window.gtag !== "function") return;
+    if (typeof window.gtag !== "function") return;
 
-    const label = LABELS[soort];
-    if (!label) return;
+    // GA4: het funnelmoment als event, zonder persoonsgegevens. generate_lead is
+    // GA4's standaardconversie voor een lead; bel en contact als eigen event.
+    if (GA4_AAN) {
+      window.gtag("event", soort === "aanmelding" ? "generate_lead" : EVENT_NAAM[soort], {
+        send_to: GA4_ID,
+      });
+    }
 
-    window.gtag("event", "conversion", {
-      send_to: `${ADS_ID}/${label}`,
-      value: WAARDE[soort],
-      currency: "EUR",
-    });
+    // Ads: alleen met een geldige conversielabel.
+    if (METING_AAN) {
+      const label = LABELS[soort];
+      if (label) {
+        window.gtag("event", "conversion", {
+          send_to: `${ADS_ID}/${label}`,
+          value: WAARDE[soort],
+          currency: "EUR",
+        });
+      }
+    }
   } catch {
     // Stil falen. Een kapotte meting mag nooit een aanmelding blokkeren.
   }

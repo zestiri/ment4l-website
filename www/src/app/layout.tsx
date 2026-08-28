@@ -6,12 +6,26 @@ import Tracker from "@/components/site/Tracker";
 import { KlikId } from "@/components/site/KlikId";
 import { Meting } from "@/components/site/Meting";
 import { BottomBlur } from "@/components/site/BottomBlur";
-import { ADS_ID, METING_AAN } from "@/lib/conversie";
+import { ADS_ID, METING_AAN, GA4_ID, GA4_AAN, TAG_AAN } from "@/lib/conversie";
 import "./globals.css";
 
-// De id komt uit onze eigen env, maar hij wordt in een inline script gezet.
+// De id's komen uit onze eigen env, maar ze worden in een inline script gezet.
 // Alles buiten [A-Za-z0-9-] eruit, zodat een typefout in .env geen scriptfout wordt.
 const ADS_ID_VEILIG = ADS_ID.replace(/[^A-Za-z0-9-]/g, "");
+const GA4_ID_VEILIG = GA4_ID.replace(/[^A-Za-z0-9-]/g, "");
+
+// gtag.js laadt met de eerste beschikbare id; daarna configureren we elke id apart.
+const BOOTSTRAP_ID = ADS_ID_VEILIG || GA4_ID_VEILIG;
+const CONFIG_REGELS = [
+  METING_AAN ? `gtag('config','${ADS_ID_VEILIG}');` : "",
+  // GA4 met Google Signals en ad-personalisatie UIT: pure statistiek, geen
+  // personalisatie op gevoelig (zorg)gedrag.
+  GA4_AAN
+    ? `gtag('config','${GA4_ID_VEILIG}',{allow_google_signals:false,allow_ad_personalization_signals:false});`
+    : "",
+]
+  .filter(Boolean)
+  .join("\n");
 
 /**
  * Toestemming eerst, tag daarna, in één blok.
@@ -33,9 +47,9 @@ gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personali
 gtag('set','ads_data_redaction',true);
 gtag('set','url_passthrough',true);
 gtag('js',new Date());
-gtag('config','${ADS_ID_VEILIG}');
+${CONFIG_REGELS}
 var s=document.createElement('script');
-s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=${ADS_ID_VEILIG}';
+s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=${BOOTSTRAP_ID}';
 document.head.appendChild(s);
 `;
 
@@ -110,7 +124,7 @@ export default function RootLayout({
       className={`${switzer.variable} ${inter.variable} ${plexSerif.variable} ${plexMono.variable} ${jakarta.variable}`}
     >
       <body className="min-h-screen bg-canvas font-sans text-ink antialiased">
-        {METING_AAN && (
+        {TAG_AAN && (
           <Script id="consent-en-tag" strategy="afterInteractive">
             {CONSENT_EN_TAG}
           </Script>
