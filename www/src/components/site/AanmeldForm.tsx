@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Check, AlertCircle, User, UserRound, Stethoscope } from "lucide-react";
+import { Check, AlertCircle, User, UserRound, Stethoscope, Phone, MapPin, Plus } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { CONTACT } from "@/lib/site";
 import { leesKlikId, meldConversie } from "@/lib/conversie";
 
@@ -31,7 +32,7 @@ const LABELS: Record<Veld, string> = {
 };
 
 const VELD_BASIS =
-  "w-full rounded-2xl border bg-canvas px-4 py-3.5 text-ink outline-none transition-[border-color,box-shadow] duration-150 placeholder:text-grey-2 focus:border-brand focus:shadow-[0_0_0_4px_color-mix(in_srgb,var(--color-brand)_14%,transparent)]";
+  "w-full rounded-2xl border bg-canvas py-3.5 text-ink outline-none transition-[border-color,box-shadow] duration-150 placeholder:text-grey-2 focus:border-brand focus:shadow-[0_0_0_4px_color-mix(in_srgb,var(--color-brand)_14%,transparent)]";
 
 /**
  * Een veld met zichtbaar label en een foutmelding eronder.
@@ -45,6 +46,7 @@ function Rij({
   autoComplete,
   helper,
   fout,
+  Icon,
   onBlur,
   onHerzie,
 }: {
@@ -53,6 +55,7 @@ function Rij({
   autoComplete?: string;
   helper?: string;
   fout?: string;
+  Icon: LucideIcon;
   onBlur: (naam: Veld, waarde: string) => void;
   onHerzie: (naam: Veld, waarde: string) => void;
 }) {
@@ -61,19 +64,28 @@ function Rij({
       <label htmlFor={`veld-${naam}`} className="mb-1.5 block text-sm font-medium text-ink">
         {LABELS[naam]}
       </label>
-      <input
-        id={`veld-${naam}`}
-        name={naam}
-        type={type}
-        required
-        aria-required="true"
-        autoComplete={autoComplete}
-        aria-invalid={fout ? true : undefined}
-        aria-describedby={fout ? `fout-${naam}` : helper ? `helper-${naam}` : undefined}
-        onBlur={(e) => onBlur(naam, e.currentTarget.value)}
-        onChange={(e) => onHerzie(naam, e.currentTarget.value)}
-        className={`${VELD_BASIS} ${fout ? "border-coral" : "border-field"}`}
-      />
+      <div className="relative">
+        <input
+          id={`veld-${naam}`}
+          name={naam}
+          type={type}
+          required
+          aria-required="true"
+          autoComplete={autoComplete}
+          aria-invalid={fout ? true : undefined}
+          aria-describedby={fout ? `fout-${naam}` : helper ? `helper-${naam}` : undefined}
+          onBlur={(e) => onBlur(naam, e.currentTarget.value)}
+          onChange={(e) => onHerzie(naam, e.currentTarget.value)}
+          className={`peer ${VELD_BASIS} pl-11 pr-4 ${fout ? "border-coral" : "border-field"}`}
+        />
+        {/* Leidend icoon: helpt scannen welk veld je invult. Staat na de input in
+            de DOM zodat peer-focus werkt; visueel links via absolute positie. */}
+        <Icon
+          aria-hidden
+          className="pointer-events-none absolute left-4 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-grey transition-colors peer-focus:text-brand"
+          strokeWidth={1.9}
+        />
+      </div>
       {fout ? (
         // Nooit kleur als enige drager: icoon plus tekst. De tekst zelf staat in
         // ink-soft, want coral haalt op canvas geen AA.
@@ -238,7 +250,7 @@ export function AanmeldForm({
             <>Binnen 4 uur, ook &rsquo;s avonds en in het weekend.</>
           )}{" "}
           Spoed?{" "}
-          <a href={CONTACT.phoneHref} className="font-semibold text-brand underline">
+          <a href={CONTACT.phoneHref} className="font-semibold text-brand-ink underline">
             Bel {CONTACT.phone}
           </a>
         </p>
@@ -253,9 +265,9 @@ export function AanmeldForm({
 
       {landing ? (
         <>
-          <Rij naam="name" autoComplete="name" fout={veldFouten.name} onBlur={controleerVeld} onHerzie={herzieVeld} />
-          <Rij naam="phone" type="tel" autoComplete="tel" fout={veldFouten.phone} onBlur={controleerVeld} onHerzie={herzieVeld} />
-          <Rij naam="woonplaats" autoComplete="address-level2" helper="In welke plaats woont je kind? Zo koppelen we je meteen aan de juiste gemeente." fout={veldFouten.woonplaats} onBlur={controleerVeld} onHerzie={herzieVeld} />
+          <Rij naam="name" autoComplete="name" Icon={User} fout={veldFouten.name} onBlur={controleerVeld} onHerzie={herzieVeld} />
+          <Rij naam="phone" type="tel" autoComplete="tel" Icon={Phone} fout={veldFouten.phone} onBlur={controleerVeld} onHerzie={herzieVeld} />
+          <Rij naam="woonplaats" autoComplete="address-level2" Icon={MapPin} helper="In welke plaats woont je kind? Zo koppelen we je meteen aan de juiste gemeente." fout={veldFouten.woonplaats} onBlur={controleerVeld} onHerzie={herzieVeld} />
 
           {/* Het vrije tekstveld is optioneel en zit achter een link: de eerste
               indruk moet drie velden zijn, niet vier. */}
@@ -264,14 +276,15 @@ export function AanmeldForm({
               <label htmlFor="veld-message" className="mb-1.5 block text-sm font-medium text-ink">
                 Wat speelt er?
               </label>
-              <textarea id="veld-message" name="message" rows={3} className={`${VELD_BASIS} resize-y border-field`} />
+              <textarea id="veld-message" name="message" rows={3} className={`${VELD_BASIS} px-4 resize-y border-field`} />
             </div>
           ) : (
             <button
               type="button"
               onClick={() => setToonToelichting(true)}
-              className="min-h-11 self-start text-left text-sm font-medium text-brand underline underline-offset-4"
+              className="inline-flex min-h-11 items-center gap-1.5 self-start text-sm font-medium text-brand-ink hover:underline"
             >
+              <Plus aria-hidden className="h-4 w-4" strokeWidth={2} />
               Iets toevoegen over wat er speelt?
             </button>
           )}
@@ -301,8 +314,9 @@ export function AanmeldForm({
             <button
               type="button"
               onClick={() => setToonRollen(true)}
-              className="min-h-11 self-start text-left text-sm font-medium text-brand underline underline-offset-4"
+              className="inline-flex min-h-11 items-center gap-1.5 self-start text-sm font-medium text-brand-ink hover:underline"
             >
+              <Plus aria-hidden className="h-4 w-4" strokeWidth={2} />
               Aanmelden voor mezelf of als verwijzer
             </button>
           )}
@@ -330,11 +344,11 @@ export function AanmeldForm({
             </div>
           </fieldset>
 
-          <input name="name" required autoComplete="name" placeholder="Je naam" aria-label="Je naam" className={`${VELD_BASIS} border-field`} />
+          <input name="name" required autoComplete="name" placeholder="Je naam" aria-label="Je naam" className={`${VELD_BASIS} px-4 border-field`} />
 
           <div className="grid gap-3 sm:grid-cols-2">
-            <input name="phone" type="tel" required autoComplete="tel" placeholder="Telefoonnummer" aria-label="Telefoonnummer" className={`${VELD_BASIS} border-field`} />
-            <input name="woonplaats" required autoComplete="address-level2" placeholder="Woonplaats" aria-label="Woonplaats" className={`${VELD_BASIS} border-field`} />
+            <input name="phone" type="tel" required autoComplete="tel" placeholder="Telefoonnummer" aria-label="Telefoonnummer" className={`${VELD_BASIS} px-4 border-field`} />
+            <input name="woonplaats" required autoComplete="address-level2" placeholder="Woonplaats" aria-label="Woonplaats" className={`${VELD_BASIS} px-4 border-field`} />
           </div>
 
           <textarea
@@ -342,7 +356,7 @@ export function AanmeldForm({
             rows={3}
             placeholder="Wat speelt er? Een paar zinnen is genoeg."
             aria-label="Wat speelt er?"
-            className={`${VELD_BASIS} resize-y border-field`}
+            className={`${VELD_BASIS} px-4 resize-y border-field`}
           />
         </>
       )}

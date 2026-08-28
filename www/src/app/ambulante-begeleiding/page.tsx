@@ -9,6 +9,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { AanmeldForm } from "@/components/site/AanmeldForm";
 import { BelBalk } from "@/components/funnel/BelBalk";
 import { Tijdlijn } from "@/components/funnel/Tijdlijn";
+import { Wachttijden } from "@/components/funnel/Wachttijden";
 import { CONTACT } from "@/lib/site";
 import { GEMEENTEN, WACHTTIJDEN_BIJGEWERKT } from "@/lib/funnel";
 
@@ -139,17 +140,7 @@ const VRAGEN: { v: string; a: string; jsx?: React.ReactNode }[] = [
   },
   {
     v: "Hoe lang is de wachttijd?",
-    a: `Wij werken zonder wachtlijst. De kennismaking plannen we binnen een week nadat de verwijzing rond is. Onze actuele wachttijden per traject staan op de wachttijdenpagina. Bijgewerkt op ${WACHTTIJDEN_BIJGEWERKT}.`,
-    jsx: (
-      <>
-        Wij werken zonder wachtlijst. De kennismaking plannen we binnen een week nadat de
-        verwijzing rond is. Onze{" "}
-        <Link href="/wachttijden" className="text-brand underline underline-offset-2">
-          actuele wachttijden per traject
-        </Link>{" "}
-        staan op de wachttijdenpagina. Bijgewerkt op {WACHTTIJDEN_BIJGEWERKT}.
-      </>
-    ),
+    a: `Wij werken zonder wachtlijst. De kennismaking plannen we binnen een week nadat de verwijzing rond is. De actuele status per traject staat op deze pagina, bijgewerkt op ${WACHTTIJDEN_BIJGEWERKT}.`,
   },
   {
     v: "Voor welke leeftijd is ambulante begeleiding?",
@@ -378,6 +369,16 @@ export default function AmbulanteBegeleidingPage() {
             <div className="mt-12 sm:mt-16">
               <Tijdlijn />
             </div>
+          </div>
+        </section>
+
+        {/* ── WACHTTIJDEN-WIDGET: het antwoord op "hoe lang wachten" direct in
+            de funnel, in plaats van een doorverwijzing. Sluit aan op de tijdlijn. */}
+        <section className="bg-canvas">
+          <div className="mx-auto max-w-site px-6 pb-4 pt-12 sm:pt-14">
+            <Reveal size="item">
+              <Wachttijden />
+            </Reveal>
           </div>
         </section>
 

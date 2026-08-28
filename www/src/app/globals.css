@@ -40,6 +40,11 @@
   --color-grey: #6c6e74;
   --color-grey-2: #9c9c9c;
 
+  /* Semantische statuskleur: groen = beschikbaar/live. Uit het merkbord (#1f8a54),
+     dus geen nieuwe kleur maar een bestaande merkwaarde. Alleen als stip of accent,
+     nooit als kleine tekst: op wit haalt hij AA-large maar geen AA-normal. */
+  --color-good: #1f8a54;
+
   /* Framer-breakpoints: primair 600 / 1000 / 1366, legacy 810 / 1200 */
   --breakpoint-sm: 600px;
   --breakpoint-mdx: 810px;
