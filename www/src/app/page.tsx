@@ -104,7 +104,7 @@ export default function Home() {
                 <div className="flex justify-center">
                   <span className="inline-flex items-center gap-2 rounded-full border border-hairline bg-canvas px-3.5 py-1.5 text-sm font-medium text-ink-soft shadow-[var(--shadow-soft)]">
                     <MapPin className="h-4 w-4 text-brand" strokeWidth={2} />
-                    Samenwerkingen in West-Brabant
+                    Samenwerkingen in Brabant
                   </span>
                 </div>
               </Reveal>
