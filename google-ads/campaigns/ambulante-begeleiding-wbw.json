@@ -4,8 +4,8 @@
   "campaign_name": "MENT4L - Search - Ambulante begeleiding WBW",
   "status": "PAUSED",
   "_gebouwd": "Aangemaakt via Porter op 28 aug 2026. Campagne-ID 24195114151 (customers/6199567507/campaigns/24195114151), PAUSED. Gebouwd: budget EUR 5/dag, 9 locaties, NL-taal, 5 advertentiegroepen, 29 zoekwoorden, 5 RSA's, belasset + 4 sitelinks. NOG HANDMATIG IN DE UI VOOR LIVEGANG: (1) locatie-optie op 'Aanwezigheid' zetten - staat nu op 'Aanwezigheid of interesse', Porter kan dit veld niet zetten; (2) onderstaande negatieve zoekwoorden als campagne-negatievenlijst plakken, Porter kan geen negatieven op campagneniveau aanmaken. LET OP: 'ambulante begeleiding autisme' is NIET aangemaakt, geblokkeerd door het gevoelige-gezondheidsbeleid (HEALTH_IN_PERSONALIZED_ADS) - autisme is een gezondheidsconditie.",
-  "daily_budget_eur": 5,
-  "_budget_toelichting": "Veiligheidsrail, geen doel. Verwachte werkelijke uitgave EUR 25-50/mnd; de campagne is volumebeperkt, niet budgetbeperkt. Zet hem niet hoger: meer budget koopt hier alleen werkzoekenden of verkeer buiten het contractgebied.",
+  "daily_budget_eur": 15,
+  "_budget_toelichting": "Rail EUR 15/dag op verzoek (29 aug 2026). LET OP: bij MANUAL_CPC en de gemeten regiovraag wordt dit plafond nooit gehaald; werkelijke uitgave blijft ~EUR 30-50/mnd, de campagne is volumebeperkt niet budgetbeperkt, meer budget koopt hier geen extra leads. Bij dit hogere plafond eerst de locatie op 'Aanwezigheid' zetten. Tegelijk scherper gemaakt: 'jeugdzorg' (exact) bod terug naar EUR 0,60 (gemengde intentie, wel tonen niet overbetalen) en de negatievenlijst uitgebreid met reputatie/werving/definitie-termen.",
   "bidding": "MANUAL_CPC",
   "default_cpc_bid_eur": 1.0,
   "_bod_toelichting": "Handmatige CPC, standaardbod 1.00 per advertentiegroep (gebouwd). Bewuste keuze boven maximaliseer klikken: zonder conversiehistorie en met de negatieven nog niet compleet zou maximaliseer klikken het budget vol kopen met werkzoekers. Handmatige CPC biedt gewoon en pakt de echte klikken; gemeten toppositie-biedingen 0.28-1.42. Blijf handmatig, want bij 1-3 conversies/mnd haalt Smart Bidding nooit de leerdrempel.",
@@ -427,6 +427,24 @@
       "supernanny",
       "jo frost",
       "eerste hulp bij opvoeden"
+    ],
+    "reputatie_werving_definitie": [
+      "ervaringen",
+      "reviews",
+      "review",
+      "forum",
+      "klachten",
+      "definitie",
+      "uitleg",
+      "wat doet",
+      "boek",
+      "coach worden",
+      "hoe word je",
+      "uitzendkracht",
+      "uitzendbureau",
+      "detachering",
+      "opvoedpoli",
+      "idris"
     ]
   },
   "assets": {
