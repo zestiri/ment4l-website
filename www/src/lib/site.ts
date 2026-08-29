@@ -181,9 +181,10 @@ export const JEUGDHULP_HUB = {
   label: "Alle jeugdhulp in West-Brabant",
 } as const;
 
-/** Top-level items naast de aanbod-dropdown. */
+/** Top-level items naast de aanbod-dropdown. "Voor scholen" zat hier vroeger
+ *  ook, maar de oversteek naar de scholen-wereld loopt nu via de
+ *  WorldSwitcher in de nav — één heldere ingang in plaats van drie. */
 export const NAV_PRIMAIR = [
-  { href: "/scholen", label: "Voor scholen" },
   { href: "/verwijzers", label: "Voor verwijzers" },
   { href: "/over-ons", label: "Over ons" },
 ] as const;

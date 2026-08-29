@@ -15,6 +15,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Logo } from "./Logo";
+import { WorldSwitcher } from "./WorldSwitcher";
 import {
   NAV_AANBOD,
   NAV_PRIMAIR,
@@ -132,11 +133,14 @@ function VolledigeNav() {
   return (
     <header className="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
       <nav className="flex w-full max-w-[1040px] items-center justify-between gap-3 rounded-2xl border border-white/10 bg-gradient-to-b from-[#1f1f1f]/90 to-charcoal-2/90 py-2.5 pl-5 pr-2.5 text-canvas shadow-[var(--shadow-framer-md)] backdrop-blur-[5px]">
-        {/* Links: logo + primaire ingangen */}
-        <div className="flex items-center gap-3 sm:gap-4">
+        {/* Links: logo + wereld-schakelaar + primaire ingangen */}
+        <div className="flex items-center gap-2.5 sm:gap-3">
           <Link href="/" className="shrink-0 text-white" aria-label="MENT4L home">
             <Logo variant="mark" className="h-7 md:h-8" />
           </Link>
+
+          {/* Wereld: waar je bent (Jeugdhulp) + één klik naar Scholen. */}
+          <WorldSwitcher active="jeugdhulp" className="hidden md:inline-flex" />
 
           <div className="hidden items-center gap-1 md:flex">
             {/* Ons aanbod — dropdown */}
@@ -241,6 +245,15 @@ function VolledigeNav() {
             transition={{ type: "spring", stiffness: 460, damping: 36 }}
             className="absolute inset-x-4 top-[84px] max-h-[calc(100dvh-6.5rem)] overflow-y-auto overscroll-contain rounded-3xl border border-hairline bg-canvas p-3 text-ink shadow-[var(--shadow-lift)] md:hidden"
           >
+            {/* Wereld-schakelaar bovenaan: dezelfde keuze als op desktop. */}
+            <WorldSwitcher
+              active="jeugdhulp"
+              tone="light"
+              block
+              onNavigate={() => setMenuOpen(false)}
+              className="mb-3"
+            />
+
             <p className="eyebrow px-2 pb-1 pt-1 text-grey">Ons aanbod</p>
             <div className="flex flex-col">
               {NAV_AANBOD.map((item) => (
