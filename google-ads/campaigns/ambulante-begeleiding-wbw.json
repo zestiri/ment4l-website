@@ -303,6 +303,24 @@
         "path1": "jeugdhulp",
         "path2": "bergen-op-zoom"
       }
+    },
+    {
+      "name": "Breda",
+      "final_url": "https://www.ment4l.nl/jeugdhulp/breda",
+      "_landing": "Toegevoegd 29 aug 2026 na de WBO-uitbreiding. Breda is de grootste plaats van het werkgebied: 'jeugdzorg breda' 110/mnd, 'jeugdhulp breda' 40, 'ambulante begeleiding breda' 40 (~190/mnd plaatsvolume, meer dan Roosendaal en Bergen op Zoom samen), lage concurrentie. Eigen gemeentepagina bestaat.",
+      "keywords": [
+        { "text": "jeugdzorg breda", "match": "PHRASE" },
+        { "text": "jeugdhulp breda", "match": "PHRASE" },
+        { "text": "ambulante begeleiding breda", "match": "PHRASE" },
+        { "text": "jeugdcoach breda", "match": "PHRASE" }
+      ],
+      "ad": {
+        "_match": "Plaatsnaam Breda in kop en description; de gemeentepagina voert dezelfde claims.",
+        "headlines": ["Jeugdhulp In Breda", "Jeugdzorg Breda", "Zonder Wachtlijst", "Reactie Binnen 4 Uur", "24/7 Bereikbaar", "Geen Eigen Bijdrage", "Ambulante Begeleiding", "Een Vaste Jeugdcoach", "Hulp Voor Je Kind", "Thuis, Op School Of Wijk", "De Gemeente Betaalt", "Hulp Bij De Verwijzing", "Wij Bellen Je Terug", "Jeugdcoach In Breda", "Hulp Bij Jou In De Buurt"],
+        "descriptions": ["Ambulante jeugdhulp in Breda, zonder wachtlijst. Reactie binnen 4 uur.", "Een vaste jeugdcoach komt naar jullie toe, thuis, op school of in de wijk.", "De gemeente Breda betaalt de jeugdhulp. Er is geen eigen bijdrage.", "24/7 bereikbaar, ook 's avonds en in het weekend. Bellen kan zonder verwijzing."],
+        "path1": "jeugdhulp",
+        "path2": "breda"
+      }
     }
   ],
   "_gemeenten_niet_gestart": "Etten-Leur, Halderberge, Moerdijk, Rucphen, Steenbergen, Woensdrecht en Zundert krijgen GEEN eigen advertentiegroep. Gemeten volume daar is 0-30/mnd; die zoekopdrachten worden opgevangen door de regio-advertentiegroep. De negen gemeentepagina's staan wel live voor organisch verkeer.",
