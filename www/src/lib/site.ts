@@ -97,15 +97,6 @@ export const HERO_AVATARS = [
   "/images/avatar-e.png",
 ] as const;
 
-export const PARTNER_LOGOS = [
-  "/images/partner-1.png",
-  "/images/partner-2.png",
-  "/images/partner-3.png",
-  "/images/partner-4.png",
-  "/images/partner-5.png",
-  "/images/partner-6.png",
-] as const;
-
 export const WORKSHOPS_SLUG = "workshops-jeugd-digitale-wereld";
 
 // ── Navigatie ──────────────────────────────────────────────────────────

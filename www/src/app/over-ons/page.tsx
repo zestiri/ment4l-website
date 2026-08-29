@@ -7,7 +7,6 @@ import { Reveal } from "@/components/site/Reveal";
 import { FaqSection } from "@/components/site/FaqSection";
 import { CtaBlock } from "@/components/site/CtaBlock";
 import { Testimonials } from "@/components/site/Testimonials";
-import { PARTNER_LOGOS } from "@/lib/site";
 
 import { IconBadge } from "@/components/site/IconBadge";
 export const metadata: Metadata = {
@@ -92,11 +91,13 @@ export default function OverOnsPage() {
                 </h2>
               </div>
             </Reveal>
-            <div className="mt-12 flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
-              {PARTNER_LOGOS.map((src) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img key={src} src={src} alt="Samenwerkingspartner" className="h-8 w-auto object-contain sm:h-10" />
-              ))}
+            {/* Feitelijke band i.p.v. geleende logo's: geen overheids-/gemeentelogo's zonder toestemming. */}
+            <div className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-center text-[15px] font-medium text-ink-soft">
+              <span>Gecontracteerd voor jeugdhulp in West-Brabant</span>
+              <span aria-hidden className="hidden h-1 w-1 rounded-full bg-grey sm:inline-block" />
+              <span>SKJ-geregistreerde jeugdprofessionals</span>
+              <span aria-hidden className="hidden h-1 w-1 rounded-full bg-grey sm:inline-block" />
+              <span>Actief in 14 gemeenten</span>
             </div>
           </div>
         </section>

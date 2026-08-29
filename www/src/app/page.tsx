@@ -12,7 +12,6 @@ import {
   TRAJECTEN,
   BLOG_TEASERS,
   HERO_AVATARS,
-  PARTNER_LOGOS,
   AANMELD_URL,
 } from "@/lib/site";
 
@@ -96,23 +95,16 @@ export default function Home() {
             </Reveal>
           </div>
 
-            {/* partnerlogo's staan live binnen hetzelfde paneel */}
+            {/* Feitelijke autoriteitsband: eigen, aantoonbare status i.p.v. geleende logo's.
+                Geen overheids- of gemeentelogo's: die vragen toestemming en suggereren endorsement. */}
             <div className="px-6 pb-14">
-              <p className="text-center text-[19px] text-ink">Onze samenwerkingen</p>
-              {/* logo's lopen door en vervagen aan beide randen, zoals live */}
-              <div className="mt-8 overflow-hidden [mask-image:linear-gradient(to_right,transparent_0%,#000_12.5%,#000_87.5%,transparent_100%)]">
-                <div className="animate-logos flex w-max items-center gap-12 lg:gap-[72px]">
-                  {[...PARTNER_LOGOS, ...PARTNER_LOGOS].map((src, i) => (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      key={`${src}-${i}`}
-                      src={src}
-                      alt={i < PARTNER_LOGOS.length ? "Samenwerkingspartner" : ""}
-                      aria-hidden={i >= PARTNER_LOGOS.length}
-                      className="h-8 w-auto shrink-0 object-contain sm:h-10"
-                    />
-                  ))}
-                </div>
+              <p className="text-center text-[19px] text-ink">Onderdeel van de jeugdhulp in West-Brabant</p>
+              <div className="mx-auto mt-8 flex max-w-3xl flex-wrap items-center justify-center gap-x-8 gap-y-3 text-center text-[15px] font-medium text-ink-soft">
+                <span>Gecontracteerd voor jeugdhulp in West-Brabant</span>
+                <span aria-hidden className="hidden h-1 w-1 rounded-full bg-grey sm:inline-block" />
+                <span>SKJ-geregistreerde jeugdprofessionals</span>
+                <span aria-hidden className="hidden h-1 w-1 rounded-full bg-grey sm:inline-block" />
+                <span>Actief in 14 gemeenten</span>
               </div>
             </div>
           </div>
