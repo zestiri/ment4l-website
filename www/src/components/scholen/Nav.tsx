@@ -6,10 +6,11 @@ import { Logo } from "./Logo";
 import { KENNISMAKING_URL } from "@/lib/programmas";
 
 const links = [
-  { href: "/#werkwijze", label: "Werkwijze" },
-  { href: "/#aanbod", label: "Aanbod" },
+  { href: "/scholen#werkwijze", label: "Werkwijze" },
+  { href: "/scholen#aanbod", label: "Aanbod" },
   { href: "/scholen/professionals", label: "Professionals" },
-  { href: "/#scholen", label: "Voor scholen" },
+  { href: "/scholen#scholen", label: "Voor scholen" },
+  { href: "/", label: "Jeugdhulp" },
 ];
 
 export function Nav() {

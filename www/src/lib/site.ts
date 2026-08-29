@@ -156,9 +156,9 @@ export const NAV_AANBOD: AanbodItem[] = [
     icon: "spoed",
   },
   {
-    href: "/trajecten/jeugdcoaching-op-scholen",
+    href: "/scholen",
     label: "Jeugdcoaching op school",
-    omschrijving: "Begeleiding op de plek waar het speelt.",
+    omschrijving: "Naschoolse talentprogramma's op scholen.",
     icon: "school",
   },
   {
@@ -183,6 +183,7 @@ export const JEUGDHULP_HUB = {
 
 /** Top-level items naast de aanbod-dropdown. */
 export const NAV_PRIMAIR = [
+  { href: "/scholen", label: "Voor scholen" },
   { href: "/verwijzers", label: "Voor verwijzers" },
   { href: "/over-ons", label: "Over ons" },
 ] as const;
