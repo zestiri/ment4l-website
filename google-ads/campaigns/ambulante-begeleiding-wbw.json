@@ -20,9 +20,14 @@
     "9063280",
     "1010525",
     "9063248",
-    "9063247"
+    "9063247",
+    "9063480",
+    "9063437",
+    "9063345",
+    "9063392",
+    "9189150"
   ],
-  "_locations_toelichting": "De 9 WBW-gemeenten als geo target constants: Roosendaal, Bergen op Zoom, Etten-Leur, Halderberge, Moerdijk, Rucphen, Steenbergen, Woensdrecht, Zundert. Rotterdam (kantoor) NIET targeten: zonder contract wordt de zorg daar niet vergoed. Zet de locatie-instelling op AANWEZIGHEID, nooit op 'aanwezigheid of interesse' - woonplaatsbeginsel.",
+  "_locations_toelichting": "14 gemeenten: de 9 van West-Brabant West (Roosendaal, Bergen op Zoom, Etten-Leur, Halderberge, Moerdijk, Rucphen, Steenbergen, Woensdrecht, Zundert) plus per 29 aug 2026 de 5 van West-Brabant Oost (Breda 9063480, Oosterhout 9063437, Drimmelen 9063345, Geertruidenberg 9063392, Altena 9189150) - MENT4L is ook in de WBO-jeugdregio gecontracteerd. Rotterdam (kantoor) NIET targeten. Locatie op AANWEZIGHEID, nooit 'aanwezigheid of interesse' - woonplaatsbeginsel. LET OP: de site (regio-copy + woonplaats-routing) moet WBO nog erkennen VOORDAT de campagne live gaat, anders ziet een Breda-zoeker 'West-Brabant West' en wordt een Breda-lead als 'buiten werkgebied' geflagd.",
   "languages": [
     "1010"
   ],
@@ -405,7 +410,6 @@
       "save"
     ],
     "buiten_werkgebied": [
-      "breda",
       "tilburg",
       "eindhoven",
       "rotterdam",
