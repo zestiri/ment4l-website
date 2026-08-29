@@ -199,9 +199,7 @@ export function AanmeldForm({
         form.reset();
         // Hier, en nergens anders. Er is geen bedankt-URL waar we op kunnen
         // meten, dus dit punt in de success-handler ís het conversiemoment.
-        // Telefoon mee voor enhanced conversions; gtag hasht het en stuurt het
-        // alleen na toestemming. Dit formulier vraagt geen e-mail.
-        meldConversie("aanmelding", { telefoon: String(data.phone ?? "") });
+        meldConversie("aanmelding");
       } else {
         const body = await res.json().catch(() => ({}));
         setStatus("error");

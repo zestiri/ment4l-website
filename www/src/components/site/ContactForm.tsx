@@ -26,12 +26,7 @@ export function ContactForm() {
       if (res.ok) {
         setStatus("ok");
         form.reset();
-        // E-mail en telefoon mee voor enhanced conversions; gtag hasht ze en
-        // stuurt ze alleen na toestemming.
-        meldConversie("contact", {
-          email: String(data.email ?? ""),
-          telefoon: String(data.phone ?? ""),
-        });
+        meldConversie("contact");
       } else {
         const body = await res.json().catch(() => ({}));
         setStatus("error");

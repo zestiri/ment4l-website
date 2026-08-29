@@ -68,10 +68,7 @@ function pasToe(k: Keuze) {
     window.gtag?.("consent", "update", {
       ad_storage: k,
       ad_user_data: k,
-      // BEWUST altijd geweigerd, ook bij "ja". Meten en enhanced conversions
-      // hebben ad_personalization niet nodig; personalisatie/remarketing op een
-      // jeugdhulp-doelgroep willen we niet. Zo blijft het meting, geen targeting.
-      ad_personalization: "denied",
+      ad_personalization: k,
       analytics_storage: k,
     });
   } catch {

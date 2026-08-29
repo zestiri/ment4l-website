@@ -36,14 +36,8 @@ export const METING_AAN = ADS_ID.length > 0;
  * GA4-analytics, los van Ads en optioneel. Zelfde gtag, eigen meet-id, achter
  * dezelfde toestemmingsbalk. Statistiek zoals concurrenten (Youz e.a.) dat doen.
  * Google Signals en ad-personalisatie staan UIT (zie layout.tsx), zodat het
- * pure bezoekcijfers zijn en geen personalisatie op gevoelig gedrag.
- *
- * GA4-conversies (generate_lead voor een aanmelding, telefoon_klik) mogen wel
- * naar Ads geimporteerd worden, maar alleen als SECUNDAIRE conversie: puur meten
- * en rapporteren, nooit als bod-signaal. De grens die we niet overgaan is
- * conversie-gestuurd Smart Bidding (Max. conversies / tCPA) en enhanced
- * conversions; beide zouden neerkomen op bieden op of hashen van gevoelig
- * zorggedrag, en die blijven uit. Bij handmatig CPC is de import zuiver meting.
+ * pure bezoekcijfers zijn en geen personalisatie op gevoelig gedrag. Wel GA4,
+ * NIET GA4-conversies naar Ads importeren: dan zou je alsnog op zorggedrag bieden.
  */
 export const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID ?? "";
 export const GA4_AAN = GA4_ID.length > 0;
@@ -162,43 +156,12 @@ export function schrijfKlikIdInUrl() {
 
 // ── Laag 2: de optionele Google Ads-tag ────────────────────────────────
 
-/** Contactgegevens voor enhanced conversions. Los meegegeven, nooit opgeslagen. */
-export type Contactgegevens = { email?: string; telefoon?: string };
-
-/** Nederlands telefoonnummer naar E.164 (+31...) voor enhanced conversions. Leeg bij twijfel. */
-export function telefoonE164(ruw?: string): string {
-  if (!ruw) return "";
-  let s = ruw.replace(/[^\d+]/g, "");
-  if (s.startsWith("00")) s = "+" + s.slice(2);
-  if (!s.startsWith("+")) s = s.startsWith("0") ? "+31" + s.slice(1) : "+31" + s;
-  return s.length >= 11 && s.length <= 15 ? s : "";
-}
-
-/**
- * Ruwe contactgegevens naar het user_data-formaat van enhanced conversions.
- * gtag hasht de waarden zelf (SHA-256) vóór verzending; wij normaliseren alleen.
- * Alleen niet-lege, plausibele velden. Niets bruikbaars: null.
- */
-function maakUserData(gegevens?: Contactgegevens): Record<string, string> | null {
-  if (!gegevens) return null;
-  const uit: Record<string, string> = {};
-  const email = gegevens.email?.trim().toLowerCase();
-  if (email && email.includes("@") && email.length >= 6) uit.email = email;
-  const tel = telefoonE164(gegevens.telefoon);
-  if (tel) uit.phone_number = tel;
-  return Object.keys(uit).length ? uit : null;
-}
-
 /**
  * Meldt een conversie aan Google Ads. Veilig aan te roepen zonder tag, zonder
  * toestemming en tijdens server-rendering: dan gebeurt er niets. Dit is de
  * aanvulling, niet de basis. De basis is de klik-id in de leadmail.
- *
- * `gegevens` (e-mail/telefoon) zijn voor enhanced conversions: gtag hasht ze
- * client-side en stuurt ze alleen mee als de bezoeker toestemming gaf. Consent
- * Mode houdt ad_user_data anders op 'denied', dan verlaat er niets de browser.
  */
-export function meldConversie(soort: Conversie, gegevens?: Contactgegevens) {
+export function meldConversie(soort: Conversie) {
   if (typeof window === "undefined") return;
   try {
     window.dataLayer = window.dataLayer ?? [];
@@ -219,10 +182,6 @@ export function meldConversie(soort: Conversie, gegevens?: Contactgegevens) {
     if (METING_AAN) {
       const label = LABELS[soort];
       if (label) {
-        // Enhanced conversions: contactgegevens klaarzetten vóór het event. gtag
-        // hasht ze zelf en stuurt ze alleen als ad_user_data 'granted' is.
-        const userData = maakUserData(gegevens);
-        if (userData) window.gtag("set", "user_data", userData);
         window.gtag("event", "conversion", {
           send_to: `${ADS_ID}/${label}`,
           value: WAARDE[soort],

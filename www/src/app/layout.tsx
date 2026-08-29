@@ -17,10 +17,7 @@ const GA4_ID_VEILIG = GA4_ID.replace(/[^A-Za-z0-9-]/g, "");
 // gtag.js laadt met de eerste beschikbare id; daarna configureren we elke id apart.
 const BOOTSTRAP_ID = ADS_ID_VEILIG || GA4_ID_VEILIG;
 const CONFIG_REGELS = [
-  // Ads-tag met enhanced conversions AAN: gtag hasht de contactgegevens die het
-  // formulier meegeeft en koppelt de conversie zo aan de klik. Werkt alleen na
-  // toestemming (ad_user_data granted) en zonder ad-personalisatie (zie Meting).
-  METING_AAN ? `gtag('config','${ADS_ID_VEILIG}',{allow_enhanced_conversions:true});` : "",
+  METING_AAN ? `gtag('config','${ADS_ID_VEILIG}');` : "",
   // GA4 met Google Signals en ad-personalisatie UIT: pure statistiek, geen
   // personalisatie op gevoelig (zorg)gedrag.
   GA4_AAN
