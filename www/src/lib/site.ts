@@ -97,25 +97,6 @@ export const HERO_AVATARS = [
   "/images/avatar-e.png",
 ] as const;
 
-/** Wapens van de gemeenten waar MENT4L gecontracteerd is. Bron: Wikimedia Commons
- *  (officiele gemeentewapens, publiek domein). Volgorde gelijk aan WBW_GEMEENTEN. */
-export const GEMEENTE_LOGOS = [
-  { naam: "Bergen op Zoom", src: "/images/gemeenten/bergen-op-zoom.png" },
-  { naam: "Etten-Leur", src: "/images/gemeenten/etten-leur.png" },
-  { naam: "Halderberge", src: "/images/gemeenten/halderberge.png" },
-  { naam: "Moerdijk", src: "/images/gemeenten/moerdijk.png" },
-  { naam: "Roosendaal", src: "/images/gemeenten/roosendaal.png" },
-  { naam: "Rucphen", src: "/images/gemeenten/rucphen.png" },
-  { naam: "Steenbergen", src: "/images/gemeenten/steenbergen.png" },
-  { naam: "Woensdrecht", src: "/images/gemeenten/woensdrecht.png" },
-  { naam: "Zundert", src: "/images/gemeenten/zundert.png" },
-  { naam: "Breda", src: "/images/gemeenten/breda.png" },
-  { naam: "Oosterhout", src: "/images/gemeenten/oosterhout.png" },
-  { naam: "Drimmelen", src: "/images/gemeenten/drimmelen.png" },
-  { naam: "Geertruidenberg", src: "/images/gemeenten/geertruidenberg.png" },
-  { naam: "Altena", src: "/images/gemeenten/altena.png" },
-] as const;
-
 export const WORKSHOPS_SLUG = "workshops-jeugd-digitale-wereld";
 
 // ── Navigatie ──────────────────────────────────────────────────────────

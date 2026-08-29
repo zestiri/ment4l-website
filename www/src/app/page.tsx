@@ -13,7 +13,7 @@ import {
   BLOG_TEASERS,
   HERO_AVATARS,
   AANMELD_URL,
-  GEMEENTE_LOGOS,
+  WBW_GEMEENTEN,
 } from "@/lib/site";
 
 const STAT_CARDS: { waarde: string; label: string; Icon: LucideIcon }[] = [
@@ -96,9 +96,9 @@ export default function Home() {
             </Reveal>
           </div>
 
-            {/* Gecontracteerde-gemeenten band: infinite-scroll marquee van de officiele
-                gemeentewapens, zoals de live logostrook. Bron: GEMEENTE_LOGOS (Wikimedia,
-                publiek domein). */}
+            {/* Gecontracteerde-gemeenten band: infinite-scroll wordmark-marquee. Uniforme
+                tekst-wordmarks (geen geleende logo's, geen achtergrond, allemaal dezelfde
+                stijl), zoals de live logostrook maar consistent en schoon. Bron: WBW_GEMEENTEN. */}
             <div className="px-6 pb-16 pt-2">
               <Reveal>
                 <div className="flex justify-center">
@@ -109,17 +109,15 @@ export default function Home() {
                 </div>
               </Reveal>
               <Reveal delay={0.1}>
-                <div className="mt-9 overflow-hidden [mask-image:linear-gradient(to_right,transparent_0%,#000_10%,#000_90%,transparent_100%)]">
-                  <ul className="animate-logos flex w-max items-center gap-12 lg:gap-16" style={{ animationDuration: "120s" }}>
-                    {[...GEMEENTE_LOGOS, ...GEMEENTE_LOGOS].map((g, i) => (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <li key={`${g.src}-${i}`} className="shrink-0" aria-hidden={i >= GEMEENTE_LOGOS.length}>
-                        <img
-                          src={g.src}
-                          alt={i < GEMEENTE_LOGOS.length ? `Gemeente ${g.naam}` : ""}
-                          title={g.naam}
-                          className="h-12 w-auto object-contain sm:h-14"
-                        />
+                <div className="mt-8 overflow-hidden [mask-image:linear-gradient(to_right,transparent_0%,#000_10%,#000_90%,transparent_100%)]">
+                  <ul className="animate-logos flex w-max items-center gap-10 sm:gap-14" style={{ animationDuration: "85s" }}>
+                    {[...WBW_GEMEENTEN, ...WBW_GEMEENTEN].map((naam, i) => (
+                      <li
+                        key={`${naam}-${i}`}
+                        aria-hidden={i >= WBW_GEMEENTEN.length}
+                        className="shrink-0 whitespace-nowrap text-[19px] font-semibold tracking-tight text-ink-soft sm:text-[22px]"
+                      >
+                        {naam}
                       </li>
                     ))}
                   </ul>
