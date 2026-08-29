@@ -12,7 +12,7 @@ import { WACHTTIJDEN, WACHTTIJDEN_BIJGEWERKT } from "@/lib/funnel";
 export const metadata: Metadata = {
   title: "Wachttijden",
   description:
-    "Actuele wachttijden per traject bij MENT4L, wekelijks bijgewerkt. Jeugdhulp in West-Brabant West zonder wachtlijst. Reactie binnen 4 uur.",
+    "Actuele wachttijden per traject bij MENT4L, wekelijks bijgewerkt. Jeugdhulp in West-Brabant zonder wachtlijst. Reactie binnen 4 uur.",
   alternates: { canonical: "/wachttijden" },
 };
 

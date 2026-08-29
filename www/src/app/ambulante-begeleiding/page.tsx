@@ -16,7 +16,7 @@ import { GEMEENTEN, WACHTTIJDEN_BIJGEWERKT } from "@/lib/funnel";
 /**
  * Landingspagina voor de zoekterm "ambulante begeleiding".
  *
- * Waarom deze pagina bestaat: in de negen gemeenten van West-Brabant West is dit
+ * Waarom deze pagina bestaat: in de gemeenten van West-Brabant is dit
  * na "jeugdzorg" de meest gezochte term (90 per maand, gemeten met Keyword
  * Planner op de regio). De term hoort daarom in de title, de H1 en de eerste
  * zichtbare zin te blijven staan. Dat is geen stijlkeuze.
@@ -40,7 +40,7 @@ import { GEMEENTEN, WACHTTIJDEN_BIJGEWERKT } from "@/lib/funnel";
 export const metadata: Metadata = {
   title: "Ambulante begeleiding jeugd",
   description:
-    "Ambulante begeleiding voor kinderen en jongeren in West-Brabant West. Een vaste jeugdcoach komt naar jullie toe. Geen wachtlijst, geen eigen bijdrage, reactie binnen 4 uur.",
+    "Ambulante begeleiding voor kinderen en jongeren in West-Brabant. Een vaste jeugdcoach komt naar jullie toe. Geen wachtlijst, geen eigen bijdrage, reactie binnen 4 uur.",
   alternates: { canonical: "/ambulante-begeleiding" },
 };
 
@@ -150,7 +150,7 @@ const VRAGEN: { v: string; a: string; jsx?: React.ReactNode }[] = [
   },
   {
     v: "In welke gemeenten kan ik ambulante begeleiding aanvragen?",
-    a: "MENT4L is actief in de negen gemeenten van West-Brabant West: Bergen op Zoom, Etten-Leur, Halderberge, Moerdijk, Roosendaal, Rucphen, Steenbergen, Woensdrecht en Zundert. Welke gemeente de zorg betaalt, hangt af van waar je kind woont.",
+    a: "MENT4L is actief in veertien gemeenten in West-Brabant, van Bergen op Zoom en Roosendaal tot Breda, Oosterhout en Geertruidenberg. Welke gemeente de zorg betaalt, hangt af van waar je kind woont.",
   },
   {
     v: "Wat is het verschil met ambulante spoedhulp?",
@@ -196,7 +196,7 @@ export default function AmbulanteBegeleidingPage() {
     provider: { "@type": "Organization", name: "MENT4L", url: "https://www.ment4l.nl" },
     areaServed: GEMEENTEN.map((g) => ({ "@type": "City", name: g.naam })),
     description:
-      "Ambulante begeleiding voor kinderen en jongeren van 0 tot 18 jaar in West-Brabant West. Een vaste jeugdcoach begeleidt thuis, op school of in de wijk.",
+      "Ambulante begeleiding voor kinderen en jongeren van 0 tot 18 jaar in West-Brabant. Een vaste jeugdcoach begeleidt thuis, op school of in de wijk.",
   };
 
   return (
@@ -234,7 +234,7 @@ export default function AmbulanteBegeleidingPage() {
                     </p>
                     <p className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-[14px] text-grey">
                       <MapPin aria-hidden className="h-4 w-4 text-brand" strokeWidth={2} />
-                      West-Brabant West
+                      West-Brabant
                       <span aria-hidden className="h-1 w-1 rounded-full bg-grey-2" />
                       Voor kinderen en jongeren van 0 tot 18 jaar
                     </p>

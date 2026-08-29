@@ -1,4 +1,4 @@
-// Datalaag voor de acquisitiefunnel (jeugdhulp West-Brabant West).
+// Datalaag voor de acquisitiefunnel (jeugdhulp West-Brabant).
 // Losgekoppeld van de content die uit de oude Framer-site komt.
 
 export type Gemeente = {
@@ -8,7 +8,7 @@ export type Gemeente = {
   kernen: string[];
 };
 
-/** De 9 gemeenten van regio West-Brabant West waar MENT4L actief is. */
+/** De 14 gemeenten van West-Brabant (West en Oost) waar MENT4L actief is. */
 export const GEMEENTEN: Gemeente[] = [
   { slug: "bergen-op-zoom", naam: "Bergen op Zoom", kernen: ["Bergen op Zoom", "Halsteren", "Lepelstraat"] },
   { slug: "etten-leur", naam: "Etten-Leur", kernen: ["Etten-Leur"] },
@@ -19,6 +19,12 @@ export const GEMEENTEN: Gemeente[] = [
   { slug: "steenbergen", naam: "Steenbergen", kernen: ["Steenbergen", "Dinteloord", "Kruisland", "Nieuw-Vossemeer"] },
   { slug: "woensdrecht", naam: "Woensdrecht", kernen: ["Hoogerheide", "Putte", "Ossendrecht", "Huijbergen"] },
   { slug: "zundert", naam: "Zundert", kernen: ["Zundert", "Rijsbergen", "Achtmaal", "Wernhout"] },
+  // West-Brabant Oost (toegevoegd 29 aug 2026): MENT4L is ook in de WBO-jeugdregio gecontracteerd.
+  { slug: "breda", naam: "Breda", kernen: ["Breda", "Prinsenbeek", "Bavel", "Ulvenhout", "Teteringen", "Effen"] },
+  { slug: "oosterhout", naam: "Oosterhout", kernen: ["Oosterhout", "Dorst", "Den Hout", "Oosteind"] },
+  { slug: "drimmelen", naam: "Drimmelen", kernen: ["Made", "Terheijden", "Wagenberg", "Lage Zwaluwe", "Hooge Zwaluwe", "Drimmelen"] },
+  { slug: "geertruidenberg", naam: "Geertruidenberg", kernen: ["Geertruidenberg", "Raamsdonksveer", "Raamsdonk"] },
+  { slug: "altena", naam: "Altena", kernen: ["Werkendam", "Woudrichem", "Wijk en Aalburg", "Sleeuwijk", "Almkerk", "Nieuwendijk", "Dussen", "Hank", "Andel", "Genderen", "Veen", "Eethen", "Giessen", "Rijswijk", "Meeuwen"] },
 ];
 
 export const getGemeente = (slug: string) => GEMEENTEN.find((g) => g.slug === slug);
@@ -33,7 +39,7 @@ export const getGemeente = (slug: string) => GEMEENTEN.find((g) => g.slug === sl
  */
 export function gemeenteVoorPlaats(woonplaats: string): string | null {
   // Collapse "sint" naar "st", zodat de kern "St. Willebrord" ook matcht als een
-  // ouder "Sint Willebrord" typt. In de negen gemeenten en hun kernen komt "sint"
+  // ouder "Sint Willebrord" typt. In deze gemeenten en hun kernen komt "sint"
   // alleen voor als die afkorting, dus dit raakt niets anders (Steenbergen blijft
   // steenbergen). Zonder dit ging elke aanmelding uit St. Willebrord, de grootste
   // kern van Rucphen, als "buiten werkgebied" de mail in.
@@ -95,5 +101,5 @@ export const STAPPEN = [
 export const BEWIJS = [
   { waarde: "4 uur", label: "Streeftijd waarbinnen we reageren" },
   { waarde: "24/7", label: "Bereikbaar, ook buiten kantooruren" },
-  { waarde: "9", label: "Gemeenten waar we actief zijn" },
+  { waarde: "14", label: "Gemeenten waar we actief zijn" },
 ];

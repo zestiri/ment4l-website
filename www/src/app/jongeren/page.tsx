@@ -10,7 +10,7 @@ import { CONTACT, AANMELD_URL, HERO_AVATARS } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Hulp voor jezelf regelen",
   description:
-    "Ben je 16 of ouder? Dan mag je jezelf aanmelden voor hulp. Een coach die naar je luistert, geen wachtlijst. MENT4L in West-Brabant West.",
+    "Ben je 16 of ouder? Dan mag je jezelf aanmelden voor hulp. Een coach die naar je luistert, geen wachtlijst. MENT4L in West-Brabant.",
   alternates: { canonical: "/jongeren" },
 };
 

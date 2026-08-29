@@ -13,9 +13,9 @@ import { GEMEENTEN, VERWIJZERS } from "@/lib/funnel";
 
 import { CheckBullet } from "@/components/site/IconBadge";
 export const metadata: Metadata = {
-  title: "Jeugdhulp in West-Brabant West",
+  title: "Jeugdhulp in West-Brabant",
   description:
-    "Ambulante jeugdhulp in Bergen op Zoom, Roosendaal, Etten-Leur en de hele regio West-Brabant West. Geen wachtlijst, reactie binnen 4 uur, 24/7 bereikbaar.",
+    "Ambulante jeugdhulp in Bergen op Zoom, Roosendaal, Etten-Leur en de hele regio West-Brabant. Geen wachtlijst, reactie binnen 4 uur, 24/7 bereikbaar.",
   alternates: { canonical: "/jeugdhulp-west-brabant-west" },
 };
 
@@ -30,7 +30,7 @@ export default function HubPage() {
           <div className="relative mx-auto w-full max-w-[1100px] rounded-t-[32px] bg-canvas">
             <div className="px-6 pb-16 pt-24 sm:pt-28">
               <div className="mx-auto max-w-3xl text-center">
-                <span className="eyebrow justify-center text-brand">Jeugdhulp · West-Brabant West</span>
+                <span className="eyebrow justify-center text-brand">Jeugdhulp · West-Brabant</span>
                 <h1 className="mt-4 text-[clamp(2.1rem,5vw,3.4rem)]">
                   Hulp voor je kind, zonder wachtlijst
                 </h1>
@@ -151,7 +151,7 @@ export default function HubPage() {
               <div className="mx-auto max-w-2xl text-center">
                 <span className="eyebrow justify-center text-brand">Werkgebied</span>
                 <h2 className="mt-3 text-[clamp(1.75rem,4vw,2.5rem)]">
-                  Actief in negen gemeenten
+                  Actief in veertien gemeenten
                 </h2>
                 <p className="mt-4 text-ink-soft">
                   Woon je hier? Dan kunnen we direct starten zodra de verwijzing rond is.

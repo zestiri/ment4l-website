@@ -12,12 +12,12 @@ import { IconBadge } from "@/components/site/IconBadge";
 export const metadata: Metadata = {
   title: "Voor verwijzers",
   description:
-    "Verwijs in twee minuten naar MENT4L. Actief in West-Brabant West, geen wachtlijst, 24/7 bereikbaar. Wij nemen binnen 4 uur contact op met het gezin.",
+    "Verwijs in twee minuten naar MENT4L. Actief in West-Brabant, geen wachtlijst, 24/7 bereikbaar. Wij nemen binnen 4 uur contact op met het gezin.",
   alternates: { canonical: "/verwijzers" },
 };
 
 const FEITEN = [
-  { Icon: MapPin, titel: "Werkgebied", tekst: "De 9 gemeenten van West-Brabant West" },
+  { Icon: MapPin, titel: "Werkgebied", tekst: "De 14 gemeenten van West-Brabant" },
   { Icon: Clock, titel: "Reactietijd", tekst: "Binnen 4 uur contact met het gezin" },
   { Icon: Phone, titel: "Bereikbaar", tekst: "24/7, ook in het weekend" },
 ];
@@ -156,7 +156,7 @@ export default function VerwijzersPage() {
               <Reveal delay={0.06}>
                 <h2 className="text-[clamp(1.5rem,3vw,2rem)]">Werkgebied</h2>
                 <p className="mt-4 text-ink-soft">
-                  Wij zijn actief in de negen gemeenten van regio West-Brabant West:
+                  Wij zijn actief in de veertien gemeenten van West-Brabant:
                 </p>
                 <div className="mt-6 flex flex-wrap gap-2">
                   {WBW_GEMEENTEN.map((g) => (

@@ -26,7 +26,7 @@ export const WERKEN_BIJ_URL = "https://app.ment4l.nl/register";
 export const FINANCIERING_UITLEG =
   "De gemeente betaalt de jeugdhulp. Er is geen eigen bijdrage.";
 
-/** Gemeenten waar MENT4L actief is voor jeugdhulp (regio West-Brabant West). */
+/** De 14 gemeenten waar MENT4L jeugdhulp levert: West-Brabant en Oost. */
 export const WBW_GEMEENTEN = [
   "Bergen op Zoom",
   "Etten-Leur",
@@ -37,6 +37,11 @@ export const WBW_GEMEENTEN = [
   "Steenbergen",
   "Woensdrecht",
   "Zundert",
+  "Breda",
+  "Oosterhout",
+  "Drimmelen",
+  "Geertruidenberg",
+  "Altena",
 ] as const;
 
 export const CONTACT = {
@@ -163,7 +168,7 @@ export const NAV_AANBOD: AanbodItem[] = [
 /** De regionale hub; als "bekijk alles"-anker onderin de aanbod-dropdown. */
 export const JEUGDHULP_HUB = {
   href: "/jeugdhulp-west-brabant-west",
-  label: "Alle jeugdhulp in West-Brabant West",
+  label: "Alle jeugdhulp in West-Brabant",
 } as const;
 
 /** Top-level items naast de aanbod-dropdown. */

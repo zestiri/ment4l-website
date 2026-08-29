@@ -79,13 +79,13 @@
           "Hulp Bij De Verwijzing",
           "Aanmelden In 3 Velden",
           "Wij Bellen Je Terug",
-          "Actief In 9 Gemeenten"
+          "Actief In West-Brabant"
         ],
         "descriptions": [
           "Ambulante begeleiding voor jeugd bij jullie thuis, op school of in de wijk.",
           "Je hoort binnen 4 uur van ons, ook buiten kantooruren. Geen wachtlijst.",
           "Nog geen verwijzing? Wij helpen je die te krijgen. De gemeente betaalt de jeugdhulp.",
-          "Actief in negen gemeenten in West-Brabant West. Je nummer achterlaten kost drie velden."
+          "Actief in veertien gemeenten in West-Brabant West. Je nummer achterlaten kost drie velden."
         ],
         "path1": "ambulante",
         "path2": "begeleiding"
@@ -121,13 +121,13 @@
           "De Gemeente Betaalt",
           "Aanmelden In 3 Velden",
           "Wij Bellen Je Terug",
-          "Actief In 9 Gemeenten"
+          "Actief In West-Brabant"
         ],
         "descriptions": [
           "Loopt het thuis vast? Een vaste jeugdcoach helpt bij jullie thuis, op school of wijk.",
           "Geen wachtlijst en je hoort binnen 4 uur van ons, ook 's avonds en in het weekend.",
           "SKJ-geregistreerde begeleiders. De gemeente betaalt, er is geen eigen bijdrage.",
-          "Je nummer achterlaten kost drie velden. Actief in negen gemeenten in West-Brabant."
+          "Je nummer achterlaten kost drie velden. Actief in veertien gemeenten in West-Brabant."
         ],
         "path1": "opvoedhulp",
         "path2": "jeugdcoach"
@@ -196,13 +196,13 @@
           "Jeugdcoach Of Gezinscoach",
           "Hulp Bij De Verwijzing",
           "Wij Bellen Je Terug",
-          "Actief In 9 Gemeenten"
+          "Actief In West-Brabant"
         ],
         "descriptions": [
           "Jeugdhulp in West-Brabant West, zonder wachtlijst. Je hoort binnen 4 uur van ons.",
           "Ambulante begeleiding bij jullie thuis, op school of in de wijk. Een vaste jeugdcoach.",
           "De gemeente betaalt de jeugdhulp, geen eigen bijdrage. Bellen kan zonder verwijzing.",
-          "24/7 bereikbaar, ook 's avonds en in het weekend. Actief in negen gemeenten."
+          "24/7 bereikbaar, ook 's avonds en in het weekend. Actief in veertien gemeenten."
         ],
         "path1": "jeugdhulp",
         "path2": "west-brabant"
