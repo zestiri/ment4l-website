@@ -93,6 +93,27 @@
   @keyframes floaty {
     to { transform: translate(26px, -22px) scale(1.06); }
   }
+
+  /* Scholen-domein: speelse micro-animaties (Doodle-twinkle, bob, orbit, groeibalk). */
+  --animate-twinkle: twinkle 3.6s ease-in-out infinite;
+  --animate-bob: bob 5s ease-in-out infinite;
+  --animate-orbit: orbit 18s linear infinite;
+  --animate-orbit-rev: orbit 26s linear infinite reverse;
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.5; transform: scale(0.85) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1) rotate(8deg); }
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-7px) rotate(-3deg); }
+  }
+  @keyframes orbit {
+    to { transform: rotate(360deg); }
+  }
+  @keyframes progress {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
 }
 
 @layer base {
@@ -193,6 +214,15 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='128'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='128' height='128' filter='url(%23g)'/%3E%3C/svg%3E");
   background-size: 128px 128px;
   opacity: 0.12;
+}
+
+/* Scholen-domein: subtiele diagonale textuur (eigen tegel). */
+.texture {
+  background-image: repeating-linear-gradient(
+    135deg,
+    transparent 0 22px,
+    rgba(120, 120, 120, 0.035) 22px 23px
+  );
 }
 
 @media (prefers-reduced-motion: reduce) {
