@@ -97,6 +97,25 @@ export const HERO_AVATARS = [
   "/images/avatar-e.png",
 ] as const;
 
+/** Officiele logo's van de gemeenten waar MENT4L mee samenwerkt (van de eigen
+ *  gemeente-sites gehaald). Volgorde gelijk aan WBW_GEMEENTEN. */
+export const GEMEENTE_LOGOS = [
+  { naam: "Bergen op Zoom", src: "/images/gemeenten/bergen-op-zoom.svg" },
+  { naam: "Etten-Leur", src: "/images/gemeenten/etten-leur.svg" },
+  { naam: "Halderberge", src: "/images/gemeenten/halderberge.svg" },
+  { naam: "Moerdijk", src: "/images/gemeenten/moerdijk.svg" },
+  { naam: "Roosendaal", src: "/images/gemeenten/roosendaal.svg" },
+  { naam: "Rucphen", src: "/images/gemeenten/rucphen.png" },
+  { naam: "Steenbergen", src: "/images/gemeenten/steenbergen.svg" },
+  { naam: "Woensdrecht", src: "/images/gemeenten/woensdrecht.svg" },
+  { naam: "Zundert", src: "/images/gemeenten/zundert.png" },
+  { naam: "Breda", src: "/images/gemeenten/breda.svg" },
+  { naam: "Oosterhout", src: "/images/gemeenten/oosterhout.svg" },
+  { naam: "Drimmelen", src: "/images/gemeenten/drimmelen.svg" },
+  { naam: "Geertruidenberg", src: "/images/gemeenten/geertruidenberg.svg" },
+  { naam: "Altena", src: "/images/gemeenten/altena.svg" },
+] as const;
+
 export const WORKSHOPS_SLUG = "workshops-jeugd-digitale-wereld";
 
 // ── Navigatie ──────────────────────────────────────────────────────────

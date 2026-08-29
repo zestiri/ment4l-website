@@ -13,7 +13,7 @@ import {
   BLOG_TEASERS,
   HERO_AVATARS,
   AANMELD_URL,
-  WBW_GEMEENTEN,
+  GEMEENTE_LOGOS,
 } from "@/lib/site";
 
 const STAT_CARDS: { waarde: string; label: string; Icon: LucideIcon }[] = [
@@ -96,28 +96,30 @@ export default function Home() {
             </Reveal>
           </div>
 
-            {/* Gecontracteerde-gemeenten band: infinite-scroll wordmark-marquee. Uniforme
-                tekst-wordmarks (geen geleende logo's, geen achtergrond, allemaal dezelfde
-                stijl), zoals de live logostrook maar consistent en schoon. Bron: WBW_GEMEENTEN. */}
+            {/* Samenwerkingen-band: infinite-scroll marquee met de officiele logo's van de
+                gemeenten waar MENT4L mee samenwerkt. Bron: GEMEENTE_LOGOS (van de eigen
+                gemeente-sites). Hoogte + max-breedte genormaliseerd voor een rustige rol. */}
             <div className="px-6 pb-16 pt-2">
               <Reveal>
                 <div className="flex justify-center">
                   <span className="inline-flex items-center gap-2 rounded-full border border-hairline bg-canvas px-3.5 py-1.5 text-sm font-medium text-ink-soft shadow-[var(--shadow-soft)]">
                     <MapPin className="h-4 w-4 text-brand" strokeWidth={2} />
-                    Gecontracteerd in West-Brabant
+                    Samenwerkingen in West-Brabant
                   </span>
                 </div>
               </Reveal>
               <Reveal delay={0.1}>
-                <div className="mt-8 overflow-hidden [mask-image:linear-gradient(to_right,transparent_0%,#000_10%,#000_90%,transparent_100%)]">
-                  <ul className="animate-logos flex w-max items-center gap-10 sm:gap-14" style={{ animationDuration: "85s" }}>
-                    {[...WBW_GEMEENTEN, ...WBW_GEMEENTEN].map((naam, i) => (
-                      <li
-                        key={`${naam}-${i}`}
-                        aria-hidden={i >= WBW_GEMEENTEN.length}
-                        className="shrink-0 whitespace-nowrap text-[19px] font-semibold tracking-tight text-ink-soft sm:text-[22px]"
-                      >
-                        {naam}
+                <div className="mt-9 overflow-hidden [mask-image:linear-gradient(to_right,transparent_0%,#000_8%,#000_92%,transparent_100%)]">
+                  <ul className="animate-logos flex w-max items-center gap-10 sm:gap-14" style={{ animationDuration: "95s" }}>
+                    {[...GEMEENTE_LOGOS, ...GEMEENTE_LOGOS].map((g, i) => (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <li key={`${g.src}-${i}`} className="flex shrink-0 items-center" aria-hidden={i >= GEMEENTE_LOGOS.length}>
+                        <img
+                          src={g.src}
+                          alt={i < GEMEENTE_LOGOS.length ? `Gemeente ${g.naam}` : ""}
+                          title={g.naam}
+                          className="h-9 w-auto max-w-[150px] object-contain sm:h-11"
+                        />
                       </li>
                     ))}
                   </ul>
