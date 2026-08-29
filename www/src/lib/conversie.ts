@@ -36,8 +36,13 @@ export const METING_AAN = ADS_ID.length > 0;
  * GA4-analytics, los van Ads en optioneel. Zelfde gtag, eigen meet-id, achter
  * dezelfde toestemmingsbalk. Statistiek zoals concurrenten (Youz e.a.) dat doen.
  * Google Signals en ad-personalisatie staan UIT (zie layout.tsx), zodat het
- * pure bezoekcijfers zijn en geen personalisatie op gevoelig gedrag. Wel GA4,
- * NIET GA4-conversies naar Ads importeren: dan zou je alsnog op zorggedrag bieden.
+ * pure bezoekcijfers zijn en geen personalisatie op gevoelig gedrag.
+ *
+ * De GA4-sleutelgebeurtenissen (generate_lead, telefoon_klik) WORDEN in Google Ads
+ * geïmporteerd als conversie, net als in het Zestiri-account. Dat is meting: onder
+ * handmatig CPC sturen ze de biedingen niet, dus geen bieden op zorggedrag. De
+ * Ads-browsertag en enhanced conversions blijven UIT (gevoelige categorie); Ads
+ * krijgt de conversies via de GA4-koppeling, niet via een eigen tag op de site.
  */
 export const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID ?? "";
 export const GA4_AAN = GA4_ID.length > 0;
