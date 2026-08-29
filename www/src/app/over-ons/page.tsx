@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { BookOpen, Target, Footprints, Sparkles } from "lucide-react";
+import { BookOpen, Target, Footprints, Sparkles, MapPin } from "lucide-react";
+import { WBW_GEMEENTEN } from "@/lib/site";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { DarkPanel } from "@/components/site/DarkPanel";
@@ -91,14 +92,27 @@ export default function OverOnsPage() {
                 </h2>
               </div>
             </Reveal>
-            {/* Feitelijke band i.p.v. geleende logo's: geen overheids-/gemeentelogo's zonder toestemming. */}
-            <div className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-center text-[15px] font-medium text-ink-soft">
-              <span>Gecontracteerd voor jeugdhulp in West-Brabant</span>
-              <span aria-hidden className="hidden h-1 w-1 rounded-full bg-grey sm:inline-block" />
-              <span>SKJ-geregistreerde jeugdprofessionals</span>
-              <span aria-hidden className="hidden h-1 w-1 rounded-full bg-grey sm:inline-block" />
-              <span>Actief in 14 gemeenten</span>
-            </div>
+            {/* Gecontracteerde gemeenten als tekst i.p.v. geleende logo's (geen endorsement-claim). */}
+            <Reveal>
+              <div className="mt-12 flex justify-center">
+                <span className="inline-flex items-center gap-2 rounded-full border border-hairline bg-canvas px-3.5 py-1.5 text-sm font-medium text-ink-soft shadow-[var(--shadow-soft)]">
+                  <MapPin className="h-4 w-4 text-brand" strokeWidth={2} />
+                  Gecontracteerd in West-Brabant
+                </span>
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <ul className="mx-auto mt-7 flex max-w-2xl flex-wrap items-center justify-center gap-2.5">
+                {WBW_GEMEENTEN.map((gemeente) => (
+                  <li
+                    key={gemeente}
+                    className="rounded-full border border-hairline bg-canvas px-3.5 py-1.5 text-[13.5px] font-medium text-ink-soft transition-[color,border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-black/15 hover:text-ink"
+                  >
+                    {gemeente}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
           </div>
         </section>
 

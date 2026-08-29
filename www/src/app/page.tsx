@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { TrendingUp, GraduationCap, ClipboardCheck, Star, BarChart3, ArrowUpRight } from "lucide-react";
+import { TrendingUp, GraduationCap, ClipboardCheck, Star, BarChart3, ArrowUpRight, MapPin } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
@@ -13,6 +13,7 @@ import {
   BLOG_TEASERS,
   HERO_AVATARS,
   AANMELD_URL,
+  WBW_GEMEENTEN,
 } from "@/lib/site";
 
 const STAT_CARDS: { waarde: string; label: string; Icon: LucideIcon }[] = [
@@ -95,17 +96,33 @@ export default function Home() {
             </Reveal>
           </div>
 
-            {/* Feitelijke autoriteitsband: eigen, aantoonbare status i.p.v. geleende logo's.
-                Geen overheids- of gemeentelogo's: die vragen toestemming en suggereren endorsement. */}
-            <div className="px-6 pb-14">
-              <p className="text-center text-[19px] text-ink">Onderdeel van de jeugdhulp in West-Brabant</p>
-              <div className="mx-auto mt-8 flex max-w-3xl flex-wrap items-center justify-center gap-x-8 gap-y-3 text-center text-[15px] font-medium text-ink-soft">
-                <span>Gecontracteerd voor jeugdhulp in West-Brabant</span>
-                <span aria-hidden className="hidden h-1 w-1 rounded-full bg-grey sm:inline-block" />
-                <span>SKJ-geregistreerde jeugdprofessionals</span>
-                <span aria-hidden className="hidden h-1 w-1 rounded-full bg-grey sm:inline-block" />
-                <span>Actief in 14 gemeenten</span>
-              </div>
+            {/* Gecontracteerde-gemeenten band: onze eigen, aantoonbare footprint i.p.v. geleende
+                logo's. Namen als tekst, bewust geen overheids-/gemeentelogo's (die vragen
+                toestemming en suggereren endorsement). Bron: WBW_GEMEENTEN. */}
+            <div className="px-6 pb-16 pt-2">
+              <Reveal>
+                <div className="flex justify-center">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-hairline bg-canvas px-3.5 py-1.5 text-sm font-medium text-ink-soft shadow-[var(--shadow-soft)]">
+                    <MapPin className="h-4 w-4 text-brand" strokeWidth={2} />
+                    Gecontracteerd in West-Brabant
+                  </span>
+                </div>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <ul className="mx-auto mt-7 flex max-w-2xl flex-wrap items-center justify-center gap-2.5">
+                  {WBW_GEMEENTEN.map((gemeente) => (
+                    <li
+                      key={gemeente}
+                      className="rounded-full border border-hairline bg-mist px-3.5 py-1.5 text-[13.5px] font-medium text-ink-soft transition-[color,border-color,background-color,transform] duration-300 hover:-translate-y-0.5 hover:border-black/15 hover:bg-canvas hover:text-ink"
+                    >
+                      {gemeente}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+              <Reveal delay={0.16}>
+                <p className="mt-6 text-center text-[13px] text-grey">SKJ-geregistreerde jeugdprofessionals</p>
+              </Reveal>
             </div>
           </div>
         </section>
