@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { BookOpen, Target, Footprints, Sparkles, MapPin } from "lucide-react";
-import { WBW_GEMEENTEN } from "@/lib/site";
+import { GEMEENTE_LOGOS } from "@/lib/site";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { DarkPanel } from "@/components/site/DarkPanel";
@@ -102,16 +102,21 @@ export default function OverOnsPage() {
               </div>
             </Reveal>
             <Reveal delay={0.1}>
-              <ul className="mx-auto mt-7 flex max-w-2xl flex-wrap items-center justify-center gap-2.5">
-                {WBW_GEMEENTEN.map((gemeente) => (
-                  <li
-                    key={gemeente}
-                    className="rounded-full border border-hairline bg-canvas px-3.5 py-1.5 text-[13.5px] font-medium text-ink-soft transition-[color,border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-black/15 hover:text-ink"
-                  >
-                    {gemeente}
-                  </li>
-                ))}
-              </ul>
+              <div className="mt-9 overflow-hidden [mask-image:linear-gradient(to_right,transparent_0%,#000_10%,#000_90%,transparent_100%)]">
+                <ul className="animate-logos flex w-max items-center gap-12 lg:gap-16" style={{ animationDuration: "120s" }}>
+                  {[...GEMEENTE_LOGOS, ...GEMEENTE_LOGOS].map((g, i) => (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <li key={`${g.src}-${i}`} className="shrink-0" aria-hidden={i >= GEMEENTE_LOGOS.length}>
+                      <img
+                        src={g.src}
+                        alt={i < GEMEENTE_LOGOS.length ? `Gemeente ${g.naam}` : ""}
+                        title={g.naam}
+                        className="h-12 w-auto object-contain sm:h-14"
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </Reveal>
           </div>
         </section>

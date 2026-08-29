@@ -13,7 +13,7 @@ import {
   BLOG_TEASERS,
   HERO_AVATARS,
   AANMELD_URL,
-  WBW_GEMEENTEN,
+  GEMEENTE_LOGOS,
 } from "@/lib/site";
 
 const STAT_CARDS: { waarde: string; label: string; Icon: LucideIcon }[] = [
@@ -96,9 +96,9 @@ export default function Home() {
             </Reveal>
           </div>
 
-            {/* Gecontracteerde-gemeenten band: onze eigen, aantoonbare footprint i.p.v. geleende
-                logo's. Namen als tekst, bewust geen overheids-/gemeentelogo's (die vragen
-                toestemming en suggereren endorsement). Bron: WBW_GEMEENTEN. */}
+            {/* Gecontracteerde-gemeenten band: infinite-scroll marquee van de officiele
+                gemeentewapens, zoals de live logostrook. Bron: GEMEENTE_LOGOS (Wikimedia,
+                publiek domein). */}
             <div className="px-6 pb-16 pt-2">
               <Reveal>
                 <div className="flex justify-center">
@@ -109,19 +109,24 @@ export default function Home() {
                 </div>
               </Reveal>
               <Reveal delay={0.1}>
-                <ul className="mx-auto mt-7 flex max-w-2xl flex-wrap items-center justify-center gap-2.5">
-                  {WBW_GEMEENTEN.map((gemeente) => (
-                    <li
-                      key={gemeente}
-                      className="rounded-full border border-hairline bg-mist px-3.5 py-1.5 text-[13.5px] font-medium text-ink-soft transition-[color,border-color,background-color,transform] duration-300 hover:-translate-y-0.5 hover:border-black/15 hover:bg-canvas hover:text-ink"
-                    >
-                      {gemeente}
-                    </li>
-                  ))}
-                </ul>
+                <div className="mt-9 overflow-hidden [mask-image:linear-gradient(to_right,transparent_0%,#000_10%,#000_90%,transparent_100%)]">
+                  <ul className="animate-logos flex w-max items-center gap-12 lg:gap-16" style={{ animationDuration: "120s" }}>
+                    {[...GEMEENTE_LOGOS, ...GEMEENTE_LOGOS].map((g, i) => (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <li key={`${g.src}-${i}`} className="shrink-0" aria-hidden={i >= GEMEENTE_LOGOS.length}>
+                        <img
+                          src={g.src}
+                          alt={i < GEMEENTE_LOGOS.length ? `Gemeente ${g.naam}` : ""}
+                          title={g.naam}
+                          className="h-12 w-auto object-contain sm:h-14"
+                        />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </Reveal>
               <Reveal delay={0.16}>
-                <p className="mt-6 text-center text-[13px] text-grey">SKJ-geregistreerde jeugdprofessionals</p>
+                <p className="mt-7 text-center text-[13px] text-grey">SKJ-geregistreerde jeugdprofessionals</p>
               </Reveal>
             </div>
           </div>
