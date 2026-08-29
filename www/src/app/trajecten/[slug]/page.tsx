@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Phone } from "lucide-react";
+import { Phone, ArrowRight } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { DarkPanel } from "@/components/site/DarkPanel";
@@ -9,10 +9,11 @@ import { Reveal } from "@/components/site/Reveal";
 import { FaqSection } from "@/components/site/FaqSection";
 import { CtaBlock } from "@/components/site/CtaBlock";
 import { Testimonials } from "@/components/site/Testimonials";
+import { Werkwijze } from "@/components/traject/Werkwijze";
 import { TRAJECT_PAGINAS, getTrajectPagina, trajectHero } from "@/lib/content";
 import { AANMELD_URL, CONTACT } from "@/lib/site";
 
-import { CheckBullet, IconBadge } from "@/components/site/IconBadge";
+import { CheckBullet } from "@/components/site/IconBadge";
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -44,36 +45,65 @@ export default async function TrajectPage({
   if (!t) notFound();
 
   const anderen = TRAJECT_PAGINAS.filter((x) => x.slug !== t.slug);
+  const spoed = t.slug === "ambulante-spoedhulp";
 
   return (
     <>
       <Nav />
       <main>
-        {/* ── HERO ─────────────────────────────────────── */}
+        {/* ── HERO — editoriale split: verhaal links, beeld rechts ─────────── */}
         <section className="mx-auto max-w-site px-6 pt-36 sm:pt-40">
-          <Reveal>
-            <div className="text-center">
-              {t.eyebrow && (
-                <span className="inline-flex rounded-pill bg-brand px-4 py-1.5 text-sm font-semibold text-canvas">
-                  {t.eyebrow}
-                </span>
-              )}
-              <h1 className="mt-6 text-[clamp(2.1rem,5vw,3rem)]">{t.titel}</h1>
-              {t.tagline && <p className="mt-4 text-ink-soft">{t.tagline}</p>}
-            </div>
-          </Reveal>
-          {/* Spoedtraject verwijst door naar de call-first spoedpagina */}
-          {t.slug === "ambulante-spoedhulp" && (
+          <div className="grid items-center gap-10 md:grid-cols-[1fr_minmax(0,45%)] md:gap-14">
+            <Reveal>
+              <div>
+                <h1 className="text-[clamp(2.2rem,5.2vw,3.4rem)]">{t.titel}</h1>
+                {t.tagline && (
+                  <p className="mt-5 max-w-[46ch] text-lg leading-relaxed text-ink-soft">{t.tagline}</p>
+                )}
+                <div className="mt-8 flex flex-wrap items-center gap-3">
+                  <a
+                    href={AANMELD_URL}
+                    className="rounded-pill bg-brand px-7 py-3.5 text-[15px] font-semibold text-canvas shadow-[var(--shadow-soft)] transition-transform hover:-translate-y-0.5"
+                  >
+                    Direct aanmelden
+                  </a>
+                  <a
+                    href={CONTACT.phoneHref}
+                    className="inline-flex items-center gap-2 rounded-pill border border-hairline bg-canvas px-6 py-3.5 text-[15px] font-semibold text-ink transition-colors hover:border-ink"
+                  >
+                    <Phone className="h-4 w-4 text-brand" strokeWidth={2} />
+                    Bel {CONTACT.phone}
+                  </a>
+                </div>
+                <p className="mt-6 text-sm text-grey">
+                  SKJ-geregistreerde jeugdprofessionals · actief in West-Brabant
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="overflow-hidden rounded-[28px] shadow-[var(--shadow-framer-md)]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={trajectHero(t.slug)}
+                  alt={t.titel}
+                  className="aspect-[4/5] w-full object-cover"
+                />
+              </div>
+            </Reveal>
+          </div>
+
+          {/* Spoedtraject: directe belroute naar ons eigen nummer. */}
+          {spoed && (
             <Reveal delay={0.06}>
               <a
                 href={CONTACT.phoneHref}
-                className="mx-auto mt-8 flex max-w-2xl items-center gap-4 rounded-2xl border border-coral/30 bg-coral/[0.06] p-5 transition-colors hover:border-coral/60"
+                className="mt-10 flex items-center gap-4 rounded-2xl border border-coral/30 bg-coral/[0.06] p-5 transition-colors hover:border-coral/60"
               >
-                <IconBadge icon={Phone} tone="coral" />
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-coral text-canvas">
+                  <Phone className="h-5 w-5" strokeWidth={2} />
+                </span>
                 <span>
-                  <span className="block font-semibold text-ink">
-                    Is er nú een crisis? Bel {CONTACT.phone}
-                  </span>
+                  <span className="block font-semibold text-ink">Is er nú een crisis? Bel {CONTACT.phone}</span>
                   <span className="mt-0.5 block text-sm text-ink-soft">
                     We zijn 24/7 bereikbaar en schakelen vrijwel direct.
                   </span>
@@ -81,97 +111,59 @@ export default async function TrajectPage({
               </a>
             </Reveal>
           )}
-
-          <Reveal delay={0.1}>
-            <div className="mt-10 overflow-hidden rounded-3xl">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={trajectHero(t.slug)}
-                alt={t.titel}
-                className="aspect-[12/5] w-full object-cover"
-              />
-            </div>
-          </Reveal>
         </section>
 
-        {/* ── SAMENVATTING ─────────────────────────────── */}
+        {/* ── WAT WE DOEN — verhaal + voordelen-paneel ─────────────────────── */}
         {t.samenvatting.length > 0 && (
           <section className="mx-auto max-w-site px-6 py-20 sm:py-24">
-            <div className="grid gap-10 md:grid-cols-[392px_1fr] md:gap-12">
+            <div className="grid gap-12 md:grid-cols-[1fr_minmax(0,38%)] md:gap-16">
               <Reveal>
-                <div className="overflow-hidden rounded-3xl">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={trajectHero(t.slug)}
-                    alt=""
-                    className="aspect-[4/5] w-full object-cover"
-                  />
-                </div>
-              </Reveal>
-              <Reveal delay={0.06}>
-                <h2 className="text-[clamp(1.75rem,4vw,2.5rem)]">Samenvatting</h2>
-                <div className="mt-5 flex flex-col gap-4 text-ink-soft">
-                  {t.samenvatting.map((p, i) => (
-                    <p key={i}>{p}</p>
-                  ))}
-                </div>
-                {t.subkop && (
-                  <div className="mt-8 flex flex-wrap items-center gap-4">
-                    <span className="font-display text-lg">{t.subkop}</span>
-                    <a
-                      href={AANMELD_URL}
-                      className="rounded-pill bg-brand px-6 py-3 text-[15px] font-semibold text-canvas transition-transform hover:-translate-y-0.5"
-                    >
-                      Direct aanmelden
-                    </a>
+                <div>
+                  <h2 className="text-[clamp(1.8rem,4vw,2.6rem)]">Wat we doen</h2>
+                  <div className="mt-6 flex flex-col gap-5 text-[1.0625rem] leading-relaxed text-ink-soft">
+                    {t.samenvatting.map((p, i) => (
+                      <p key={i} className="max-w-[68ch]">
+                        {p}
+                      </p>
+                    ))}
                   </div>
-                )}
+                  <a
+                    href={AANMELD_URL}
+                    className="mt-8 inline-flex items-center gap-2 rounded-pill bg-brand px-7 py-3.5 text-[15px] font-semibold text-canvas transition-transform hover:-translate-y-0.5"
+                  >
+                    Direct aanmelden
+                    <ArrowRight className="h-4 w-4" strokeWidth={2.2} />
+                  </a>
+                </div>
               </Reveal>
+
+              {t.voordelen.length > 0 && (
+                <Reveal delay={0.08}>
+                  <div className="rounded-[28px] border border-hairline bg-mist p-7 shadow-[var(--shadow-framer-sm)] sm:p-8">
+                    <h3 className="font-display text-xl">Waarom MENT4L</h3>
+                    <ul className="mt-6 flex flex-col gap-4">
+                      {t.voordelen.map((v) => (
+                        <li key={v} className="flex items-start gap-3">
+                          <CheckBullet className="mt-0.5" />
+                          <span className="text-ink">{v}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </Reveal>
+              )}
             </div>
           </section>
         )}
 
-        {/* ── VOORDELEN ────────────────────────────────── */}
-        {t.voordelen.length > 0 && (
+        {/* ── ZO WERKT HET — geanimeerde procestijdlijn (authored moment) ──── */}
+        {t.werkwijze.length > 0 && (
           <section className="border-y border-hairline bg-mist">
             <div className="mx-auto max-w-site px-6 py-20 sm:py-24">
               <Reveal>
-                <h2 className="text-[clamp(1.75rem,4vw,2.5rem)]">Voordelen</h2>
+                <h2 className="max-w-[20ch] text-[clamp(1.8rem,4vw,2.6rem)]">Zo werkt het, stap voor stap</h2>
               </Reveal>
-              <div className="mt-14 grid gap-6 sm:grid-cols-2">
-                {t.voordelen.map((v, i) => (
-                  <Reveal key={v} delay={i * 0.05}>
-                    <div className="flex h-full items-start gap-3 rounded-2xl border border-hairline bg-canvas p-6">
-                      <CheckBullet className="mt-0.5" />
-                      <span className="text-ink">{v}</span>
-                    </div>
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* ── WERKWIJZE ────────────────────────────────── */}
-        {t.werkwijze.length > 0 && (
-          <section className="mx-auto max-w-site px-6 py-20 sm:py-24">
-            <Reveal>
-              <h2 className="text-[clamp(1.75rem,4vw,2.5rem)]">Werkwijze</h2>
-            </Reveal>
-            <div className="mt-14 flex flex-col gap-6">
-              {t.werkwijze.map((w, i) => (
-                <Reveal key={w.titel || i} delay={i * 0.04}>
-                  <div className="grid gap-4 rounded-3xl border border-hairline bg-canvas p-7 sm:grid-cols-[auto_1fr] sm:gap-7">
-                    <span className="font-display text-3xl font-bold leading-none text-brand">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div>
-                      {w.titel && <h3 className="text-xl leading-snug">{w.titel}</h3>}
-                      <p className="mt-2 text-ink-soft">{w.tekst}</p>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
+              <Werkwijze stappen={t.werkwijze} />
             </div>
           </section>
         )}
@@ -179,10 +171,10 @@ export default async function TrajectPage({
         <FaqSection />
         <CtaBlock />
 
-        {/* ── ANDERE TRAJECTEN ─────────────────────────── */}
+        {/* ── ANDER AANBOD ─────────────────────────────────────────────────── */}
         <section className="mx-auto max-w-site px-6 py-20 sm:py-24">
           <Reveal>
-            <h2 className="text-2xl">Andere trajecten</h2>
+            <h2 className="text-2xl">Ander aanbod</h2>
           </Reveal>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {anderen.map((a, i) => (
@@ -194,13 +186,17 @@ export default async function TrajectPage({
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={trajectHero(a.slug)}
-                    alt={a.titel}
-                    className="absolute inset-0 h-full w-full object-cover"
+                    alt=""
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
-                  <span className="relative p-5 font-display text-base font-bold leading-tight text-white">
-                    {a.titel}
-                  </span>
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                  <div className="relative flex items-end justify-between gap-3 p-5">
+                    <span className="font-display text-base font-bold leading-tight text-white">{a.titel}</span>
+                    <ArrowRight
+                      className="h-5 w-5 shrink-0 translate-x-0 text-white/80 transition-transform duration-300 group-hover:translate-x-1"
+                      strokeWidth={2}
+                    />
+                  </div>
                 </Link>
               </Reveal>
             ))}
