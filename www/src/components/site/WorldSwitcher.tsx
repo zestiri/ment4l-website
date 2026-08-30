@@ -43,7 +43,6 @@ export function WorldSwitcher({
 
   return (
     <div
-      role="tablist"
       aria-label="Kies onderdeel van MENT4L"
       className={`${block ? "flex w-full" : "inline-flex"} items-center rounded-full border p-0.5 ${track} ${className}`}
     >
@@ -53,8 +52,6 @@ export function WorldSwitcher({
           <Link
             key={key}
             href={href}
-            role="tab"
-            aria-selected={is}
             aria-current={is ? "page" : undefined}
             onClick={onNavigate}
             className={`relative inline-flex items-center justify-center gap-1.5 rounded-full px-3 py-1.5 text-[13px] font-semibold transition-colors duration-200 ${block ? "flex-1" : ""} ${is ? activeCls : idleCls}`}
