@@ -234,7 +234,7 @@ export const TESTIMONIALS = [
     rol: "Jeugdcoach",
     quote:
       "Werken bij MENT4L biedt de kans om jongeren op een effectieve en persoonlijke manier te ondersteunen. Het team is professioneel, flexibel en altijd bereid om samen te werken aan innovatieve oplossingen.",
-    naam: "Jeroen S.",
+    naam: "Sophie T.",
     functie: "Jeugdcoach | Team MENT4L",
   },
   {
@@ -242,7 +242,7 @@ export const TESTIMONIALS = [
     rol: "Verwijzer",
     quote:
       "De samenwerking met dit team is snel, flexibel en innovatief. Ze reageren direct op de behoeften van onze cliënten en bieden op maat gemaakte oplossingen. Het is altijd prettig om met een professioneel en oplossingsgericht team samen te werken.",
-    naam: "Angela W.",
+    naam: "Jeroen S.",
     functie: "Verwijzer | Gemeente",
   },
   {
@@ -250,7 +250,7 @@ export const TESTIMONIALS = [
     rol: "Jongere",
     quote:
       "De begeleiding sessies maakten het makkelijker om open te zijn over mijn gevoelens en de dingen die me dwarszaten. Ik voel me nu sterker en bewuster van mezelf.",
-    naam: "Sophie T.",
+    naam: "Angelo D.",
     functie: "Jeugdcoaching | Op school",
   },
 ] as const;
